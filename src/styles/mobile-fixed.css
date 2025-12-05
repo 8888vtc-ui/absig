@@ -1,0 +1,99 @@
+/* ============================================
+   MOBILE FIXED ELEMENTS - GALRIVIERA
+   WhatsApp fixe en haut, Chatbot au-dessus du menu
+   ============================================ */
+
+/* === WHATSAPP FLOTTANT === */
+.whatsapp-button {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background-color: #25D366;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.whatsapp-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.5);
+    background-color: #20BA5A;
+}
+
+.whatsapp-button svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.whatsapp-label {
+    white-space: nowrap;
+}
+
+/* === CHATBOT === */
+.chatbot-container {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    z-index: 9999;
+}
+
+/* === MOBILE === */
+@media (max-width: 768px) {
+
+    /* WhatsApp flottant caché sur mobile (remplacé par header-whatsapp) */
+    .whatsapp-button {
+        display: none !important;
+    }
+
+    /* Chatbot - Au-dessus du menu bottom */
+    .chatbot-container {
+        position: fixed !important;
+        bottom: 80px !important;
+        right: 10px !important;
+        left: auto !important;
+        top: auto !important;
+        z-index: 99997 !important;
+    }
+
+    .chatbot-toggle {
+        padding: 8px 12px !important;
+        font-size: 0.8rem !important;
+    }
+
+    .chatbot-toggle svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    /* Fenêtre chatbot - centrée */
+    .chatbot-window {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: translate(-50%, -50%) !important;
+        width: 90vw !important;
+        max-width: 340px !important;
+        max-height: 60vh !important;
+        z-index: 100000 !important;
+    }
+
+    /* RTL Mobile Support */
+    [dir="rtl"] .chatbot-container {
+        right: auto !important;
+        left: 10px !important;
+    }
+}

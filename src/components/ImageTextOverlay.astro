@@ -1,0 +1,40 @@
+﻿---
+interface Props {
+  image: string;
+  alt: string;
+  title?: string;
+  text?: string;
+  overlay?: boolean;
+  height?: string;
+}
+
+const {
+  image,
+  alt,
+  title,
+  text,
+  overlay = true,
+  height = "400px"
+} = Astro.props;
+---
+
+<div class="image-text-overlay" style={`height: ${height}`}>
+  <div class="image-container">
+    <img 
+      src={image} 
+      alt={alt}
+      title={title || alt}
+      loading="lazy"
+      decoding="async"
+      class="overlay-image"
+    />
+    {overlay && <div class="image-overlay"></div>}
+  </div>
+  {text && (
+    <div class="text-overlay">
+      <h2 class="overlay-title">{text}</h2>
+    </div>
+  )}
+</div>
+
+

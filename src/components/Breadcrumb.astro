@@ -1,0 +1,36 @@
+﻿---
+interface Props {
+  items: Array<{ name: string; url: string }>;
+}
+
+const { items } = Astro.props;
+
+// Générer le Schema.org BreadcrumbList
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": `https://www.galriviera.com${item.url}`
+  }))
+};
+---
+
+<nav class="breadcrumbs container" aria-label="Fil d'Ariane">
+  {items.map((item, index) => (
+    <>
+      {index < items.length - 1 ? (
+        <a href={item.url}>{item.name}</a>
+      ) : (
+        <span aria-current="page">{item.name}</span>
+      )}
+      {index < items.length - 1 && <span class="breadcrumb-separator"> › </span>}
+    </>
+  ))}
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+

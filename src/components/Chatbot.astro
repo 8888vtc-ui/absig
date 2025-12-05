@@ -1,0 +1,403 @@
+---
+interface Props {
+  currentLang?: string;
+}
+
+const { currentLang = 'fr' } = Astro.props;
+
+const translations = {
+  fr: {
+    label: "Guide VIP",
+    welcome: "Bonjour ! Je suis votre guide touristique expert sur la Côte d'Azur. Je peux vous conseiller sur les meilleurs endroits à visiter, les restaurants, les plages, et bien plus encore. Que souhaitez-vous découvrir ?",
+    placeholder: "Posez votre question...",
+    whatsappHint: "Pour les réservations et tarifs, contactez-nous directement sur",
+    error: "Désolé, une erreur est survenue. Contactez-moi directement sur WhatsApp pour plus d'informations.",
+    booking: "Pour finaliser votre réservation, <a href=\"https://wa.me/33682267342\" target=\"_blank\" rel=\"noopener\" class=\"chatbot-whatsapp-link\">contactez-moi sur WhatsApp</a> !",
+    unavailable: "Désolé, je ne peux pas répondre pour le moment. Contactez-moi directement sur WhatsApp au +33 6 82 26 73 42."
+  },
+  en: {
+    label: "VIP Guide",
+    welcome: "Hello! I am your expert tour guide on the French Riviera. I can advise you on the best places to visit, restaurants, beaches, and much more. What would you like to discover?",
+    placeholder: "Ask your question...",
+    whatsappHint: "For bookings and rates, contact us directly on",
+    error: "Sorry, an error occurred. Contact me directly on WhatsApp for more information.",
+    booking: "To finalize your booking, <a href=\"https://wa.me/33682267342\" target=\"_blank\" rel=\"noopener\" class=\"chatbot-whatsapp-link\">contact me on WhatsApp</a>!",
+    unavailable: "Sorry, I cannot answer at the moment. Contact me directly on WhatsApp at +33 6 82 26 73 42."
+  },
+  he: {
+    label: "מדריך VIP",
+    welcome: "שלום! אני מדריך הטיולים המומחה שלך בריביירה הצרפתית. אני יכול לייעץ לך על המקומות הטובים ביותר לביקור, מסעדות, חופים ועוד. מה תרצה לגלות?",
+    placeholder: "שאל את השאלה שלך...",
+    whatsappHint: "להזמנות ומחירים, צרו איתנו קשר ישירות ב",
+    error: "מצטערים, אירעה שגיאה. צור איתי קשר ישירות ב-WhatsApp למידע נוסף.",
+    booking: "לסיום ההזמנה, <a href=\"https://wa.me/33682267342\" target=\"_blank\" rel=\"noopener\" class=\"chatbot-whatsapp-link\">צור איתי קשר ב-WhatsApp</a>!",
+    unavailable: "מצטער, אני לא יכול לענות כרגע. צור איתי קשר ישירות ב-WhatsApp בטלפון +33 6 82 26 73 42."
+  }
+};
+
+// Fallback to French if language not found
+const t = translations[currentLang] || translations.fr;
+---
+
+<div class="chatbot-container" id="chatbot-container" data-translations={JSON.stringify(t)} data-lang={currentLang}>
+  <button 
+    class="chatbot-toggle" 
+    id="chatbot-toggle"
+    aria-label={t.label}
+    aria-expanded="false"
+    aria-controls="chatbot-window"
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+    <span class="chatbot-label">{t.label}</span>
+  </button>
+
+  <div class="chatbot-window" id="chatbot-window" aria-hidden="true" role="dialog" aria-labelledby="chatbot-title">
+    <div class="chatbot-header">
+      <h3 id="chatbot-title" class="chatbot-title">{t.label}</h3>
+      <button 
+        class="chatbot-close" 
+        id="chatbot-close"
+        aria-label="Fermer"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="chatbot-messages" id="chatbot-messages" role="log" aria-live="polite">
+      <div class="chatbot-message chatbot-message-bot">
+        <div class="message-content">
+          <p>{t.welcome}</p>
+        </div>
+      </div>
+    </div>
+    <div class="chatbot-input-container">
+      <form class="chatbot-form" id="chatbot-form">
+        <input 
+          type="text" 
+          id="chatbot-input" 
+          class="chatbot-input" 
+          placeholder={t.placeholder}
+          aria-label="Votre question"
+          autocomplete="off"
+        />
+        <button 
+          type="submit" 
+          class="chatbot-send"
+          aria-label="Envoyer"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </form>
+      <p class="chatbot-whatsapp-hint">
+        {t.whatsappHint} <a href="https://wa.me/33682267342" target="_blank" rel="noopener">WhatsApp</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    'use strict';
+
+    // Attendre que le DOM soit chargé
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initChatbot);
+    } else {
+      initChatbot();
+    }
+
+    function initChatbot() {
+      const container = document.getElementById('chatbot-container');
+      if (!container) return;
+
+      const t = JSON.parse(container.dataset.translations);
+      const currentLang = container.dataset.lang;
+
+      const toggle = document.getElementById('chatbot-toggle');
+      const window = document.getElementById('chatbot-window');
+      const close = document.getElementById('chatbot-close');
+      const form = document.getElementById('chatbot-form');
+      const input = document.getElementById('chatbot-input');
+      const messages = document.getElementById('chatbot-messages');
+      const sendButton = form?.querySelector('.chatbot-send');
+
+      if (!toggle || !window || !form || !input || !messages) {
+        console.error('Chatbot elements not found');
+        return;
+      }
+
+      // Variable pour éviter la fermeture lors du tap sur le formulaire
+      let isFormInteraction = false;
+
+      function openChatbot() {
+        window.classList.add('open');
+        window.setAttribute('aria-hidden', 'false');
+        toggle.setAttribute('aria-expanded', 'true');
+        // Sur mobile, ne pas focus immédiatement pour éviter le scroll
+        if (window.innerWidth > 768) {
+          setTimeout(() => {
+            input.focus();
+          }, 100);
+        }
+      }
+
+      function closeChatbot() {
+        window.classList.remove('open');
+        window.setAttribute('aria-hidden', 'true');
+        toggle.setAttribute('aria-expanded', 'false');
+        input.blur();
+        isFormInteraction = false;
+      }
+
+      function addMessage(text, isUser = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `chatbot-message ${isUser ? 'chatbot-message-user' : 'chatbot-message-bot'}`;
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
+        const p = document.createElement('p');
+        p.textContent = text;
+        p.style.color = isUser ? '#1a1a1a' : '#ffffff';
+        p.style.textShadow = isUser ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.7)';
+        p.style.fontWeight = '500';
+        contentDiv.appendChild(p);
+        
+        messageDiv.appendChild(contentDiv);
+        messages.appendChild(messageDiv);
+        
+        // Scroll avec un petit délai pour s'assurer que le message est rendu
+        setTimeout(() => {
+          messages.scrollTop = messages.scrollHeight;
+        }, 50);
+      }
+
+      function addLoadingMessage() {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'chatbot-message chatbot-message-bot loading';
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
+        contentDiv.textContent = '';
+        messageDiv.appendChild(contentDiv);
+        messages.appendChild(messageDiv);
+        setTimeout(() => {
+          messages.scrollTop = messages.scrollHeight;
+        }, 50);
+        return messageDiv;
+      }
+
+      function removeLoadingMessage(loadingMsg) {
+        if (loadingMsg && loadingMsg.parentNode) {
+          loadingMsg.parentNode.removeChild(loadingMsg);
+        }
+      }
+
+      async function sendMessage() {
+        const userMessage = input.value.trim();
+        if (!userMessage) {
+          if (window.innerWidth > 768) {
+            input.focus();
+          }
+          return;
+        }
+
+        addMessage(userMessage, true);
+        input.value = '';
+        
+        // Sur mobile, ne pas blur immédiatement
+        if (window.innerWidth > 768) {
+          input.blur();
+        }
+        
+        const loadingMsg = addLoadingMessage();
+
+        try {
+          const response = await fetch('/.netlify/functions/chatbot', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+              message: userMessage,
+              language: currentLang // Pass language to backend
+            })
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          removeLoadingMessage(loadingMsg);
+
+          if (data.reply) {
+            addMessage(data.reply);
+            
+            // Si le message contient des infos de réservation
+            if (data.reply.toLowerCase().includes('whatsapp') || data.reply.toLowerCase().includes('réserv')) {
+              setTimeout(() => {
+                const whatsappMsg = document.createElement('div');
+                whatsappMsg.className = 'chatbot-message chatbot-message-bot chatbot-whatsapp-message';
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'message-content';
+                const p = document.createElement('p');
+                p.innerHTML = t.booking;
+                contentDiv.appendChild(p);
+                whatsappMsg.appendChild(contentDiv);
+                messages.appendChild(whatsappMsg);
+                setTimeout(() => {
+                  messages.scrollTop = messages.scrollHeight;
+                }, 50);
+              }, 500);
+            }
+          } else {
+            addMessage(t.error);
+          }
+        } catch (error) {
+          console.error('Chatbot error:', error);
+          removeLoadingMessage(loadingMsg);
+          addMessage(t.unavailable);
+        }
+        
+        // Remettre le focus sur l'input après la réponse (seulement sur desktop)
+        if (window.innerWidth > 768) {
+          setTimeout(() => {
+            input.focus();
+          }, 100);
+        }
+      }
+
+      // Event listeners
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        if (window.classList.contains('open')) {
+          closeChatbot();
+        } else {
+          openChatbot();
+        }
+      });
+
+      // Support touch pour mobile
+      toggle.addEventListener('touchend', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        if (window.classList.contains('open')) {
+          closeChatbot();
+        } else {
+          openChatbot();
+        }
+      });
+
+      close?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        closeChatbot();
+      });
+
+      close?.addEventListener('touchend', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        closeChatbot();
+      });
+
+      // Gestion du formulaire - Submit
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        isFormInteraction = true;
+        await sendMessage();
+        // Réinitialiser après un court délai
+        setTimeout(() => {
+          isFormInteraction = false;
+        }, 300);
+      });
+
+      // Bouton send - Click et Touch
+      if (sendButton) {
+        sendButton.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          isFormInteraction = true;
+          await sendMessage();
+          setTimeout(() => {
+            isFormInteraction = false;
+          }, 300);
+        });
+
+        sendButton.addEventListener('touchend', async (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          isFormInteraction = true;
+          await sendMessage();
+          setTimeout(() => {
+            isFormInteraction = false;
+          }, 300);
+        });
+      }
+
+      // Input - Enter key
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          e.stopPropagation();
+          isFormInteraction = true;
+          sendMessage();
+          setTimeout(() => {
+            isFormInteraction = false;
+          }, 300);
+        }
+      });
+
+      // Fermer en cliquant en dehors (mais pas lors d'une interaction avec le formulaire)
+      document.addEventListener('click', (e) => {
+        if (window.classList.contains('open') && !isFormInteraction) {
+          const isClickInside = window.contains(e.target) || toggle.contains(e.target);
+          if (!isClickInside) {
+            closeChatbot();
+          }
+        }
+      });
+
+      // Support touch pour fermer en dehors
+      document.addEventListener('touchend', (e) => {
+        if (window.classList.contains('open') && !isFormInteraction) {
+          const isTouchInside = window.contains(e.target) || toggle.contains(e.target);
+          if (!isTouchInside) {
+            closeChatbot();
+          }
+        }
+      });
+
+      // Fermer avec Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && window.classList.contains('open')) {
+          closeChatbot();
+        }
+      });
+
+      // Empêcher la fermeture lors du scroll sur mobile
+      messages.addEventListener('touchstart', (e) => {
+        e.stopPropagation();
+      });
+
+      messages.addEventListener('touchmove', (e) => {
+        e.stopPropagation();
+      });
+
+      // Empêcher la propagation des événements du formulaire
+      form.addEventListener('touchstart', (e) => {
+        e.stopPropagation();
+        isFormInteraction = true;
+      });
+
+      form.addEventListener('touchend', (e) => {
+        e.stopPropagation();
+      });
+    }
+  })();
+</script>

@@ -1,0 +1,341 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import Chatbot from '../components/Chatbot.astro';
+import ReviewsDisplay from '../components/ReviewsDisplay.astro';
+import { allReviews, aggregateRating } from '../data/reviews.ts';
+
+import '../styles/base.css';
+import '../styles/menu.css';
+import '../styles/components.css';
+import '../styles/chatbot.css';
+import '../styles/reviews.css';
+import '../styles/mobile-fixed.css';
+import '../styles/jewish-theme.css';
+
+interface Props {
+  title: string;
+  description: string;
+  currentPage?: string;
+  ogImage?: string;
+  canonical?: string;
+  schema?: any; // Schema.org optionnel par page
+  skipBaseSchema?: boolean; // Pour pages qui n'ont pas besoin du schema de base
+  breadcrumbItems?: Array<{ name: string; url: string }>; // Breadcrumbs optionnels
+  currentLang?: string;
+  alternateLinks?: { en?: string; he?: string; fr?: string };
+}
+
+const {
+  title,
+  description,
+  currentPage = "",
+  ogImage = "https://www.galriviera.com/assets/img/hero/hero-riviera.webp",
+  canonical,
+  schema,
+  skipBaseSchema = false,
+  breadcrumbItems,
+  currentLang = "fr",
+  alternateLinks = {}
+} = Astro.props;
+
+const canonicalUrl = canonical || Astro.url.pathname;
+const siteUrl = "https://www.galriviera.com";
+const fullCanonical = `${siteUrl}${canonicalUrl}`;
+
+// Génération des hreflang dynamiques
+const hreflangLinks = [
+  { lang: 'fr', href: alternateLinks.fr ? `${siteUrl}/${alternateLinks.fr}` : `${siteUrl}${Astro.url.pathname}` }, // Fallback to current if not provided (imperfect but safe)
+  { lang: 'en', href: alternateLinks.en ? `${siteUrl}/en/${alternateLinks.en}` : `${siteUrl}/en` },
+  { lang: 'he', href: alternateLinks.he ? `${siteUrl}/he/${alternateLinks.he}` : `${siteUrl}/he` },
+  { lang: 'x-default', href: alternateLinks.fr ? `${siteUrl}/${alternateLinks.fr}` : `${siteUrl}` }
+];
+
+// Clean up: if we are on a specific page, we want exact links.
+// The generation script should pass these.
+// For now, let's rely on the props passed by the page.
+
+const isRtl = currentLang === 'he';
+---
+
+<!doctype html>
+<html lang={currentLang} dir={isRtl ? 'rtl' : 'ltr'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <link rel="icon" type="image/svg+xml" href="/assets/img/favicon/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="j3W_6acHSoLG44VYoJ7vqzwSzJclmEouNpLwR25fRLU" />
+    
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="GALRIVIERA" />
+    
+    <!-- Android Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={fullCanonical} />
+    
+    <!-- Robots & SEO -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    
+    <!-- Performance hints -->
+    <link rel="dns-prefetch" href="https://www.galriviera.com" />
+    <link rel="preconnect" href="https://www.galriviera.com" crossorigin />
+    
+    <!-- Hreflang tags for multilingual SEO -->
+    {hreflangLinks.map(link => (
+      <link rel="alternate" hreflang={link.lang} href={link.href} />
+    ))}
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/assets/img/favicon/safari-pinned-tab.svg" color="#c9a85e">
+    <meta name="msapplication-TileColor" content="#0a0c17">
+    <meta name="theme-color" content="#d4af37">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={fullCanonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={fullCanonical} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    
+    <!-- Preload critical resources for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="/assets/fonts/poppins-v20-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
+    
+    <!-- Schema.org JSON-LD -->
+    {!skipBaseSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://www.galriviera.com/#localbusiness",
+            "name": "GALRIVIERA – Luxury Travel",
+            "url": "https://www.galriviera.com/",
+            "image": "https://www.galriviera.com/assets/img/hero/hero-riviera.webp",
+            "telephone": "+33682267342",
+            "email": "vtctransportsig@gmail.com",
+            "priceRange": "$$",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "120 route de macarons",
+              "addressLocality": "Valbonne",
+              "postalCode": "06560",
+              "addressCountry": "FR"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 43.642,
+              "longitude": 7.005
+            },
+            "areaServed": [
+              { "@type": "City", "name": "Nice" },
+              { "@type": "City", "name": "Cannes" },
+              { "@type": "City", "name": "Antibes" },
+              { "@type": "City", "name": "Monaco" },
+              { "@type": "City", "name": "Saint-Tropez" },
+              { "@type": "City", "name": "Valbonne" },
+              { "@type": "City", "name": "Mougins" }
+            ],
+            "foundingDate": "2022-04-07",
+            "vatID": "FR52914022736",
+            "legalName": "SASU Absig",
+            "serviceType": ["VTC", "Transfert aéroport", "Transport business", "Mise à disposition avec chauffeur"],
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": aggregateRating.ratingValue,
+              "reviewCount": aggregateRating.reviewCount,
+              "bestRating": aggregateRating.bestRating,
+              "worstRating": aggregateRating.worstRating
+            },
+            "review": allReviews.map(review => ({
+              "@type": "Review",
+              "author": {
+                "@type": "Person",
+                "name": review.author
+              },
+              "datePublished": review.datePublished,
+              "reviewBody": review.reviewBody,
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": review.rating.toString(),
+                "bestRating": "5"
+              }
+            })),
+            "sameAs": [
+              "https://www.instagram.com/galriviera/",
+              "https://www.facebook.com/galriviera/"
+            ],
+            "openingHoursSpecification": [{
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              "opens": "00:00",
+              "closes": "23:59"
+            }]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.galriviera.com/#website",
+            "url": "https://www.galriviera.com/",
+            "name": "GALRIVIERA – Luxury Travel",
+            "description": "Chauffeur privé VTC sur la Côte d'Azur (Nice, Cannes, Monaco, Saint-Tropez). Transferts aéroport, gare, hôtel, domicile, événements.",
+            "publisher": {
+              "@id": "https://www.galriviera.com/#localbusiness"
+            }
+          }
+        ]
+      })} />
+    )}
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+    
+    <!-- Service Worker Registration -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((reg) => {
+              if (import.meta.env.DEV) {
+                console.log('Service Worker registered:', reg);
+              }
+            })
+            .catch((err) => {
+              if (import.meta.env.DEV) {
+                console.error('Service Worker registration failed:', err);
+              }
+            });
+        });
+      }
+    </script>
+    
+    <!-- Analytics (optionnel - nécessite PUBLIC_GA4_MEASUREMENT_ID) -->
+    {import.meta.env.PUBLIC_GA4_MEASUREMENT_ID && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA4_MEASUREMENT_ID}`}></script>
+        <script is:inline define:vars={{ gaId: import.meta.env.PUBLIC_GA4_MEASUREMENT_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaId, {
+            'anonymize_ip': true,
+            'cookie_flags': 'SameSite=None;Secure'
+          });
+        </script>
+      </>
+    )}
+    
+    <!-- Scripts inline -->
+    <script is:inline>
+      // FAQ accordéon
+      document.addEventListener("click", (event) => {
+        const header = event.target.closest(".faq-question");
+        if (!header) return;
+        const item = header.closest(".faq-item");
+        if (!item) return;
+        item.classList.toggle("open");
+      });
+
+      // Marquer la date de mise à jour automatiquement
+      const lastUpdatedEl = document.querySelector(".js-last-updated");
+      if (lastUpdatedEl) {
+        const now = new Date();
+        const formatted = now.toLocaleDateString("fr-FR", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        });
+        lastUpdatedEl.textContent = formatted;
+      }
+    </script>
+    
+    <script is:inline>
+      // Bannière RGPD simple
+      const initCookieBanner = () => {
+        if (!localStorage.getItem('cookiesAccepted')) {
+          const banner = document.createElement('div');
+          banner.innerHTML = `
+            <div style="position:fixed; bottom:0; background:#1e293b; color:white; padding:1rem; width:100%; z-index:50; display:flex; flex-wrap:wrap; gap:1rem; align-items:center">
+              <p>Nous utilisons des cookies ou technologies similaires principalement pour le bon fonctionnement du site et, avec votre accord, pour des mesures d'audience anonymisées. Vous pouvez accepter ou refuser ces cookies optionnels. Pour en savoir plus, consultez notre <a href="/mentions-legales-rgpd.html" style="color:#38bdf8">politique de confidentialité</a>.</p>
+              <div style="display:flex; gap:0.5rem">
+                <button id="accept-cookies" style="background:#0ea5e9; color:white; border:none; padding:0.4rem 0.8rem; border-radius:4px; cursor:pointer">Accepter</button>
+                <button id="reject-cookies" style="background:transparent; color:#94a3b8; border:1px solid #94a3b8; padding:0.4rem 0.8rem; border-radius:4px; cursor:pointer">Refuser</button>
+              </div>
+            </div>
+          `;
+          document.body.appendChild(banner);
+
+          document.getElementById('accept-cookies').addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            banner.remove();
+          });
+
+          document.getElementById('reject-cookies').addEventListener('click', () => {
+            localStorage.setItem('cookiesRejected', 'true');
+            banner.remove();
+          });
+        }
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCookieBanner);
+      } else {
+        initCookieBanner();
+      }
+    </script>
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  </head>
+  <body data-page={currentPage}>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <Header currentPage={currentPage} />
+    {breadcrumbItems && breadcrumbItems.length > 0 && (
+      <Breadcrumb items={breadcrumbItems} />
+    )}
+    <main id="main-content" role="main">
+      <slot />
+    </main>
+    {currentPage !== "avis-clients" && <ReviewsDisplay limit={6} />}
+    <Footer />
+    <WhatsAppButton />
+    <Chatbot currentLang={currentLang} />
+
+    <!-- Initialize AOS -->
+    <script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+          duration: 800,
+          easing: 'ease-out-cubic',
+          once: true,
+          offset: 50,
+          delay: 100,
+        });
+      });
+    </script>
+  </body>
+</html>

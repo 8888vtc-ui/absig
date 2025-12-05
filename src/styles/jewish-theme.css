@@ -1,0 +1,101 @@
+/* ============================================
+   JEWISH HERITAGE THEME - DISCRETE
+   Subtle Star of David patterns and Israeli color accents
+   ============================================ */
+
+/* 1. Subtle Background Pattern for Hero Overlay */
+.hero-overlay {
+    /* Adding a very subtle pattern over the gradient */
+    background-image:
+        linear-gradient(to bottom, rgba(0, 35, 102, 0.7), rgba(0, 35, 102, 0.5)),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L35 15 L45 15 L37 22 L40 32 L30 26 L20 32 L23 22 L15 15 L25 15 Z' fill='none' stroke='%23ffffff' stroke-width='0.5' opacity='0.05'/%3E%3C/svg%3E");
+    background-size: cover, 60px 60px;
+}
+
+/* 2. Section Dividers / Accents */
+.section-divider-star {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+    color: #d4af37;
+    /* Gold */
+    opacity: 0.8;
+}
+
+.section-divider-star::before,
+.section-divider-star::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d4af37, transparent);
+    max-width: 100px;
+    margin: 0 1rem;
+}
+
+.section-divider-star svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+/* 3. List Bullets - Star of David */
+ul.star-bullets {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul.star-bullets li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+ul.star-bullets li::before {
+    content: "✡";
+    /* Star of David character */
+    position: absolute;
+    left: 0;
+    color: #d4af37;
+    /* Gold */
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* 4. Israeli Blue Accent */
+:root {
+    --israeli-blue: #0038b8;
+}
+
+.text-israeli-blue {
+    color: var(--israeli-blue);
+}
+
+.bg-israeli-blue {
+    background-color: var(--israeli-blue);
+}
+
+/* 5. Footer Subtle Watermark */
+.site-footer {
+    position: relative;
+    overflow: hidden;
+}
+
+.site-footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 L60 35 L85 35 L65 50 L75 75 L50 60 L25 75 L35 50 L15 35 L40 35 Z' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.03'/%3E%3C/svg%3E");
+    background-size: 100px 100px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Ensure content is above watermark */
+.site-footer>* {
+    position: relative;
+    z-index: 1;
+}

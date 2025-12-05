@@ -1,0 +1,246 @@
+/* ============================================
+   MENU CSS - GALRIVIERA
+   Header Desktop + Bottom Navigation Mobile
+   ============================================ */
+
+/* === HEADER DESKTOP === */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    padding: 0.5rem 0;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 80px;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.nav-brand-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.brand-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* WhatsApp dans le header - CACHÉ, on utilise le fixe à la place */
+.header-whatsapp {
+    display: none !important;
+}
+
+/* WhatsApp FIXE en haut pour mobile - Toujours visible au scroll */
+.whatsapp-fixed-top {
+    display: none;
+    /* Caché sur desktop */
+    position: fixed !important;
+    top: 12px !important;
+    right: 60px !important;
+    /* À côté du logo, pas trop à droite */
+    z-index: 100001 !important;
+    /* Au-dessus du header */
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background-color: #25D366;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 25px;
+    box-shadow: 0 3px 12px rgba(37, 211, 102, 0.5);
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.whatsapp-fixed-top:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-fixed-top svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.whatsapp-fixed-top span {
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .whatsapp-fixed-top {
+        display: flex !important;
+        /* Visible sur mobile */
+    }
+}
+
+/* Menu Desktop - Caché sur mobile */
+.nav-links-desktop {
+    display: none;
+    gap: 2rem;
+    align-items: center;
+}
+
+@media (min-width: 769px) {
+    .nav-links-desktop {
+        display: flex;
+    }
+}
+
+.nav-links-desktop a {
+    color: #e0e0e0;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.nav-links-desktop a:hover,
+.nav-links-desktop a:focus {
+    color: #d4af37;
+}
+
+.nav-links-desktop a.active {
+    color: #d4af37;
+}
+
+.nav-links-desktop a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #d4af37;
+}
+
+/* === BOTTOM NAVIGATION MOBILE === */
+.bottom-nav {
+    display: none;
+    /* Caché sur desktop */
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 65px;
+    background: #0a0a0a;
+    border-top: 2px solid #d4af37;
+    z-index: 99999 !important;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 5px;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+@media (max-width: 768px) {
+    .bottom-nav {
+        display: flex !important;
+    }
+
+    body {
+        padding-bottom: 75px !important;
+    }
+}
+
+.bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #a0a0a0;
+    padding: 8px 16px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    min-width: 70px;
+    gap: 4px;
+}
+
+.bottom-nav-item svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1.5;
+    transition: transform 0.2s ease;
+}
+
+.bottom-nav-item span {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.bottom-nav-item:hover,
+.bottom-nav-item:focus {
+    color: #d4af37;
+    background: rgba(212, 175, 55, 0.1);
+}
+
+.bottom-nav-item:active {
+    transform: scale(0.95);
+}
+
+.bottom-nav-item.active {
+    color: #d4af37;
+    background: rgba(212, 175, 55, 0.15);
+}
+
+.bottom-nav-item.active svg {
+    transform: scale(1.1);
+    stroke-width: 2;
+}
+
+/* Bouton Réserver - Style spécial */
+.bottom-nav-item.book-btn {
+    color: #25D366;
+    background: rgba(37, 211, 102, 0.1);
+}
+
+.bottom-nav-item.book-btn:hover,
+.bottom-nav-item.book-btn:focus {
+    color: #ffffff;
+    background: #25D366;
+}
+
+.bottom-nav-item.book-btn svg {
+    stroke: currentColor;
+}
+
+/* === RESPONSIVE AJUSTEMENTS === */
+@media (max-width: 768px) {
+    .brand-text {
+        font-size: 1rem;
+    }
+
+    .navbar {
+        padding: 0.75rem 1rem;
+    }
+
+    /* Ajuster la largeur des items avec 4 éléments */
+    .bottom-nav-item {
+        min-width: 60px;
+        padding: 8px 12px;
+    }
+}

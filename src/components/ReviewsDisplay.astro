@@ -1,0 +1,247 @@
+---
+import { featuredReviews, aggregateRating } from '../data/reviews.ts';
+
+interface Props {
+  showAll?: boolean;
+  limit?: number;
+}
+
+const facebookReviewsUrl = "https://www.facebook.com/profile.php?id=61579363291995&sk=reviews";
+const { showAll = false, limit = 6 } = Astro.props;
+const reviewsToShow = showAll ? featuredReviews : featuredReviews.slice(0, limit);
+---
+
+<section class="reviews-section" aria-label="Avis clients">
+  <div class="container">
+    <div class="reviews-header">
+      <h2 class="reviews-title">Avis Clients</h2>
+      <div class="rating-badge">
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-info">
+          <span class="rating-value">{aggregateRating.ratingValue}</span>
+          <span class="verified-badge">Avis Vérifiés</span>
+        </div>
+        <a 
+          href={facebookReviewsUrl}
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="facebook-badge"
+          aria-label="Voir tous les avis sur Facebook"
+        >
+          Voir sur Facebook
+        </a>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      {reviewsToShow.map((review) => (
+        <article class="review-card" itemscope itemtype="https://schema.org/Review">
+          <div class="review-rating" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+            <span class="stars">{'★'.repeat(review.rating)}</span>
+            <meta itemprop="ratingValue" content={review.rating.toString()} />
+            <meta itemprop="bestRating" content="5" />
+          </div>
+          <div class="review-body" itemprop="reviewBody">
+            <p>"{review.reviewBody}"</p>
+          </div>
+          <div class="review-footer">
+            <div class="review-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+              <strong itemprop="name">{review.author}</strong>
+            </div>
+            <time class="review-date" datetime={review.datePublished} itemprop="datePublished">
+              {new Date(review.datePublished).toLocaleDateString('fr-FR', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+              })}
+            </time>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="reviews-cta">
+      <a 
+        href={facebookReviewsUrl}
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="btn btn-primary"
+      >
+        Voir tous les avis sur Facebook
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  }
+  
+  .reviews-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .reviews-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #002366;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+  }
+  
+  .rating-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .rating-stars {
+    font-size: 2rem;
+    color: #d4af37;
+    letter-spacing: 0.1em;
+  }
+  
+  .rating-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .rating-value {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #002366;
+  }
+  
+  .verified-badge {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #28a745;
+    background: rgba(40, 167, 69, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .facebook-badge {
+    display: inline-block;
+    background: #1877F2;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 25px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 0.75rem;
+    transition: all 0.3s;
+  }
+  
+  .facebook-badge:hover {
+    background: #166FE5;
+    transform: translateY(-2px);
+  }
+  
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .review-card {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+  
+  .stars {
+    color: #d4af37;
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+  }
+  
+  .review-body {
+    margin: 1rem 0;
+  }
+  
+  .review-body p {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #333;
+    font-style: italic;
+  }
+  
+  .review-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+  }
+  
+  .review-author strong {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+    color: #002366;
+  }
+  
+  .review-date {
+    font-family: 'Rubik', sans-serif;
+    font-size: 0.85rem;
+    color: #888;
+  }
+  
+  .reviews-cta {
+    text-align: center;
+  }
+  
+  .btn-primary {
+    display: inline-block;
+    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    color: #002366;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+  }
+  
+  @media (max-width: 768px) {
+    .reviews-title {
+      font-size: 2rem;
+    }
+    
+    .rating-value {
+      font-size: 1.5rem;
+    }
+    
+    .verified-badge {
+      font-size: 0.95rem;
+    }
+  }
+</style>

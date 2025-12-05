@@ -1,0 +1,19 @@
+# robots.txt pour GALRIVIERA
+# https://www.galriviera.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.galriviera.com/sitemap.xml
+
+# Disallow admin et fichiers privés
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /_astro/
+
+# Crawl-delay pour éviter la surcharge
+Crawl-delay: 1
+
+

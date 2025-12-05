@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Gallery from '../components/Gallery.astro';
+import BookingWidget from '../components/BookingWidget.astro';
+import Reviews from '../components/Reviews.astro';
+---
+
+<BaseLayout
+  title="Galriviera - Luxury Travel for Israeli Tourists on the French Riviera"
+  description="Premium VTC services, private tours, and kosher dining recommendations on the Côte d'Azur. Tailored for Israeli travelers."
+  currentLang="en"
+>
+  <!-- Hero Section -->
+  <section class="hero-banner" style="min-height: 80vh;">
+    <div class="hero-image-container">
+      <div class="hero-overlay" style="background: linear-gradient(to bottom, rgba(0, 35, 102, 0.7), rgba(0, 35, 102, 0.5));"></div>
+      <img src="/assets/img/hero/hero-riviera.webp" alt="French Riviera Luxury" class="hero-background-image" style="object-fit: cover; width: 100%; height: 100%;" onerror="this.src='https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1920&auto=format&fit=crop'"/>
+    </div>
+    <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+      <h1 class="hero-title" style="font-family: 'Rubik', sans-serif; letter-spacing: 1px;">SHALOM & WELCOME TO THE RIVIERA</h1>
+      <p class="hero-subtitle" style="font-family: 'Rubik', sans-serif;">Exclusive Luxury Transport & Concierge Services</p>
+      <a href="https://wa.me/33682267342" class="hero-cta-button" style="background: #d4af37; color: #002366;">BOOK YOUR DRIVER</a>
+    </div>
+  </section>
+
+  <!-- Booking Widget -->
+  <div class="container relative z-20">
+    <BookingWidget currentLang="en" />
+  </div>
+
+  <!-- Intro Section -->
+  <section class="section-image-text">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div data-aos="fade-right">
+          <h2 style="color: #002366; font-family: 'Rubik', sans-serif;">The French Riviera, Tailored for You</h2>
+          <p class="text-lg mb-6">
+            Experience the Côte d'Azur with Galriviera. We specialize in hosting Israeli travelers, providing not just transportation, but a complete luxury experience. From <strong>Nice Airport transfers</strong> to private tours of <strong>Monaco and Cannes</strong>, we understand your needs.
+          </p>
+          <ul class="star-bullets space-y-4 mb-8">
+            <li class="flex items-center gap-3">
+              <span>VIP Airport Meet & Greet (Security Fast-Track available)</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span>Kosher Dining & Shabbat-Friendly Options</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span>Hebrew/English Speaking Support</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span>High-End Mercedes Fleet (S-Class, V-Class)</span>
+            </li>
+          </ul>
+          <a href="https://wa.me/33682267342" class="btn">DISCOVER OUR SERVICES</a>
+        </div>
+        <div class="relative" data-aos="fade-left">
+          <img src="/assets/img/gallery/galriviera-luxury-1.webp" alt="Luxury Mercedes VTC" class="rounded-xl shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=1000&auto=format&fit=crop'"/>
+          <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-lg shadow-xl border-l-4 border-gold hidden md:block" data-aos="zoom-in" data-aos-delay="300">
+            <p class="text-blue-900 font-bold text-xl">24/7 Support</p>
+            <p class="text-gray-600">+33 6 82 26 73 42</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider-star">
+    <svg viewBox="0 0 24 24"><path d="M12 2L15 9L22 9L17 14L19 21L12 17L5 21L7 14L2 9L9 9Z" /></svg>
+  </div>
+
+  <!-- Services Grid -->
+  <section class="py-20 bg-gray-50">
+    <div class="container">
+      <h2 class="text-3xl font-bold text-center mb-12" style="color: #002366; font-family: 'Rubik', sans-serif;" data-aos="fade-up">OUR PREMIUM SERVICES</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="category-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-image-wrapper">
+            <img src="/assets/img/gallery/galriviera-luxury-4.webp" alt="Monaco Tour" class="card-image" onerror="this.src='https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=800&auto=format&fit=crop'"/>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Monaco & Monte-Carlo</h3>
+            <p class="card-description">Private day trips to the Principality. Casino, Palace, and luxury shopping experiences.</p>
+            <a href="/vtc-nice-monaco-monte-carlo" class="card-link">Explore Monaco →</a>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="category-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-image-wrapper">
+            <img src="/assets/img/gallery/galriviera-luxury-6.webp" alt="Cannes Croisette" class="card-image" onerror="this.src='https://images.unsplash.com/photo-1524312672933-60f3b9991b80?q=80&w=800&auto=format&fit=crop'"/>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Cannes & Saint-Tropez</h3>
+            <p class="card-description">Walk the Red Carpet steps or enjoy the beaches of Pampelonne. Stylish transfers in V-Class.</p>
+            <a href="/vtc-nice-cannes-festival" class="card-link">Visit Cannes →</a>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="category-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="card-image-wrapper">
+            <img src="/assets/img/hero/jewish-heritage.webp" alt="Special Tour" class="card-image" onerror="this.src='https://images.unsplash.com/photo-1576670159805-381a9ee1e3c9?q=80&w=800&auto=format&fit=crop'"/>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Jewish Heritage & Kosher</h3>
+            <p class="card-description">Discover the Great Synagogue of Nice and the best Kosher restaurants on the Riviera.</p>
+            <a href="/excursion-tourisme-juif-nice" class="card-link">Learn More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <Gallery />
+
+  <!-- Reviews Section -->
+  <Reviews currentLang="en" />
+
+  <!-- CTA Section -->
+  <section class="py-20 text-white text-center relative overflow-hidden">
+    <div class="absolute inset-0 z-0" style="background: #002366;"></div>
+    <div class="container relative z-10" data-aos="zoom-in">
+      <h2 class="text-3xl font-bold mb-6" style="font-family: 'Rubik', sans-serif;">Ready for your French Riviera Experience?</h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">Book your private driver today and enjoy a seamless, secure, and luxurious journey.</p>
+      <div class="flex justify-center gap-4 flex-wrap">
+        <a href="https://wa.me/33682267342" class="btn" style="background: #25D366; color: white;">WhatsApp Us</a>
+        <a href="/contact" class="btn">Book Online</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .text-gold { color: #d4af37; }
+  .border-gold { border-color: #d4af37; }
+  .bg-gray-50 { background-color: #f9fafb; }
+  .grid { display: grid; }
+  .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .gap-12 { gap: 3rem; }
+  .gap-8 { gap: 2rem; }
+  .gap-4 { gap: 1rem; }
+  .items-center { align-items: center; }
+  .mb-6 { margin-bottom: 1.5rem; }
+  .mb-8 { margin-bottom: 2rem; }
+  .mb-12 { margin-bottom: 3rem; }
+  .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+  .text-center { text-align: center; }
+  .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+  .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+  .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+  .font-bold { font-weight: 700; }
+  .rounded-xl { border-radius: 0.75rem; }
+  .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+  .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+  .relative { position: relative; }
+  .absolute { position: absolute; }
+  .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+  .z-0 { z-index: 0; }
+  .z-10 { z-index: 10; }
+  .z-20 { z-index: 20; }
+  .flex { display: flex; }
+  .justify-center { justify-content: center; }
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .max-w-2xl { max-width: 42rem; }
+  
+  @media (min-width: 768px) {
+    .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .md\:block { display: block; }
+  }
+</style>
+
+
