@@ -1,14 +1,14 @@
-ï»¿---
-// Composant pour gÃ©rer les erreurs de maniÃ¨re gracieuse
+---
+// Composant pour gérer les erreurs de manière gracieuse
 interface Props {
   fallback?: string;
 }
 
-const { fallback = "Une erreur est survenue. Veuillez rafraÃ®chir la page." } = Astro.props;
+const { fallback = "Une erreur est survenue. Veuillez rafraîchir la page." } = Astro.props;
 ---
 
 <div class="error-boundary" role="alert" aria-live="polite">
   <p>{fallback}</p>
-  <a href="/" class="btn-primary">Retour Ã  l'accueil</a>
+  <a href="/" class="btn-primary">Retour à l'accueil</a>
 </div>
 

@@ -1,4 +1,4 @@
-ï»¿---
+---
 interface Props {
   image: string;
   alt: string;
@@ -13,12 +13,12 @@ const {
   alt,
   title,
   subtitle,
-  ctaText = "RÃ©server maintenant",
+  ctaText = "Réserver maintenant",
   ctaLink = "/reservation"
 } = Astro.props;
 ---
 
-<section class="hero-banner" role="banner" aria-label="BanniÃ¨re principale">
+<section class="hero-banner" role="banner" aria-label="Bannière principale">
   <div class="hero-image-container" aria-hidden="true">
     <img 
       src={image} 
@@ -37,7 +37,7 @@ const {
       <h1 class="hero-title">{title}</h1>
       {subtitle && <p class="hero-subtitle">{subtitle}</p>}
       {ctaLink && (
-        <a href={ctaLink} class="hero-cta-button" role="button" aria-label={`${ctaText} - RÃ©server un VTC`}>{ctaText}</a>
+        <a href={ctaLink} class="hero-cta-button" role="button" aria-label={`${ctaText} - Réserver un VTC`}>{ctaText}</a>
       )}
     </div>
   </div>

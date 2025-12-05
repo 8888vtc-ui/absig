@@ -1,11 +1,11 @@
-ï»¿---
+---
 interface Props {
   items: Array<{ name: string; url: string }>;
 }
 
 const { items } = Astro.props;
 
-// GÃ©nÃ©rer le Schema.org BreadcrumbList
+// Générer le Schema.org BreadcrumbList
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -26,7 +26,7 @@ const breadcrumbSchema = {
       ) : (
         <span aria-current="page">{item.name}</span>
       )}
-      {index < items.length - 1 && <span class="breadcrumb-separator"> â€º </span>}
+      {index < items.length - 1 && <span class="breadcrumb-separator"> › </span>}
     </>
   ))}
 </nav>
