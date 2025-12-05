@@ -20,10 +20,22 @@ const { currentPage = "" } = Astro.props;
     
     <!-- Menu Desktop -->
     <nav class="nav-links-desktop" aria-label="Main Navigation">
-      <a href="/" class={currentPage === "index" ? "active" : ""}>Home</a>
+      <a href="/" class={currentPage === "index" ? "active" : ""}>Accueil</a>
       <a href="/services" class={currentPage === "services" ? "active" : ""}>Services</a>
-      <a href="/a-propos" class={currentPage === "a-propos" ? "active" : ""}>About Us</a>
+      <a href="/a-propos" class={currentPage === "a-propos" ? "active" : ""}>À Propos</a>
       <a href="/contact" class={currentPage === "contact" ? "active" : ""}>Contact</a>
+      
+      <!-- Language Selector -->
+      <div class="lang-selector">
+        <button class="lang-current" aria-label="Changer de langue">
+          🌐 FR ▾
+        </button>
+        <div class="lang-dropdown">
+          <a href="/" class="lang-option active">🇫🇷 Français</a>
+          <a href="/en/nice-airport-transfer-private-driver" class="lang-option">🇬🇧 English</a>
+          <a href="/he/nice-airport-transfer-hebrew" class="lang-option">🇮🇱 עברית</a>
+        </div>
+      </div>
     </nav>
   </div>
 </header>
