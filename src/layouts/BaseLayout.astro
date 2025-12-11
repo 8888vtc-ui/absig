@@ -69,7 +69,7 @@ const isRtl = currentLang === 'he';
     <link rel="icon" type="image/svg+xml" href="/assets/img/favicon/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Autodétection langue (fr / en / he) : première visite uniquement, bots exclus -->
+    <!-- Autodétection langue fr / en / he (safe SEO) -->
     <script>
       (() => {
         if (typeof window === 'undefined') return;
@@ -77,25 +77,34 @@ const isRtl = currentLang === 'he';
         const ua = navigator.userAgent || '';
         if (/bot|crawler|spider/i.test(ua)) return; // ne pas rediriger les crawlers
 
-        const stored = localStorage.getItem('preferredLang');
+        const getCookie = (k) => document.cookie.split('; ').find((r) => r.startsWith(k + '='))?.split('=')[1];
+        const stored = localStorage.getItem('preferredLang') || getCookie('preferredLang');
         if (stored) return; // on respecte un choix existant
 
-        const navLang = (navigator.languages?.[0] || navigator.language || 'fr').toLowerCase();
-
-        const targets = {
-          fr: '/',
-          en: '/en/nice-airport-transfer-private-driver',
-          he: '/he/nice-airport-transfer-hebrew',
-          default: '/en/nice-airport-transfer-private-driver'
-        };
-
-        let dest = targets.default;
-        if (navLang.startsWith('fr')) dest = targets.fr;
-        else if (navLang.startsWith('he')) dest = targets.he;
-
         const here = window.location.pathname.replace(/\/+$/, '') || '/';
-        if (here === '/' && dest !== here) {
+        if (here !== '/') return; // redirection uniquement sur la racine
+
+        const PATH_FR = '/';
+        const PATH_EN = '/en/nice-airport-transfer-private-driver';
+        const PATH_HE = '/he/nice-airport-transfer-hebrew';
+        const PATH_DEFAULT = PATH_FR;
+
+        const langs = navigator.languages && navigator.languages.length
+          ? navigator.languages
+          : [navigator.language || 'fr'];
+
+        let dest = PATH_DEFAULT;
+        for (const l of langs) {
+          const lang = (l || '').toLowerCase();
+          if (lang.startsWith('fr')) { dest = PATH_FR; break; }
+          if (lang.startsWith('he')) { dest = PATH_HE; break; }
+          if (lang.startsWith('en')) { dest = PATH_EN; break; }
+        }
+
+        if (dest !== here) {
+          const expiry = new Date(Date.now() + 30 * 24 * 3600 * 1000).toUTCString();
           localStorage.setItem('preferredLang', dest);
+          document.cookie = `preferredLang=${dest}; path=/; expires=${expiry}`;
           window.location.replace(dest);
         }
       })();
