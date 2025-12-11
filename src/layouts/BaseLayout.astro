@@ -68,6 +68,38 @@ const isRtl = currentLang === 'he';
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <link rel="icon" type="image/svg+xml" href="/assets/img/favicon/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Autodétection langue (fr / en / he) : première visite uniquement, bots exclus -->
+    <script>
+      (() => {
+        if (typeof window === 'undefined') return;
+
+        const ua = navigator.userAgent || '';
+        if (/bot|crawler|spider/i.test(ua)) return; // ne pas rediriger les crawlers
+
+        const stored = localStorage.getItem('preferredLang');
+        if (stored) return; // on respecte un choix existant
+
+        const navLang = (navigator.languages?.[0] || navigator.language || 'fr').toLowerCase();
+
+        const targets = {
+          fr: '/',
+          en: '/en/nice-airport-transfer-private-driver',
+          he: '/he/nice-airport-transfer-hebrew',
+          default: '/en/nice-airport-transfer-private-driver'
+        };
+
+        let dest = targets.default;
+        if (navLang.startsWith('fr')) dest = targets.fr;
+        else if (navLang.startsWith('he')) dest = targets.he;
+
+        const here = window.location.pathname.replace(/\/+$/, '') || '/';
+        if (here === '/' && dest !== here) {
+          localStorage.setItem('preferredLang', dest);
+          window.location.replace(dest);
+        }
+      })();
+    </script>
     
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="j3W_6acHSoLG44VYoJ7vqzwSzJclmEouNpLwR25fRLU" />
