@@ -6,6 +6,7 @@ import WhatsAppButton from '../components/WhatsAppButton.astro';
 import Chatbot from '../components/Chatbot.astro';
 import ReviewsDisplay from '../components/ReviewsDisplay.astro';
 import RelatedServices from '../components/RelatedServices.astro';
+import InstallPWA from '../components/InstallPWA.astro';
 import { allReviews, aggregateRating } from '../data/reviews.ts';
 
 import '../styles/base.css';
@@ -440,6 +441,7 @@ const isRtl = currentLang === 'he';
     <Footer currentLang={currentLang} />
     <WhatsAppButton />
     <Chatbot currentLang={currentLang} />
+    <InstallPWA currentLang={currentLang} />
 
     <!-- Initialize AOS -->
     <script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

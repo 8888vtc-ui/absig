@@ -1,6 +1,6 @@
-// Service Worker pour PWA et cache offline
-const CACHE_NAME = 'ecofundrive-v3';
-const RUNTIME_CACHE = 'ecofundrive-runtime-v3';
+// Service Worker pour PWA et cache offline - GALRIVIERA
+const CACHE_NAME = 'galriviera-v1';
+const RUNTIME_CACHE = 'galriviera-runtime-v1';
 
 // Assets critiques à mettre en cache immédiatement
 const CRITICAL_ASSETS = [

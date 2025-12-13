@@ -1,0 +1,203 @@
+---
+interface Props {
+  currentLang?: string;
+}
+
+const { currentLang = 'fr' } = Astro.props;
+
+const translations = {
+  fr: {
+    install: "Installer l'application",
+    installed: "Application installée",
+    installPrompt: "Installez GALRIVIERA sur votre appareil pour un accès rapide",
+    close: "Fermer"
+  },
+  en: {
+    install: "Install app",
+    installed: "App installed",
+    installPrompt: "Install GALRIVIERA on your device for quick access",
+    close: "Close"
+  },
+  he: {
+    install: "התקן אפליקציה",
+    installed: "אפליקציה מותקנת",
+    installPrompt: "התקן את GALRIVIERA במכשיר שלך לגישה מהירה",
+    close: "סגור"
+  }
+};
+
+const labels = translations[currentLang] || translations.fr;
+---
+
+<div id="pwa-install-prompt" style="display: none;"></div>
+
+<script>
+  (() => {
+    if (typeof window === 'undefined') return;
+
+    let deferredPrompt;
+    const installPrompt = document.getElementById('pwa-install-prompt');
+    const labels = {
+      fr: {
+        install: "Installer l'application",
+        installed: "Application installée",
+        installPrompt: "Installez GALRIVIERA sur votre appareil pour un accès rapide",
+        close: "Fermer"
+      },
+      en: {
+        install: "Install app",
+        installed: "App installed",
+        installPrompt: "Install GALRIVIERA on your device for quick access",
+        close: "Close"
+      },
+      he: {
+        install: "התקן אפליקציה",
+        installed: "אפליקציה מותקנת",
+        installPrompt: "התקן את GALRIVIERA במכשיר שלך לגישה מהירה",
+        close: "סגור"
+      }
+    };
+
+    // Détecter la langue actuelle
+    const currentLang = document.documentElement.lang || 'fr';
+    const t = labels[currentLang] || labels.fr;
+
+    // Vérifier si l'app est déjà installée
+    if (window.matchMedia('(display-mode: standalone)').matches || 
+        (window.navigator as any).standalone === true) {
+      return; // Déjà installée
+    }
+
+    // Vérifier si l'utilisateur a déjà refusé
+    if (localStorage.getItem('pwa-install-dismissed')) {
+      return;
+    }
+
+    // Écouter l'événement beforeinstallprompt
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+
+      // Créer la bannière d'installation
+      installPrompt.innerHTML = `
+        <style>
+          #pwa-install-prompt {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #002366 0%, #0a0a0a 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            max-width: 90%;
+            animation: slideUp 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+          }
+          @keyframes slideUp {
+            from {
+              opacity: 0;
+              transform: translateX(-50%) translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(-50%) translateY(0);
+            }
+          }
+          #pwa-install-prompt p {
+            margin: 0;
+            flex: 1;
+            font-size: 0.9rem;
+            line-height: 1.4;
+          }
+          #pwa-install-prompt .pwa-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-shrink: 0;
+          }
+          #pwa-install-prompt button {
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+          }
+          #pwa-install-btn {
+            background: #d4af37;
+            color: #002366;
+          }
+          #pwa-install-btn:hover {
+            background: #c9a85e;
+            transform: scale(1.05);
+          }
+          #pwa-dismiss-btn {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+          }
+          #pwa-dismiss-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+          }
+          @media (max-width: 640px) {
+            #pwa-install-prompt {
+              flex-direction: column;
+              text-align: center;
+              padding: 1rem;
+              bottom: 100px;
+            }
+            #pwa-install-prompt p {
+              font-size: 0.85rem;
+            }
+            #pwa-install-prompt .pwa-buttons {
+              width: 100%;
+            }
+            #pwa-install-prompt button {
+              flex: 1;
+            }
+          }
+        </style>
+        <p>${t.installPrompt}</p>
+        <div class="pwa-buttons">
+          <button id="pwa-install-btn">${t.install}</button>
+          <button id="pwa-dismiss-btn">${t.close}</button>
+        </div>
+      `;
+      installPrompt.style.display = 'flex';
+
+      // Gérer le clic sur installer
+      document.getElementById('pwa-install-btn')?.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        
+        if (outcome === 'accepted') {
+          installPrompt.style.display = 'none';
+        }
+        
+        deferredPrompt = null;
+        installPrompt.style.display = 'none';
+      });
+
+      // Gérer le clic sur fermer
+      document.getElementById('pwa-dismiss-btn')?.addEventListener('click', () => {
+        localStorage.setItem('pwa-install-dismissed', 'true');
+        installPrompt.style.display = 'none';
+      });
+    });
+
+    // Masquer la bannière si l'app est installée
+    window.addEventListener('appinstalled', () => {
+      installPrompt.style.display = 'none';
+      deferredPrompt = null;
+    });
+  })();
+</script>
+

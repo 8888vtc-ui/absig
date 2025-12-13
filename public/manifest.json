@@ -3,10 +3,11 @@
   "short_name": "GALRIVIERA",
   "description": "Chauffeur privé VTC sur la Côte d'Azur : Nice, Cannes, Monaco, Saint-Tropez",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#0a0a0a",
   "theme_color": "#d4af37",
-  "orientation": "portrait-primary",
+  "orientation": "any",
   "icons": [
     {
       "src": "/assets/img/favicon/android-chrome-192x192.png",
@@ -19,6 +20,29 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Réserver",
+      "short_name": "Réserver",
+      "description": "Réserver un VTC",
+      "url": "/contact",
+      "icons": [{ "src": "/assets/img/favicon/android-chrome-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Services",
+      "short_name": "Services",
+      "description": "Voir nos services",
+      "url": "/services",
+      "icons": [{ "src": "/assets/img/favicon/android-chrome-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "WhatsApp",
+      "short_name": "WhatsApp",
+      "description": "Nous contacter sur WhatsApp",
+      "url": "https://wa.me/33682267342",
+      "icons": [{ "src": "/assets/img/favicon/android-chrome-192x192.png", "sizes": "192x192" }]
     }
   ],
   "categories": [
