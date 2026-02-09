@@ -1,13 +1,9 @@
 ---
-// Logo GALRIVIERA - Image officielle grande taille
+const logoText = "ABSIG CONSULTING";
 ---
 
-<a href="/" class="logo-link" aria-label="GALRIVIERA - Accueil">
-  <img 
-    src="/assets/img/logo-galriviera.png" 
-    alt="GALRIVIERA - Luxury Travel" 
-    class="logo-img"
-  />
+<a href="/" class="logo-link" aria-label="Accueil ABSIG Consulting">
+  <span class="logo-text-display">ABSIG<span class="logo-highlight">CONSULTING</span></span>
 </a>
 
 <style>
@@ -17,16 +13,23 @@
     text-decoration: none;
   }
   
-  .logo-img {
-    height: 100px;
-    width: auto;
-    max-width: 280px;
+  .logo-text-display {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .logo-highlight {
+    color: #d4af37;
+    margin-left: 5px;
+    font-weight: 300;
   }
   
   @media (max-width: 768px) {
-    .logo-img {
-      height: 55px;
-      max-width: 160px;
+    .logo-text-display {
+      font-size: 1.2rem;
     }
   }
 </style>

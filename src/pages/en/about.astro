@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const breadcrumbItems = [
+  { name: "Home", url: "/en/" },
+  { name: "About Us", url: "/en/about" }
+];
+---
+
+<BaseLayout 
+  title="Who are we? | ABSIG Consulting"
+  description="Innovative recruitment platform based in Valbonne (French Riviera). European employment specialist."
+  currentPage="a-propos"
+  currentLang="en"
+  breadcrumbItems={breadcrumbItems}
+>
+  <!-- HERO -->
+  <section class="hero-banner" style="min-height: 350px;">
+    <div class="hero-image-container">
+      <div class="hero-placeholder" style="background-image: url('/assets/img/office-team.png'); background-size: cover; background-position: center; width: 100%; height: 100%;"></div>
+      <div class="hero-overlay" style="background: rgba(0, 35, 102, 0.8);"></div>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title" data-aos="fade-up">Who Are We?</h1>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">Your recruitment partner on the French Riviera</p>
+    </div>
+  </section>
+
+  <!-- PRESENTATION -->
+  <section style="padding: 4rem 0; background: #fff;">
+    <div class="container">
+      <div class="grid-2-cols-responsive align-center">
+        
+        <div data-aos="fade-right">
+          <h2>SAS ABSIG CONSULTING</h2>
+          <p class="lead" style="margin-bottom: 2rem; color: #d4af37; font-weight: 500;">
+            Innovative recruitment platform and specialized agency.
+          </p>
+          <p style="margin-bottom: 1.5rem;">
+            We specialize in <strong>European employment</strong> and professional support for French companies and international candidates.
+          </p>
+          <p>
+            Based in the heart of the Alpes-Maritimes, in <strong>Valbonne Sophia-Antipolis</strong>, we understand local recruitment challenges in high-demand sectors like hospitality, construction, and Tech.
+          </p>
+          <div style="margin-top: 2rem;">
+             <img src="/assets/img/hero-professional.png" alt="Diverse team" style="width: 100%; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+          </div>
+        </div>
+
+        <div data-aos="fade-left" style="background: #002366; color: white; padding: 3rem; border-radius: 12px; position: relative; overflow: hidden;">
+          <h3 style="color: white; margin-bottom: 2rem;">Our Mission</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 1rem;">
+              <span style="color: #d4af37; font-size: 1.2rem;">✓</span>
+              <div>
+                <strong>Identify top talents</strong>
+                <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Within our extensive network across the European Union.</p>
+              </div>
+            </li>
+            <li style="margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 1rem;">
+              <span style="color: #d4af37; font-size: 1.2rem;">✓</span>
+              <div>
+                <strong>Secure recruitments</strong>
+                <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">With our replacement guarantee during the trial period.</p>
+              </div>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 1rem;">
+              <span style="color: #d4af37; font-size: 1.2rem;">✓</span>
+              <div>
+                <strong>Simplify administration</strong>
+                <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Contract management and full French legal compliance.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section style="padding: 4rem 0; background: #f9f9f9;">
+    <div class="container">
+      <h2 class="text-center mb-xl" data-aos="fade-up">Our Commitments</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        
+        <div class="feature-item" data-aos="fade-up" style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+          <h3 style="color: #002366;">🤝 Proximity</h3>
+          <p>Personalized support for every client and candidate.</p>
+        </div>
+
+        <div class="feature-item" data-aos="fade-up" data-aos-delay="100" style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+          <h3 style="color: #002366;">⚖️ Compliance</h3>
+          <p>Strict adherence to French and European labor laws.</p>
+        </div>
+
+        <div class="feature-item" data-aos="fade-up" data-aos-delay="200" style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+          <h3 style="color: #002366;">💎 Quality</h3>
+          <p>Rigorous profile selection for a perfect match.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

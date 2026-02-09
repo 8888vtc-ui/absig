@@ -1,175 +1,575 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Gallery from '../components/Gallery.astro';
-import BookingWidget from '../components/BookingWidget.astro';
-import Reviews from '../components/Reviews.astro';
 ---
 
-<BaseLayout
-  title="Galriviera - Chauffeur privé VTC premium sur la Côte d'Azur"
-  description="Transferts aéroport Nice, Monaco, Cannes, Saint-Tropez. Circuits privés, conciergerie casher, chauffeurs francophones/anglophones/hébraïsants. Service 24/7, flotte Mercedes haut de gamme."
-  currentLang="fr"
+<BaseLayout 
+  title="ABSIG Consulting | Recrutement Européen - Hôtellerie, BTP, Informatique"
+  description="Plateforme de recrutement basée dans les Alpes-Maritimes spécialisée dans l'intégration de talents européens sans visa. Hôtellerie, Restauration, BTP & IT."
+  currentPage="index"
 >
-  <!-- Hero Section -->
-  <section class="hero-banner" style="min-height: 80vh;">
+  <!-- HERO SECTION -->
+  <section class="hero-banner">
     <div class="hero-image-container">
-      <div class="hero-overlay" style="background: linear-gradient(to bottom, rgba(0, 35, 102, 0.7), rgba(0, 35, 102, 0.5));"></div>
-      <img src="/assets/img/hero/hero-riviera.webp" alt="French Riviera Luxury" class="hero-background-image" style="object-fit: cover; width: 100%; height: 100%;" onerror="this.src='https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1920&auto=format&fit=crop'"/>
+      <div class="hero-placeholder" style="background-image: url('/assets/img/hero-professional.png'); background-size: cover; background-position: center; width: 100%; height: 100%;"></div>
+      <div class="hero-overlay" style="background: rgba(0, 35, 102, 0.75);"></div>
     </div>
-    <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-      <h1 class="hero-title" style="font-family: 'Rubik', sans-serif; letter-spacing: 1px;">BIENVENUE SUR LA CÔTE D'AZUR</h1>
-      <p class="hero-subtitle" style="font-family: 'Rubik', sans-serif;">Transport privé haut de gamme</p>
-      <a href="https://wa.me/33682267342" class="hero-cta-button" style="background: #d4af37; color: #002366;">RÉSERVER VOTRE CHAUFFEUR</a>
+    <div class="hero-content">
+      <h1 class="hero-title" data-aos="fade-up">Recrutement Européen – Hôtellerie, Restauration, BTP & Informatique</h1>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">Intégrez des talents européens sans barrières de visas. Simple, légal et efficace.</p>
+      <div class="button-group" data-aos="fade-up" data-aos-delay="200">
+        <a href="/contact" class="hero-cta-button">Demander un Devis Gratuit</a>
+        <a href="#expertises" class="hero-secondary-button">Découvrir nos secteurs</a>
+      </div>
     </div>
   </section>
 
-  <!-- Booking Widget -->
-  <div class="container relative z-20">
-    <BookingWidget currentLang="en" />
-  </div>
-
-  <!-- Intro Section -->
-  <section class="section-image-text">
+  <!-- POURQUOI NOUS CHOISIR -->
+  <section class="section-presentation" style="padding: 4rem 0; background: #fff;">
     <div class="container">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="grid-2-cols-responsive align-center">
         <div data-aos="fade-right">
-          <h2 style="color: #002366; font-family: 'Rubik', sans-serif;">La Côte d'Azur, taillée pour vous</h2>
-          <p class="text-lg mb-6">
-            Vivez la Côte d'Azur avec Galriviera. Nous accompagnons vos déplacements avec un service premium : transferts <strong>aéroport de Nice</strong>, visites privées de <strong>Monaco et Cannes</strong>, conciergerie casher, chauffeurs parlant français, anglais et hébreu.
+          <h2 style="margin-bottom: 1.5rem;">Pourquoi nous faire confiance ?</h2>
+          <p class="lead" style="margin-bottom: 1.5rem;">
+            Notre mission est simple : mettre en relation les entreprises françaises avec des professionnels qualifiés venant de toute l’Union Européenne, dans le respect des réglementations.
           </p>
-          <ul class="star-bullets space-y-4 mb-8">
-            <li class="flex items-center gap-3">
-              <span>Accueil VIP aéroport & Fast-Track sécurité (sur demande)</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <span>Options casher et respect du Shabbat</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <span>Support en français / anglais / hébreu</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <span>Flotte Mercedes haut de gamme (Classe S, V)</span>
-            </li>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: #d4af37; font-weight: bold; font-size: 1.2rem;">✓</span> Réseau Européen Étendu (Bulgarie, Roumanie...)</li>
+            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: #d4af37; font-weight: bold; font-size: 1.2rem;">✓</span> Zéro Visa (Citoyens UE)</li>
+            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: #d4af37; font-weight: bold; font-size: 1.2rem;">✓</span> 100% Conforme Droit Français</li>
+            <li style="display: flex; align-items: center; gap: 0.5rem;"><span style="color: #d4af37; font-weight: bold; font-size: 1.2rem;">✓</span> Garantie Remplacement 1 mois</li>
           </ul>
-          <a href="https://wa.me/33682267342" class="btn">DÉCOUVRIR NOS SERVICES</a>
         </div>
-        <div class="relative" data-aos="fade-left">
-          <img src="/assets/img/gallery/galriviera-luxury-1.webp" alt="Luxury Mercedes VTC" class="rounded-xl shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=1000&auto=format&fit=crop'"/>
-          <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-lg shadow-xl border-l-4 border-gold hidden md:block" data-aos="zoom-in" data-aos-delay="300">
-            <p class="text-blue-900 font-bold text-xl">Support 24/7</p>
-            <p class="text-gray-600">+33 6 82 26 73 42</p>
-          </div>
+        <div data-aos="fade-left">
+          <img src="/assets/img/business-agreement.png" alt="Confiance et recrutement" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
         </div>
       </div>
     </div>
   </section>
 
-  <div class="section-divider-star">
-    <svg viewBox="0 0 24 24"><path d="M12 2L15 9L22 9L17 14L19 21L12 17L5 21L7 14L2 9L9 9Z" /></svg>
-  </div>
-
-  <!-- Services Grid -->
-  <section class="py-20 bg-gray-50">
+  <!-- NOS DOMAINES D'EXPERTISE -->
+  <section id="expertises" class="section-services" style="padding: 4rem 0; background: #f9f9f9;">
     <div class="container">
-      <h2 class="text-3xl font-bold text-center mb-12" style="color: #002366; font-family: 'Rubik', sans-serif;" data-aos="fade-up">NOS SERVICES PREMIUM</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Card 1 -->
+      <h2 class="text-center mb-xl" data-aos="fade-up">Nos Domaines d’Expertise</h2>
+      <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        
+        <!-- Hôtellerie -->
+        <div class="category-card" data-aos="fade-up">
+            <div style="height: 200px; overflow: hidden; border-radius: 8px 8px 0 0;">
+                <img src="/assets/img/flyer-hotellerie.jpg" alt="Hôtellerie" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+          <div class="card-content">
+            <h3 class="card-title">🏨 Hôtellerie & Restauration</h3>
+            <p class="card-description">
+              Des profils adaptés aux standards français et européens : Directeurs, Réceptionnistes, Chefs, Serveurs...
+            </p>
+            <a href="/services" class="card-link">En savoir plus →</a>
+          </div>
+        </div>
+
+        <!-- BTP -->
         <div class="category-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="card-image-wrapper">
-            <img src="/assets/img/gallery/galriviera-luxury-4.webp" alt="Monaco Tour" class="card-image" onerror="this.src='https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=800&auto=format&fit=crop'"/>
-          </div>
+            <div style="height: 200px; overflow: hidden; border-radius: 8px 8px 0 0;">
+                <img src="/assets/img/construction-manager.png" alt="BTP" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
           <div class="card-content">
-            <h3 class="card-title">Monaco & Monte-Carlo</h3>
-            <p class="card-description">Excursions privées : Casino, Palais, shopping de luxe, sorties business.</p>
-            <a href="/vtc-nice-monaco-monte-carlo" class="card-link">Découvrir Monaco →</a>
+            <h3 class="card-title">🚧 BTP – Travaux Publics</h3>
+            <p class="card-description">
+              Un vivier de candidats compétents pour vos chantiers : Conducteurs d'engins, Maçons, Électriciens...
+            </p>
+            <a href="/services" class="card-link">En savoir plus →</a>
           </div>
         </div>
 
-        <!-- Card 2 -->
+        <!-- Informatique -->
         <div class="category-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="card-image-wrapper">
-            <img src="/assets/img/gallery/galriviera-luxury-6.webp" alt="Cannes Croisette" class="card-image" onerror="this.src='https://images.unsplash.com/photo-1524312672933-60f3b9991b80?q=80&w=800&auto=format&fit=crop'"/>
-          </div>
+            <div style="height: 200px; overflow: hidden; border-radius: 8px 8px 0 0;">
+                <img src="/assets/img/it-specialist.png" alt="Informatique" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
           <div class="card-content">
-            <h3 class="card-title">Cannes & Saint-Tropez</h3>
-            <p class="card-description">Montées des Marches, Croisette, plages de Pampelonne. Transferts élégants en Classe V.</p>
-            <a href="/vtc-nice-cannes-festival" class="card-link">Visiter Cannes →</a>
+            <h3 class="card-title">💻 Informatique & IT</h3>
+            <p class="card-description">
+              Des experts formés et certifiés : Développeurs, Chefs de projet, Ingénieurs systèmes...
+            </p>
+            <a href="/services" class="card-link">En savoir plus →</a>
           </div>
         </div>
 
-        <!-- Card 3 -->
-        <div class="category-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="card-image-wrapper">
-            <img src="/assets/img/hero/synagogue-nice.jpg" alt="Special Tour" class="card-image" onerror="this.src='https://images.unsplash.com/photo-1576670159805-381a9ee1e3c9?q=80&w=800&auto=format&fit=crop'"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOS CHIFFRES CLÉS -->
+  <section class="stats-section" style="padding: 4rem 0; background: linear-gradient(135deg, #1e3a5f, #0d9488);">
+    <div class="container">
+      <h2 class="text-center" style="color: white; margin-bottom: 3rem;" data-aos="fade-up">Nos Chiffres Clés</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center;">
+        
+        <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+          <div class="stat-number" data-target="500">0</div>
+          <div class="stat-suffix">+</div>
+          <div class="stat-label">Recrutements réussis</div>
+        </div>
+        
+        <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+          <div class="stat-number" data-target="97">0</div>
+          <div class="stat-suffix">%</div>
+          <div class="stat-label">Taux de satisfaction</div>
+        </div>
+        
+        <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+          <div class="stat-number" data-target="12">0</div>
+          <div class="stat-suffix">jours</div>
+          <div class="stat-label">Délai moyen placement</div>
+        </div>
+        
+        <div class="stat-item" data-aos="zoom-in" data-aos-delay="400">
+          <div class="stat-number" data-target="10">0</div>
+          <div class="stat-label">Pays partenaires UE</div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- GARANTIE CANDIDAT - NOUVEAU DESIGN -->
+  <section class="section-guarantee" style="padding: 4rem 0; background: #fff;">
+    <div class="container">
+      <div class="guarantee-card" style="background: linear-gradient(135deg, #1e3a5f, #2d4a6f); border-radius: 16px; padding: 3rem; box-shadow: 0 15px 40px rgba(30,58,95,0.2); position: relative; overflow: hidden;" data-aos="zoom-in">
+        
+        <!-- Badge flottant -->
+        <div class="guarantee-badge" style="position: absolute; top: -10px; right: 30px; background: #22c55e; color: white; padding: 0.75rem 1.5rem; border-radius: 0 0 12px 12px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4);">
+          ✓ GARANTIE 1 MOIS
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center;">
+          
+          <div style="text-align: center;">
+            <div style="font-size: 5rem; margin-bottom: 1rem;">🛡️</div>
+            <div style="color: #0d9488; font-size: 2.5rem; font-weight: 800;">100%</div>
+            <div style="color: white; font-weight: 500;">SANS RISQUE</div>
           </div>
-          <div class="card-content">
-            <h3 class="card-title">Patrimoine & Casher</h3>
-            <p class="card-description">Grande Synagogue de Nice, meilleures adresses casher, circuit culturel personnalisé.</p>
-            <a href="/excursion-tourisme-juif-nice" class="card-link">En savoir plus →</a>
+          
+          <div>
+            <h2 style="color: white; margin-bottom: 1.5rem; font-size: 1.75rem;">Garantie Candidat – Engagement Contractuel</h2>
+            <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 1.5rem;">
+              Chaque candidat présenté bénéficie d'une <strong style="color: #0d9488;">garantie de remplacement d'un (1) mois</strong>.
+            </p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+              <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; border-left: 3px solid #0d9488;">
+                <strong style="color: #0d9488;">Principe clair</strong>
+                <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-top: 0.5rem;">Si le candidat quitte durant le 1er mois, remplacement sans frais.</p>
+              </div>
+              <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; border-left: 3px solid #22c55e;">
+                <strong style="color: #22c55e;">Sécurité totale</strong>
+                <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-top: 0.5rem;">Recrutez en toute confiance, sans prise de risque.</p>
+              </div>
+            </div>
           </div>
+          
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Gallery Section -->
-  <Gallery />
-
-  <!-- Reviews Section -->
-  <Reviews currentLang="fr" />
-
-  <!-- CTA Section -->
-  <section class="py-20 text-white text-center relative overflow-hidden">
-    <div class="absolute inset-0 z-0" style="background: #002366;"></div>
-    <div class="container relative z-10" data-aos="zoom-in">
-      <h2 class="text-3xl font-bold mb-6" style="font-family: 'Rubik', sans-serif;">Prêt pour votre expérience Côte d'Azur ?</h2>
-      <p class="text-xl mb-8 max-w-2xl mx-auto">Réservez votre chauffeur privé et profitez d'un trajet fluide, sûr et luxueux.</p>
-      <div class="flex justify-center gap-4 flex-wrap">
-        <a href="https://wa.me/33682267342" class="btn" style="background: #25D366; color: white;">WhatsApp</a>
-        <a href="/contact" class="btn">Réserver en ligne</a>
+  <!-- PROCESSUS -->
+  <section style="padding: 4rem 0; background: #fff;">
+    <div class="container">
+      <h2 class="text-center mb-xl" data-aos="fade-up">Comment ça marche ?</h2>
+      <div class="process-steps" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+        <div class="step-item" data-aos="fade-up">
+          <div class="step-number">1</div>
+          <h4>Définissez vos besoins</h4>
+        </div>
+        <div class="step-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="step-number">2</div>
+          <h4>Sélection Candidats</h4>
+        </div>
+        <div class="step-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="step-number">3</div>
+          <h4>Formalités & Contrat</h4>
+        </div>
+        <div class="step-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="step-number">4</div>
+          <h4>Mise en poste</h4>
+        </div>
+        <div class="step-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="step-number">5</div>
+          <h4>Suivi & Garantie</h4>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- ILS NOUS FONT CONFIANCE -->
+  <section class="clients-section" style="padding: 4rem 0; background: #f8f9fa;">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: 1rem;" data-aos="fade-up">Ils nous font confiance</h2>
+      <p class="text-center" style="color: #666; margin-bottom: 3rem;" data-aos="fade-up" data-aos-delay="50">Des entreprises de renom nous confient leurs recrutements</p>
+      
+      <div class="clients-grid" data-aos="fade-up" data-aos-delay="100">
+        
+        <!-- BOUYGUES - Style bleu foncé -->
+        <div class="client-item">
+          <div class="client-logo-styled bouygues">
+            <span class="logo-icon">▣</span>
+            <span class="logo-text">BOUYGUES</span>
+          </div>
+        </div>
+        
+        <!-- VINCI - Style rouge/bleu -->
+        <div class="client-item">
+          <div class="client-logo-styled vinci">
+            <span class="logo-text">VINCI</span>
+          </div>
+        </div>
+        
+        <!-- SONY - Style noir élégant -->
+        <div class="client-item">
+          <div class="client-logo-styled sony">
+            <span class="logo-text">SONY</span>
+          </div>
+        </div>
+        
+        <!-- XEROX - Style rouge -->
+        <div class="client-item">
+          <div class="client-logo-styled xerox">
+            <span class="logo-text">XEROX</span>
+          </div>
+        </div>
+        
+        <!-- CANON - Style rouge -->
+        <div class="client-item">
+          <div class="client-logo-styled canon">
+            <span class="logo-text">Canon</span>
+          </div>
+        </div>
+        
+        <!-- MAESTRIA -->
+        <div class="client-item">
+          <div class="client-logo-styled maestria">
+            <span class="logo-text">MAESTRIA</span>
+          </div>
+        </div>
+        
+        <!-- SOMEFOR -->
+        <div class="client-item">
+          <div class="client-logo-styled somefor">
+            <span class="logo-text">SOMEFOR</span>
+          </div>
+        </div>
+        
+        <!-- EXAVISION -->
+        <div class="client-item">
+          <div class="client-logo-styled exavision">
+            <span class="logo-text">EXAVISION</span>
+          </div>
+        </div>
+        
+        <!-- ALPAPAINT -->
+        <div class="client-item">
+          <div class="client-logo-styled alpapaint">
+            <span class="logo-text">ALPAPAINT</span>
+          </div>
+        </div>
+        
+        <!-- CANAL DE PROVENCE -->
+        <div class="client-item">
+          <div class="client-logo-styled canal">
+            <span class="logo-icon">💧</span>
+            <span class="logo-text-small">CANAL DE PROVENCE</span>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ - QUESTIONS FRÉQUENTES -->
+  <section class="faq-section" style="padding: 4rem 0; background: #f8f9fa;">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: 3rem;" data-aos="fade-up">Questions Fréquentes</h2>
+      
+      <div class="faq-grid" style="max-width: 900px; margin: 0 auto;">
+        
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="100" style="background: white; border-radius: 12px; margin-bottom: 1rem; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')" style="width: 100%; padding: 1.25rem 1.5rem; background: white; border: none; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1rem; font-weight: 600; color: #1e3a5f;">
+            Quels sont vos délais de recrutement ?
+            <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+          </button>
+          <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.5rem;">
+            <p style="padding-bottom: 1.25rem; color: #555;">En moyenne, nous présentons des candidats qualifiés sous <strong>10 à 15 jours</strong>. Pour les profils urgents, nous proposons un service accéléré.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="150" style="background: white; border-radius: 12px; margin-bottom: 1rem; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')" style="width: 100%; padding: 1.25rem 1.5rem; background: white; border: none; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1rem; font-weight: 600; color: #1e3a5f;">
+            Les candidats parlent-ils français ?
+            <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+          </button>
+          <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.5rem;">
+            <p style="padding-bottom: 1.25rem; color: #555;">Tous nos candidats ont un niveau de français <strong>minimum B1/B2</strong>. Nous évaluons systématiquement leur niveau lors des entretiens.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="200" style="background: white; border-radius: 12px; margin-bottom: 1rem; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')" style="width: 100%; padding: 1.25rem 1.5rem; background: white; border: none; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1rem; font-weight: 600; color: #1e3a5f;">
+            Comment fonctionne la garantie ?
+            <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+          </button>
+          <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.5rem;">
+            <p style="padding-bottom: 1.25rem; color: #555;">Si le candidat quitte durant le <strong>premier mois</strong> (période d'essai), nous vous proposons un remplacement <strong>sans frais supplémentaires</strong>.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="250" style="background: white; border-radius: 12px; margin-bottom: 1rem; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')" style="width: 100%; padding: 1.25rem 1.5rem; background: white; border: none; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1rem; font-weight: 600; color: #1e3a5f;">
+            Quels sont vos tarifs ?
+            <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+          </button>
+          <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.5rem;">
+            <p style="padding-bottom: 1.25rem; color: #555;">Nos tarifs varient selon le profil et le secteur. <strong>Contactez-nous pour un devis personnalisé gratuit</strong>. Paiement uniquement au succès.</p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="section-cta" style="padding: 5rem 0; background: linear-gradient(135deg, #1e3a5f, #0d9488); color: white; text-align: center;">
+    <div class="container">
+      <h2 style="color: white; margin-bottom: 1.5rem;" data-aos="fade-up">Prêt à recruter ?</h2>
+      <p class="lead" style="color: rgba(255,255,255,0.9); margin-bottom: 2.5rem; max-width: 800px; margin: 0 auto 2.5rem auto;" data-aos="fade-up" data-aos-delay="100">
+        Rejoignez les entreprises qui nous font confiance. Obtenez un devis gratuit sous 24h.
+      </p>
+      <div class="button-group" data-aos="fade-up" data-aos-delay="200">
+        <a href="/contact" class="hero-cta-button" style="background: white; color: #1e3a5f;">Demander un devis gratuit</a>
+        <a href="tel:0682267342" class="hero-secondary-button">📞 Appeler maintenant</a>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
 
 <style>
-  .text-gold { color: #d4af37; }
-  .border-gold { border-color: #d4af37; }
-  .bg-gray-50 { background-color: #f9fafb; }
-  .grid { display: grid; }
-  .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-  .gap-12 { gap: 3rem; }
-  .gap-8 { gap: 2rem; }
-  .gap-4 { gap: 1rem; }
-  .items-center { align-items: center; }
-  .mb-6 { margin-bottom: 1.5rem; }
-  .mb-8 { margin-bottom: 2rem; }
-  .mb-12 { margin-bottom: 3rem; }
-  .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
-  .text-center { text-align: center; }
-  .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
-  .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
-  .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
-  .font-bold { font-weight: 700; }
-  .rounded-xl { border-radius: 0.75rem; }
-  .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
-  .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
-  .relative { position: relative; }
-  .absolute { position: absolute; }
-  .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
-  .z-0 { z-index: 0; }
-  .z-10 { z-index: 10; }
-  .z-20 { z-index: 20; }
-  .flex { display: flex; }
-  .justify-center { justify-content: center; }
-  .mx-auto { margin-left: auto; margin-right: auto; }
-  .max-w-2xl { max-width: 42rem; }
+  .hero-secondary-button { margin-left: 1rem; border: 2px solid white; color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s; }
+  .hero-secondary-button:hover { background: white; color: #002366; }
+  .button-group { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+  .step-number { width: 50px; height: 50px; background: #d4af37; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 1.5rem; }
+  .step-item { text-align: center; }
   
-  @media (min-width: 768px) {
-    .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .md\:block { display: block; }
+  /* Grille des clients */
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    align-items: center;
+    justify-items: center;
+  }
+  
+  /* Item client */
+  .client-item {
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .client-item:hover {
+    border-color: #d4af37;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,35,102,0.1);
+  }
+  
+  /* Logos stylisés */
+  .client-logo-styled {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .client-logo-styled .logo-text {
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    font-size: 1rem;
+  }
+  
+  .client-logo-styled .logo-text-small {
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    font-size: 0.7rem;
+  }
+  
+  .client-logo-styled .logo-icon {
+    font-size: 1.2rem;
+  }
+  
+  /* BOUYGUES - Bleu foncé officiel */
+  .bouygues .logo-text { color: #004A99; font-family: 'Arial Black', sans-serif; }
+  .bouygues .logo-icon { color: #004A99; }
+  .client-item:hover .bouygues .logo-text { color: #004A99; }
+  
+  /* VINCI - Bleu/Rouge */
+  .vinci .logo-text { color: #1E3A8A; font-family: 'Arial', sans-serif; font-weight: 900; letter-spacing: 0.2em; }
+  .client-item:hover .vinci .logo-text { color: #DC2626; }
+  
+  /* SONY - Noir élégant */
+  .sony .logo-text { color: #000; font-family: 'Helvetica Neue', sans-serif; font-weight: 300; letter-spacing: 0.3em; font-size: 1.2rem; }
+  
+  /* XEROX - Rouge officiel */
+  .xerox .logo-text { color: #D0011B; font-family: 'Arial', sans-serif; font-weight: 900; letter-spacing: 0.15em; }
+  
+  /* CANON - Rouge officiel */
+  .canon .logo-text { color: #BC002D; font-family: 'Times New Roman', serif; font-weight: 400; font-style: italic; font-size: 1.3rem; letter-spacing: 0.05em; }
+  
+  /* MAESTRIA - Doré élégant */
+  .maestria .logo-text { color: #8B6914; font-family: 'Georgia', serif; font-weight: 600; letter-spacing: 0.2em; }
+  
+  /* SOMEFOR - Bleu corporate */
+  .somefor .logo-text { color: #2563EB; font-family: 'Arial', sans-serif; font-weight: 700; }
+  
+  /* EXAVISION - Tech moderne */
+  .exavision .logo-text { color: #0891B2; font-family: 'Arial', sans-serif; font-weight: 800; letter-spacing: 0.1em; }
+  
+  /* ALPAPAINT - Vert peinture */
+  .alpapaint .logo-text { color: #059669; font-family: 'Arial', sans-serif; font-weight: 800; }
+  
+  /* CANAL DE PROVENCE - Bleu eau */
+  .canal .logo-text-small { color: #0369A1; font-family: 'Arial', sans-serif; font-weight: 600; }
+  .canal .logo-icon { color: #0EA5E9; }
+  
+  @media (max-width: 1024px) {
+    .clients-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .clients-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .client-item {
+      padding: 1rem;
+      height: 60px;
+    }
+    .client-logo-styled .logo-text {
+      font-size: 0.75rem;
+    }
+    .client-logo-styled .logo-text-small {
+      font-size: 0.6rem;
+    }
+  }
+  
+  /* === STATS / CHIFFRES CLÉS === */
+  .stat-item {
+    padding: 2rem;
+  }
+  
+  .stat-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+    display: inline;
+  }
+  
+  .stat-suffix {
+    font-size: 1.5rem;
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+    margin-left: 0.25rem;
+  }
+  
+  .stat-label {
+    color: rgba(255,255,255,0.9);
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  /* === FAQ === */
+  .faq-item.open .faq-answer {
+    max-height: 200px !important;
+  }
+  
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+    color: #0d9488;
+  }
+  
+  .faq-question:hover {
+    background: #f8f9fa !important;
+  }
+  
+  /* === Mise à jour couleurs générales === */
+  .hero-secondary-button:hover { 
+    background: white; 
+    color: #1e3a5f; 
+  }
+  
+  .step-number { 
+    background: #0d9488; 
+  }
+  
+  @media (max-width: 768px) {
+    .stat-number {
+      font-size: 2.5rem;
+    }
+    .guarantee-card > div {
+      grid-template-columns: 1fr !important;
+      text-align: center;
+    }
+    .guarantee-badge {
+      position: relative !important;
+      top: 0 !important;
+      right: 0 !important;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
   }
 </style>
 
-
+<script is:inline>
+  // Animation des compteurs
+  document.addEventListener('DOMContentLoaded', function() {
+    const counters = document.querySelectorAll('.stat-number');
+    
+    const animateCounter = (counter) => {
+      const target = parseInt(counter.dataset.target);
+      const duration = 2000;
+      const step = target / (duration / 16);
+      let current = 0;
+      
+      const updateCounter = () => {
+        current += step;
+        if (current < target) {
+          counter.textContent = Math.floor(current);
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = target;
+        }
+      };
+      
+      updateCounter();
+    };
+    
+    // Observer pour déclencher l'animation quand visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    counters.forEach(counter => observer.observe(counter));
+  });
+</script>

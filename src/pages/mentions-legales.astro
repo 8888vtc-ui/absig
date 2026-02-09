@@ -1,0 +1,165 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const breadcrumbItems = [
+  { name: "Accueil", url: "/" },
+  { name: "Mentions Légales & CGV", url: "/mentions-legales" }
+];
+
+const company = {
+  name: "SAS ABSIG CONSULTING",
+  address: "120 Route des Macarons - 06560 Valbonne - France",
+  siren: "914 022 736",
+  siret: "914 022 736 00013",
+  rcs: "914 022 736 R.C.S. Grasse",
+  tva: "FR 52 914 022 736",
+  capital: "100 €",
+  phone: "09 88 41 83 34 / 06 82 26 73 42",
+  email: "absig2consulting@gmail.com",
+};
+---
+
+<BaseLayout 
+  title="Mentions Légales & CGV | ABSIG Consulting"
+  description="Mentions légales obligatoires et Conditions Générales de Vente (CGV) de SAS ABSIG Consulting."
+  currentPage="mentions-legales"
+  breadcrumbItems={breadcrumbItems}
+>
+  <section class="section-legal" style="padding: 4rem 0; background: #fff;">
+    <div class="container">
+      <h1 data-aos="fade-up">Mentions Légales & CGV</h1>
+      
+      <div class="legal-content" style="margin-top: 3rem;">
+        
+        <!-- MENTIONS LÉGALES -->
+        <h2 style="color: #002366; border-bottom: 2px solid #d4af37; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">📜 MENTIONS LÉGALES</h2>
+        
+        <h3>1. Éditeur du site</h3>
+        <p>
+          <strong>Dénomination sociale :</strong> {company.name}<br>
+          <strong>Forme juridique :</strong> Société par Actions Simplifiée (SAS)<br>
+          <strong>Capital social :</strong> {company.capital}<br>
+          <strong>Siège social :</strong> {company.address}<br>
+          <strong>SIREN :</strong> {company.siren}<br>
+          <strong>SIRET :</strong> {company.siret}<br>
+          <strong>RCS :</strong> {company.rcs}<br>
+          <strong>Numéro de TVA intracommunautaire :</strong> {company.tva}
+        </p>
+        <p>
+          <strong>Téléphone :</strong> {company.phone}<br>
+          <strong>Email :</strong> <a href={`mailto:${company.email}`}>{company.email}</a>
+        </p>
+
+        <h3>2. Directeur de la publication</h3>
+        <p>Le directeur de la publication est le représentant légal de la société {company.name}.</p>
+
+        <h3>3. Hébergement du site</h3>
+        <p>
+          Ce site est hébergé par :<br>
+          <strong>NETLIFY</strong><br>
+          2325 3rd Street, Suite 215, San Francisco, California 94107, USA.
+        </p>
+
+        <h3>4. Informatique & Libertés – Données personnelles (RGPD)</h3>
+        <p>
+          Conformément au Règlement Général sur la Protection des Données (RGPD – UE 2016/679) et à la loi Informatique et Libertés, {company.name} s’engage à assurer la protection des données personnelles des utilisateurs.
+        </p>
+        <p>
+          <strong>Données collectées :</strong> Les données collectées via le site (formulaires de contact, recrutement) sont strictement nécessaires à la gestion des demandes clients, au traitement des candidatures et à la mise en relation professionnelle.
+        </p>
+        <p>
+          <strong>Droits des utilisateurs :</strong> Conformément à la réglementation en vigueur, chaque utilisateur dispose d'un droit d’accès, de rectification, d’effacement, d’opposition, de limitation du traitement et de portabilité des données. Toute demande peut être adressée par e-mail à : <a href={`mailto:${company.email}`}>{company.email}</a>.
+        </p>
+        <p>
+          <strong>Conservation :</strong> Les données sont conservées pour une durée strictement nécessaire aux finalités pour lesquelles elles ont été collectées.
+        </p>
+
+        <h3>5. Cookies</h3>
+        <p>
+          Le site peut utiliser des cookies à des fins de fonctionnement, de mesure d’audience et d’amélioration de l’expérience utilisateur. L’utilisateur peut configurer ou refuser les cookies via les paramètres de son navigateur.
+        </p>
+
+        <!-- CGV -->
+        <h2 style="color: #002366; border-bottom: 2px solid #d4af37; padding-bottom: 0.5rem; margin-bottom: 1.5rem; margin-top: 4rem;">📄 CONDITIONS GÉNÉRALES DE VENTE (CGV)</h2>
+        
+        <div class="cgv-text">
+          <p><strong>Préambule</strong><br>
+          Les présentes Conditions Générales de Vente (CGV) régissent les relations commerciales entre ABSIG CONSULTING (ci-après « le Prestataire ») et tout client (ci-après « le Client ») recourant aux services de recrutement proposés par ABSIG CONSULTING.</p>
+
+          <h3>1. Objet</h3>
+          <p>Les présentes CGV ont pour objet de définir les conditions de mise en relation entre :</p>
+          <ul>
+            <li>Des candidats professionnels européens qualifiés ; et</li>
+            <li>Des employeurs situés en France, souhaitant recruter ces candidats.</li>
+          </ul>
+          <p>Le Prestataire fournit des services de : ✔ sélection de candidats, ✔ présentation de profils, ✔ accompagnement administratif et contractuel.</p>
+
+          <h3>2. Acceptation des CGV</h3>
+          <p>Toute passation de commande de services implique l’acceptation sans réserve des présentes CGV.</p>
+
+          <h3>3. Services fournis</h3>
+          <p>ABSIG CONSULTING s’engage à :</p>
+          <ul>
+            <li>Évaluer les besoins du Client ;</li>
+            <li>Proposer des candidats qualifiés ;</li>
+            <li>Assurer le suivi administratif et légal du recrutement ;</li>
+            <li>Accompagner jusqu’à la prise de poste.</li>
+          </ul>
+          <p>Les services incluent : ✔ vérification des qualifications, ✔ assistance pour les formalités légales (URSSAF, DPAE), ✔ garantie de remplacement du candidat.</p>
+
+          <h3>4. Garantie et remplacement du candidat</h3>
+          <p>Le Prestataire garantit le remplacement d’un candidat durant la période d’essai de 1 mois, sous réserve que :</p>
+          <ul>
+            <li>La fin du contrat se produise pendant cette période d’essai ;</li>
+            <li>Aucun autre remplacement n’ait déjà été effectué pour ce même candidat.</li>
+          </ul>
+          <p><strong>👉 1 seul remplacement maximum par candidat présenté.</strong></p>
+
+          <h3>5. Obligations du Client</h3>
+          <p>Le Client s’engage à :</p>
+          <ul>
+            <li>Fournir des informations complètes sur le poste à pourvoir ;</li>
+            <li>Respecter les obligations légales du droit du travail français ;</li>
+            <li>Assurer une période d’essai conforme à la législation en vigueur.</li>
+          </ul>
+
+          <h3>6. Tarifs et paiement</h3>
+          <p>Les services sont facturés selon le devis accepté par le Client.<br>
+          👉 Les factures sont payables à réception, sauf conditions spécifiques convenues par écrit.</p>
+
+          <h3>7. Responsabilité</h3>
+          <p>ABSIG CONSULTING s’engage au mieux de ses capacités, mais ne peut être tenue responsable de décisions internes du Client ou des résultats professionnels ultérieurs du candidat au-delà de la période d’essai.</p>
+
+          <h3>8. Données personnelles</h3>
+          <p>Le Client autorise ABSIG CONSULTING à traiter les données personnelles nécessaires à l’exécution du service, conformément à la loi Informatique et Libertés et au RGPD.</p>
+
+          <h3>9. Loi applicable et juridiction</h3>
+          <p>Les présentes CGV sont soumises au droit français. Tout différend sera soumis aux tribunaux compétents du ressort du siège social du Prestataire.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .legal-content p, .legal-content li {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+    color: #4a4a4a;
+  }
+
+  .cgv-text {
+    background: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #eee;
+  }
+</style>

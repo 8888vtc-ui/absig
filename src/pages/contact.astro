@@ -1,224 +1,199 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const title = "Contactez Galriviera | Chauffeur Privé VTC Côte d'Azur";
-const description = "Réservez votre chauffeur privé VTC à Nice, Cannes, Monaco. Contactez-nous pour un devis personnalisé ou une réservation immédiate.";
+const breadcrumbItems = [
+  { name: "Accueil", url: "/" },
+  { name: "Contact", url: "/contact" }
+];
+
+const contact = {
+  address: "120 Route des Macarons - 06560 Valbonne",
+  phone: "06 82 26 73 42",
+  phone2: "09 88 41 83 34",
+  email: "absig2consulting@gmail.com",
+};
+
+const whatsappNumber = "33682267342";
 ---
 
-<BaseLayout title={title} description={description}>
-  <section class="hero-banner" style="min-height: 50vh;">
+<BaseLayout 
+  title="Contact & Devis | ABSIG Consulting"
+  description="Contactez-nous pour vos besoins en recrutement européen. Devis gratuit et accompagnement personnalisé."
+  currentPage="contact"
+  breadcrumbItems={breadcrumbItems}
+>
+  <!-- HERO -->
+  <section class="hero-banner" style="min-height: 300px;">
     <div class="hero-image-container">
-      <div class="hero-overlay"></div>
-      <img src="/assets/img/hero/hero-riviera.webp" alt="Contact Galriviera" class="hero-background-image" />
+      <div class="hero-placeholder" style="background-image: url('/assets/img/customer-support.png'); background-size: cover; background-position: center; width: 100%; height: 100%;"></div>
+      <div class="hero-overlay" style="background: rgba(0, 35, 102, 0.8);"></div>
     </div>
     <div class="hero-content">
-      <h1 class="hero-title">Contactez-nous</h1>
-      <p class="hero-subtitle">Une question ? Une réservation ? Nous sommes à votre écoute 24/7.</p>
+      <h1 class="hero-title" data-aos="fade-up">Contactez-Nous</h1>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">Nous sommes à votre écoute pour vos projets de recrutement</p>
     </div>
   </section>
 
-  <section class="contact-section">
-    <div class="contact-container">
-      <div class="contact-grid">
-        <!-- Informations de contact -->
-        <div class="contact-info">
-          <h2>Nos Coordonnées</h2>
+  <!-- INFORMATIONS DE CONTACT -->
+  <section style="padding: 4rem 0; background: #fff;">
+    <div class="container">
+      <div class="grid-2-cols-responsive align-center">
+        
+        <!-- Coordonnées -->
+        <div data-aos="fade-right">
+          <h2 style="color: #002366;">Nos Coordonnées</h2>
+          <p class="lead" style="margin-bottom: 2rem;">
+            Basés à Valbonne Sophia-Antipolis, nous intervenons pour des recrutements dans toute la France.
+          </p>
           
-          <div class="contact-item">
-            <div class="contact-icon">📞</div>
+          <div style="margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 1rem;">
+            <span style="font-size: 1.5rem;">📍</span>
             <div>
-              <h3>Téléphone & WhatsApp</h3>
-              <p>Disponible 24h/24 et 7j/7</p>
-              <a href="https://wa.me/33682267342">+33 6 82 26 73 42</a>
+              <strong>Adresse</strong>
+              <p>{contact.address}</p>
             </div>
           </div>
-
-          <div class="contact-item">
-            <div class="contact-icon">✉️</div>
+          
+          <div style="margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 1rem;">
+            <span style="font-size: 1.5rem;">📞</span>
             <div>
-              <h3>Email</h3>
-              <p>Réponse sous 2 heures</p>
-              <a href="mailto:vtctransportsig@gmail.com">vtctransportsig@gmail.com</a>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon">📍</div>
-            <div>
-              <h3>Adresse</h3>
+              <strong>Téléphone</strong>
               <p>
-                SASU Absig<br>
-                120 route de macarons<br>
-                06560 Valbonne, France
+                <a href={`tel:${contact.phone.replace(/\s/g, '')}`} style="font-weight: 600; font-size: 1.1rem;">{contact.phone}</a><br>
+                <a href={`tel:${contact.phone2.replace(/\s/g, '')}`}>{contact.phone2}</a>
               </p>
             </div>
           </div>
-
-          <div class="contact-item">
-            <div class="contact-icon">⭐</div>
+          
+          <div style="margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 1rem;">
+            <span style="font-size: 1.5rem;">📧</span>
             <div>
-              <h3>Avis Clients</h3>
-              <a href="https://www.facebook.com/profile.php?id=61579363291995&sk=reviews" target="_blank" rel="noopener noreferrer">Voir nos avis sur Facebook →</a>
+              <strong>Email</strong>
+              <p><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
             </div>
+          </div>
+          
+          <div style="margin-top: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #d4af37;">
+            <strong style="color: #002366;">Horaires d'ouverture</strong>
+            <p style="margin-top: 0.5rem;">
+              Lundi - Vendredi : 9h00 - 18h00<br>
+              Samedi : Sur rendez-vous
+            </p>
           </div>
         </div>
 
-        <!-- Formulaire de contact -->
-        <div class="contact-form-wrapper">
-          <h2>Envoyez-nous un message</h2>
-          <form class="contact-form" name="contact" method="POST" data-netlify="true">
-            <div class="form-group">
-              <label for="name">Nom complet</label>
-              <input type="text" id="name" name="name" required />
+        <!-- Formulaire -->
+        <div data-aos="fade-left" style="background: #f8f9fa; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+          <h2 style="color: #002366; margin-bottom: 1.5rem;">Demande de devis gratuit</h2>
+          <form id="whatsappForm" style="display: flex; flex-direction: column; gap: 1rem;">
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div>
+                <label for="nom" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Nom complet *</label>
+                <input type="text" id="nom" name="nom" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px;">
+              </div>
+              <div>
+                <label for="societe" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Société</label>
+                <input type="text" id="societe" name="societe" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px;">
+              </div>
             </div>
             
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required />
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div>
+                <label for="emailField" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email</label>
+                <input type="email" id="emailField" name="emailField" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px;">
+              </div>
+              <div>
+                <label for="telephone" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Téléphone *</label>
+                <input type="tel" id="telephone" name="telephone" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px;">
+              </div>
+            </div>
+            
+            <div>
+              <label for="secteur" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Secteur concerné</label>
+              <select id="secteur" name="secteur" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px; background: white;">
+                <option value="">-- Sélectionner --</option>
+                <option value="Hôtellerie & Restauration">Hôtellerie & Restauration</option>
+                <option value="BTP & Travaux Publics">BTP & Travaux Publics</option>
+                <option value="Informatique & IT">Informatique & Technologies</option>
+                <option value="Autre secteur">Autre secteur</option>
+              </select>
             </div>
 
-            <div class="form-group">
-              <label for="phone">Téléphone</label>
-              <input type="tel" id="phone" name="phone" />
+            <div>
+              <label for="profil" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Profil(s) recherché(s)</label>
+              <input type="text" id="profil" name="profil" placeholder="Ex: 2 serveurs, 1 chef de cuisine..." style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px;">
             </div>
-
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="4" required></textarea>
+            
+            <div>
+              <label for="messageText" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Précisions sur votre besoin</label>
+              <textarea id="messageText" name="messageText" rows="4" placeholder="Décrivez votre besoin en recrutement..." style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px; resize: vertical;"></textarea>
             </div>
+            
+            <!-- Case RGPD -->
+            <div style="display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 0.5rem;">
+              <input type="checkbox" id="rgpdConsent" name="rgpdConsent" required style="margin-top: 4px; width: 18px; height: 18px; cursor: pointer;">
+              <label for="rgpdConsent" style="font-size: 0.8rem; color: #555; line-height: 1.4; cursor: pointer;">
+                J'accepte que mes données soient traitées par ABSIG Consulting pour répondre à ma demande, conformément à la <a href="/mentions-legales" style="color: #002366; text-decoration: underline;">politique de confidentialité</a>. *
+              </label>
+            </div>
+            
+            <button type="submit" class="cta-button" style="width: 100%; margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              Envoyer ma demande
+            </button>
 
-            <button type="submit">Envoyer le message</button>
+            <p style="font-size: 0.8rem; color: #666; text-align: center; margin-top: 0.5rem;">
+              Nous vous répondons sous 24h ouvrées
+            </p>
           </form>
         </div>
+
       </div>
     </div>
   </section>
+
 </BaseLayout>
 
-<style>
-  .contact-section {
-    padding: 4rem 0;
-    background: #ffffff;
-  }
-  
-  .contact-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  
-  @media (min-width: 768px) {
-    .contact-grid {
-      grid-template-columns: 1fr 1fr;
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('whatsappForm');
+    
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const nom = (document.getElementById('nom') as HTMLInputElement).value;
+        const societe = (document.getElementById('societe') as HTMLInputElement).value;
+        const emailField = (document.getElementById('emailField') as HTMLInputElement).value;
+        const telephone = (document.getElementById('telephone') as HTMLInputElement).value;
+        const secteur = (document.getElementById('secteur') as HTMLSelectElement).value;
+        const profil = (document.getElementById('profil') as HTMLInputElement).value;
+        const messageText = (document.getElementById('messageText') as HTMLTextAreaElement).value;
+        
+        const whatsappNumber = "33682267342";
+        
+        let text = "━━━━━━━━━━━━━━━━━━━━\n";
+        text += "DEMANDE DE DEVIS\n";
+        text += "━━━━━━━━━━━━━━━━━━━━\n\n";
+        text += "■ Contact\n";
+        text += "  Nom : " + nom + "\n";
+        if (societe) text += "  Société : " + societe + "\n";
+        text += "  Tél : " + telephone + "\n";
+        if (emailField) text += "  Email : " + emailField + "\n";
+        text += "\n■ Besoin\n";
+        if (secteur) text += "  Secteur : " + secteur + "\n";
+        if (profil) text += "  Profil(s) : " + profil + "\n";
+        if (messageText) text += "  Détails : " + messageText + "\n";
+        text += "\n━━━━━━━━━━━━━━━━━━━━";
+        
+        const url = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(text);
+        
+        window.open(url, '_blank');
+      });
     }
-  }
-  
-  .contact-info h2,
-  .contact-form-wrapper h2 {
-    color: #002366;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-  }
-  
-  .contact-item {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    align-items: flex-start;
-  }
-  
-  .contact-icon {
-    font-size: 1.25rem;
-    width: 40px;
-    height: 40px;
-    background: rgba(212, 175, 55, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  
-  .contact-item h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin: 0 0 0.25rem 0;
-  }
-  
-  .contact-item p {
-    color: #666;
-    font-size: 0.9rem;
-    margin: 0 0 0.25rem 0;
-  }
-  
-  .contact-item a {
-    color: #002366;
-    font-weight: 600;
-    text-decoration: none;
-  }
-  
-  .contact-item a:hover {
-    color: #d4af37;
-  }
-  
-  .contact-form-wrapper {
-    background: #f9fafb;
-    padding: 2rem;
-    border-radius: 12px;
-  }
-  
-  .form-group {
-    margin-bottom: 1rem;
-  }
-  
-  .form-group label {
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 0.5rem;
-  }
-  
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-    background: #fff;
-  }
-  
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: #d4af37;
-  }
-  
-  button[type="submit"] {
-    width: 100%;
-    background: #002366;
-    color: #fff;
-    font-weight: 600;
-    padding: 1rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  button[type="submit"]:hover {
-    background: #001a4d;
-  }
-</style>
-
-
+  });
+</script>

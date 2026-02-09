@@ -1,461 +1,105 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const breadcrumbItems = [
+  { name: "Accueil", url: "/" },
+  { name: "À Propos", url: "/a-propos" }
+];
 ---
 
-<BaseLayout
-  title="À Propos de Galriviera | Votre Chauffeur VTC de Confiance sur la Côte d'Azur"
-  description="Découvrez Galriviera, service VTC premium basé à Valbonne. Équipe expérimentée, flotte luxe Mercedes et Tesla, engagement qualité. Votre partenaire mobilité privilégié sur la Côte d'Azur depuis 2022."
-  currentLang="fr"
+<BaseLayout 
+  title="Qui sommes-nous ? | ABSIG Consulting"
+  description="Plateforme de recrutement innovante basée à Valbonne (06). Spécialiste de l'emploi européen."
+  currentPage="a-propos"
+  breadcrumbItems={breadcrumbItems}
 >
-  <section class="hero-banner" style="min-height: 50vh;">
+  <!-- HERO -->
+  <section class="hero-banner" style="min-height: 350px;">
     <div class="hero-image-container">
-      <div class="hero-overlay"></div>
-      <img src="/assets/img/hero/hero-riviera.webp" alt="À propos de Galriviera - VTC Premium Côte d'Azur" class="hero-background-image"/>
+      <div class="hero-placeholder" style="background-image: url('/assets/img/office-team.png'); background-size: cover; background-position: center; width: 100%; height: 100%;"></div>
+      <div class="hero-overlay" style="background: rgba(0, 35, 102, 0.8);"></div>
     </div>
-    <div class="hero-content" data-aos="fade-up">
-      <h1 class="hero-title">À Propos de Galriviera</h1>
-      <p class="hero-subtitle">L'Excellence du Transport Privé sur la Riviera Française</p>
+    <div class="hero-content">
+      <h1 class="hero-title" data-aos="fade-up">Qui Sommes-Nous ?</h1>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">Votre partenaire recrutement dans les Alpes-Maritimes</p>
     </div>
   </section>
 
-  <article class="about-content">
+  <!-- PRÉSENTATION -->
+  <section style="padding: 4rem 0; background: #fff;">
     <div class="container">
-      <div class="content-wrapper">
+      <div class="grid-2-cols-responsive align-center">
         
-        <!-- Section Histoire -->
-        <section class="about-section" data-aos="fade-up">
-          <div class="section-image">
-            <img src="/assets/img/gallery/galriviera-luxury-1.webp" alt="Mercedes S-Class Galriviera" loading="lazy"/>
-          </div>
-          <div class="section-text">
-            <h2>Notre Histoire</h2>
-            <p>
-              <strong>Galriviera</strong> est né en 2022 d'une vision simple mais ambitieuse : redéfinir l'expérience du transport privé sur la <strong>Côte d'Azur</strong>. Fondée par des passionnés de l'automobile et du service client, notre entreprise s'est rapidement imposée comme une référence du transport VTC haut de gamme.
-            </p>
-            <p>
-              Basée à <strong>Valbonne</strong>, au cœur de la prestigieuse technopole Sophia Antipolis, nous bénéficions d'une position stratégique idéale pour desservir l'ensemble de la Riviera : de <strong>Nice</strong> à <strong>Monaco</strong>, de <strong>Cannes</strong> à <strong>Saint-Tropez</strong>, en passant par les villages perchés de l'arrière-pays.
-            </p>
-            <p>
-              Notre mission va bien au-delà du simple transport. Nous créons des <strong>expériences de voyage mémorables</strong> où chaque détail est pensé pour votre confort : véhicules immaculés, chauffeurs en costume, eau minérale à disposition, WiFi embarqué, et un service personnalisé qui anticipe vos besoins avant même que vous ne les exprimiez.
-            </p>
-          </div>
-        </section>
-
-        <!-- Section Valeurs -->
-        <section class="values-section" data-aos="fade-up">
-          <h2>Nos Valeurs Fondatrices</h2>
-          <p class="section-intro">
-            Chez Galriviera, nous ne transigeons jamais sur nos principes. Ces quatre piliers guident chacune de nos actions et garantissent une prestation d'exception à chaque course.
+        <div data-aos="fade-right">
+          <h2>SAS ABSIG CONSULTING</h2>
+          <p class="lead" style="margin-bottom: 2rem; color: #d4af37; font-weight: 500;">
+            Plateforme de recrutement innovante et cabinet spécialisé.
           </p>
-          <div class="values-grid">
-            <div class="value-card">
-              <span class="value-icon">🎯</span>
-              <h3>Excellence</h3>
-              <p>Chaque détail compte dans notre approche du service. Nos véhicules sont inspectés quotidiennement, nos chauffeurs suivent des formations continues, et nous mesurons régulièrement la satisfaction de nos clients pour nous améliorer sans cesse. L'excellence n'est pas un objectif, c'est notre standard minimum.</p>
-            </div>
-            <div class="value-card">
-              <span class="value-icon">⏰</span>
-              <h3>Ponctualité Absolue</h3>
-              <p>Le temps de nos clients est précieux. Nous utilisons des technologies avancées de suivi des vols en temps réel, analysons les conditions de circulation, et arrivons systématiquement 15 minutes en avance. Pour les transferts aéroport, nous offrons jusqu'à 60 minutes d'attente gratuite après l'atterrissage.</p>
-            </div>
-            <div class="value-card">
-              <span class="value-icon">🤝</span>
-              <h3>Confiance & Discrétion</h3>
-              <p>Dirigeants d'entreprise, célébrités, familles en vacances : tous nos clients bénéficient d'une discrétion totale. Nos chauffeurs sont formés à la confidentialité et signent des accords de non-divulgation. Ce qui se passe dans nos véhicules reste strictement privé.</p>
-            </div>
-            <div class="value-card">
-              <span class="value-icon">🌍</span>
-              <h3>Ouverture Internationale</h3>
-              <p>La Côte d'Azur accueille le monde entier. C'est pourquoi nos chauffeurs parlent couramment français, anglais, et pour certains hébreu. Nous comprenons les spécificités culturelles de notre clientèle internationale, notamment les besoins liés au Shabbat et aux traditions culinaires casher.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- Section Équipe -->
-        <section class="about-section reverse" data-aos="fade-up">
-          <div class="section-image">
-            <img src="/assets/img/gallery/galriviera-luxury-3.webp" alt="Chauffeur professionnel Galriviera" loading="lazy"/>
-          </div>
-          <div class="section-text">
-            <h2>Notre Équipe d'Exception</h2>
-            <p>
-              Le cœur de Galriviera, ce sont nos <strong>chauffeurs</strong>. Recrutés selon des critères stricts, ils passent par un processus de sélection rigoureux incluant vérification des antécédents, tests de conduite avancés, et formation aux standards de l'hôtellerie de luxe.
-            </p>
-            <p>
-              Au-delà de la maîtrise parfaite de la conduite, nos chauffeurs sont de véritables <strong>ambassadeurs de la région</strong>. Ils connaissent les meilleurs restaurants, les routes panoramiques les plus spectaculaires, les horaires des musées, et peuvent vous recommander des activités selon vos goûts.
-            </p>
-            <p>
-              Nous sommes particulièrement fiers de notre équipe de chauffeurs <strong>parlant hébreu</strong>, spécialement formés pour accueillir les voyageurs israéliens. Ils connaissent les synagogues locales, les restaurants casher, et peuvent organiser des circuits sur les sites mémoriaux de la région.
-            </p>
-            <ul class="feature-list">
-              <li>✓ Formation continue aux techniques de conduite douce</li>
-              <li>✓ Connaissance encyclopédique de la Côte d'Azur</li>
-              <li>✓ Tenue impeccable (costume, cravate)</li>
-              <li>✓ Multilingues : Français, Anglais, Hébreu</li>
-              <li>✓ Certifiés premiers secours</li>
-            </ul>
-          </div>
-        </section>
-
-        <!-- Section Flotte -->
-        <section class="fleet-section" data-aos="fade-up">
-          <h2>Notre Flotte Premium</h2>
-          <p class="section-intro">
-            Nous ne faisons aucun compromis sur la qualité de nos véhicules. Notre flotte est composée exclusivement de modèles récents (moins de 2 ans), entretenus par des concessionnaires agréés et équipés de toutes les options de confort.
+          <p style="margin-bottom: 1.5rem;">
+            Nous sommes spécialisés dans l’<strong>emploi européen</strong> et l’accompagnement professionnel pour les entreprises françaises et les candidats internationaux.
           </p>
-          <div class="fleet-grid">
-            <div class="fleet-item">
-              <img src="/assets/img/gallery/galriviera-luxury-2.webp" alt="Mercedes Classe S" loading="lazy"/>
-              <h3>Mercedes Classe S</h3>
-              <p>Le summum du luxe automobile. Sièges massants, climatisation 4 zones, vitres surteintées, insonorisation parfaite. Idéale pour les trajets business ou les occasions spéciales. Capacité : 3 passagers.</p>
-            </div>
-            <div class="fleet-item">
-              <img src="/assets/img/gallery/galriviera-luxury-4.webp" alt="Mercedes Classe E" loading="lazy"/>
-              <h3>Mercedes Classe E</h3>
-              <p>L'élégance berline par excellence. Confort optimal, technologie de pointe, espace généreux pour les bagages. Parfaite pour les transferts aéroport et les déplacements quotidiens. Capacité : 3 passagers.</p>
-            </div>
-            <div class="fleet-item">
-              <img src="/assets/img/gallery/galriviera-luxury-5.webp" alt="Mercedes Classe V" loading="lazy"/>
-              <h3>Mercedes Classe V</h3>
-              <p>Le van de luxe pour les groupes et les familles. Sièges en cuir, configuration salon, tables escamotables, espace bagages XXL. Idéal pour les transferts avec bagages nombreux. Capacité : jusqu'à 7 passagers.</p>
-            </div>
-            <div class="fleet-item">
-              <img src="/assets/img/gallery/galriviera-luxury-6.webp" alt="Tesla Model S" loading="lazy"/>
-              <h3>Tesla Model S</h3>
-              <p>L'innovation au service du luxe. 100% électrique, silencieuse, avec une accélération impressionnante et un intérieur futuriste. Pour les clients soucieux de l'environnement sans compromis sur le prestige. Capacité : 3 passagers.</p>
-            </div>
+          <p>
+            Basés au cœur des Alpes-Maritimes, à <strong>Valbonne Sophia-Antipolis</strong>, nous comprenons les enjeux locaux de recrutement dans les secteurs tensiométriques comme l'hôtellerie, le BTP et la Tech.
+          </p>
+          <div style="margin-top: 2rem;">
+             <img src="/assets/img/hero-professional.png" alt="Équipe diverse" style="width: 100%; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
           </div>
-        </section>
+        </div>
 
-        <!-- Section Légale -->
-        <section class="legal-section" data-aos="fade-up">
-          <h2>Informations Légales & Garanties</h2>
-          <div class="legal-grid">
-            <div class="legal-card">
-              <h3>🏢 Société</h3>
-              <ul>
-                <li><strong>Raison sociale :</strong> SASU Absig</li>
-                <li><strong>Marque commerciale :</strong> Galriviera</li>
-                <li><strong>Siège social :</strong> 120 route de macarons, 06560 Valbonne</li>
-                <li><strong>N° TVA :</strong> FR52914022736</li>
-                <li><strong>Création :</strong> 7 avril 2022</li>
-              </ul>
-            </div>
-            <div class="legal-card">
-              <h3>📋 Licences & Assurances</h3>
-              <ul>
-                <li><strong>Licence VTC :</strong> En règle, carte professionnelle à jour</li>
-                <li><strong>Assurance RC Pro :</strong> Couverture complète passagers</li>
-                <li><strong>Véhicules :</strong> Tous assurés et contrôlés</li>
-                <li><strong>Chauffeurs :</strong> Cartes pro VTC valides</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="cta-section" data-aos="fade-up">
-          <h2>Prêt à Découvrir l'Excellence ?</h2>
-          <p>Contactez-nous pour discuter de vos besoins en transport. Devis gratuit et sans engagement.</p>
-          <div class="cta-buttons">
-            <a href="https://wa.me/33682267342" class="btn btn-primary">
-              <span>💬</span> Réserver sur WhatsApp
-            </a>
-            <a href="/contact" class="btn btn-secondary">
-              Nous Contacter
-            </a>
-          </div>
-        </section>
+        <div data-aos="fade-left" style="background: #002366; color: white; padding: 3rem; border-radius: 12px; position: relative; overflow: hidden;">
+          <h3 style="color: #d4af37; margin-bottom: 2rem; font-size: 1.5rem;">Notre Mission</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 1rem;">
+              <span style="color: #d4af37; font-size: 1.4rem; font-weight: bold;">✓</span>
+              <div>
+                <strong style="color: white; font-size: 1.1rem;">Identifier les meilleurs talents</strong>
+                <p style="font-size: 0.95rem; color: rgba(255,255,255,0.9); margin-top: 8px; line-height: 1.5;">Au sein de notre réseau étendu en Union Européenne.</p>
+              </div>
+            </li>
+            <li style="margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 1rem;">
+              <span style="color: #d4af37; font-size: 1.4rem; font-weight: bold;">✓</span>
+              <div>
+                <strong style="color: white; font-size: 1.1rem;">Sécuriser les recrutements</strong>
+                <p style="font-size: 0.95rem; color: rgba(255,255,255,0.9); margin-top: 8px; line-height: 1.5;">Avec notre garantie de remplacement durant la période d'essai.</p>
+              </div>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 1rem;">
+              <span style="color: #d4af37; font-size: 1.4rem; font-weight: bold;">✓</span>
+              <div>
+                <strong style="color: white; font-size: 1.1rem;">Simplifier l'administratif</strong>
+                <p style="font-size: 0.95rem; color: rgba(255,255,255,0.9); margin-top: 8px; line-height: 1.5;">Gestion des contrats et conformité légale française.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
 
       </div>
     </div>
-  </article>
-</BaseLayout>
+  </section>
 
-<style>
-  .about-content {
-    padding: 4rem 0;
-    background: #fff;
-  }
-  
-  .content-wrapper {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  
-  .about-section {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 3rem;
-    align-items: center;
-    margin-bottom: 5rem;
-  }
-  
-  .about-section.reverse {
-    grid-template-columns: 1.5fr 1fr;
-  }
-  
-  .about-section.reverse .section-image {
-    order: 2;
-  }
-  
-  .section-image img {
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-  }
-  
-  .section-text h2 {
-    font-size: 2rem;
-    color: #002366;
-    margin-bottom: 1.5rem;
-  }
-  
-  .section-text p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: #444;
-    margin-bottom: 1rem;
-  }
-  
-  .feature-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 1.5rem;
-  }
-  
-  .feature-list li {
-    padding: 0.5rem 0;
-    color: #333;
-    font-size: 1rem;
-  }
-  
-  .values-section {
-    margin-bottom: 5rem;
-    text-align: center;
-  }
-  
-  .values-section h2 {
-    font-size: 2.5rem;
-    color: #002366;
-    margin-bottom: 1rem;
-  }
-  
-  .section-intro {
-    max-width: 700px;
-    margin: 0 auto 2.5rem;
-    font-size: 1.1rem;
-    color: #555;
-  }
-  
-  .values-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-  
-  .value-card {
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: left;
-    border-left: 4px solid #d4af37;
-  }
-  
-  .value-icon {
-    font-size: 2.5rem;
-    display: block;
-    margin-bottom: 1rem;
-  }
-  
-  .value-card h3 {
-    font-size: 1.25rem;
-    color: #002366;
-    margin-bottom: 0.75rem;
-  }
-  
-  .value-card p {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: #555;
-  }
-  
-  .fleet-section {
-    margin-bottom: 5rem;
-    text-align: center;
-  }
-  
-  .fleet-section h2 {
-    font-size: 2.5rem;
-    color: #002366;
-    margin-bottom: 1rem;
-  }
-  
-  .fleet-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-  
-  .fleet-item {
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    text-align: left;
-  }
-  
-  .fleet-item img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-  }
-  
-  .fleet-item h3 {
-    font-size: 1.1rem;
-    color: #002366;
-    padding: 1rem 1rem 0.5rem;
-  }
-  
-  .fleet-item p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: #666;
-    padding: 0 1rem 1rem;
-  }
-  
-  .legal-section {
-    margin-bottom: 4rem;
-  }
-  
-  .legal-section h2 {
-    font-size: 2rem;
-    color: #002366;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  .legal-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-  
-  .legal-card {
-    background: #f8f9fa;
-    padding: 2rem;
-    border-radius: 12px;
-  }
-  
-  .legal-card h3 {
-    font-size: 1.25rem;
-    color: #002366;
-    margin-bottom: 1rem;
-  }
-  
-  .legal-card ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .legal-card li {
-    padding: 0.5rem 0;
-    color: #555;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  
-  .legal-card li:last-child {
-    border-bottom: none;
-  }
-  
-  .cta-section {
-    text-align: center;
-    background: linear-gradient(135deg, #002366, #003399);
-    padding: 4rem 2rem;
-    border-radius: 16px;
-    color: #fff;
-  }
-  
-  .cta-section h2 {
-    color: #fff;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .cta-section p {
-    color: rgba(255,255,255,0.9);
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-  }
-  
-  .cta-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s;
-  }
-  
-  .btn-primary {
-    background: #25D366;
-    color: #fff;
-  }
-  
-  .btn-primary:hover {
-    background: #20BA5A;
-    transform: translateY(-2px);
-  }
-  
-  .btn-secondary {
-    background: #d4af37;
-    color: #002366;
-  }
-  
-  .btn-secondary:hover {
-    background: #b8941f;
-    transform: translateY(-2px);
-  }
-  
-  @media (max-width: 992px) {
-    .about-section {
-      grid-template-columns: 1fr;
-    }
-    
-    .about-section.reverse {
-      grid-template-columns: 1fr;
-    }
-    
-    .about-section.reverse .section-image {
-      order: 0;
-    }
-    
-    .values-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .fleet-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .legal-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  @media (max-width: 600px) {
-    .fleet-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
+  <!-- VALEURS -->
+  <section style="padding: 4rem 0; background: #f9f9f9;">
+    <div class="container">
+      <h2 class="text-center mb-xl" data-aos="fade-up">Nos Engagements</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        
+        <div class="feature-item" data-aos="fade-up" style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+          <h3 style="color: #002366;">🤝 Proximité</h3>
+          <p>Un accompagnement personnalisé pour chaque client et candidat.</p>
+        </div>
+
+        <div class="feature-item" data-aos="fade-up" data-aos-delay="100" style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+          <h3 style="color: #002366;">⚖️ Conformité</h3>
+          <p>Respect strict du droit du travail français et européen.</p>
+        </div>
+
+        <div class="feature-item" data-aos="fade-up" data-aos-delay="200" style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+          <h3 style="color: #002366;">💎 Qualité</h3>
+          <p>Une sélection rigoureuse des profils pour une adéquation parfaite.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

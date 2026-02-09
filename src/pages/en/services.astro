@@ -1,16 +1,17 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const breadcrumbItems = [
-  { name: "Accueil", url: "/" },
-  { name: "Expertises", url: "/services" }
+  { name: "Home", url: "/en/" },
+  { name: "Expertise", url: "/en/services" }
 ];
 ---
 
 <BaseLayout 
-  title="Expertises & Secteurs | ABSIG Consulting"
-  description="Découvrez nos secteurs d'intervention : Hôtellerie, BTP, Informatique. Recrutement de talents européens qualifiés."
+  title="Expertise & Sectors | ABSIG Consulting"
+  description="Discover our areas of intervention: Hospitality, Construction, IT. Recruitment of qualified European talents."
   currentPage="services"
+  currentLang="en"
   breadcrumbItems={breadcrumbItems}
 >
   <!-- HERO -->
@@ -20,90 +21,90 @@ const breadcrumbItems = [
       <div class="hero-overlay" style="background: rgba(0, 35, 102, 0.8);"></div>
     </div>
     <div class="hero-content">
-      <h1 class="hero-title" data-aos="fade-up">Nos Domaines d'Expertise</h1>
-      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">Des solutions de recrutement sur mesure pour chaque secteur</p>
+      <h1 class="hero-title" data-aos="fade-up">Our Areas of Expertise</h1>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">Tailored recruitment solutions for each sector</p>
     </div>
   </section>
 
-  <!-- DÉTAILS SECTEURS -->
+  <!-- SECTOR DETAILS -->
   <section style="padding: 4rem 0; background: #fff;">
     <div class="container">
       
-      <!-- HOTELLERIE -->
+      <!-- HOSPITALITY -->
       <div class="service-block" data-aos="fade-up" style="margin-bottom: 5rem;">
         <div class="grid-2-cols-responsive align-center">
           <div>
-            <h2 style="color: #d4af37;">🏨 Hôtellerie & Restauration</h2>
+            <h2 style="color: #d4af37;">🏨 Hospitality & Catering</h2>
             <p class="lead">
-              Face à la pénurie de main-d'œuvre dans le secteur CHR, nous vous proposons une solution fiable : 
-              le recrutement de professionnels européens expérimentés et motivés.
+              Facing labor shortages in the Horeca sector, we offer a reliable solution: 
+              recruiting experienced and motivated European professionals.
             </p>
             <div style="background: #f9f9f9; padding: 2rem; border-radius: 8px; margin-top: 1.5rem;">
-              <h3>Profils disponibles :</h3>
+              <h3>Available Profiles:</h3>
               <ul style="column-count: 2; column-gap: 2rem; list-style-position: inside; margin-top: 1rem;">
-                <li>Directeurs d'hôtel</li>
-                <li>Réceptionnistes</li>
-                <li>Gouvernantes</li>
-                <li>Femmes de chambre</li>
-                <li>Chefs de cuisine</li>
-                <li>Serveurs / Barmen</li>
+                <li>Hotel Managers</li>
+                <li>Receptionists</li>
+                <li>Housekeepers</li>
+                <li>Maids / Valets</li>
+                <li>Chefs / Cooks</li>
+                <li>Waiters / Bartenders</li>
               </ul>
             </div>
           </div>
           <div>
-            <img src="/assets/img/flyer-hotellerie.jpg" alt="Recrutement Hôtellerie" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+            <img src="/assets/img/flyer-hotellerie.jpg" alt="Hospitality Recruitment" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
           </div>
         </div>
       </div>
 
-      <!-- BTP -->
+      <!-- CONSTRUCTION -->
       <div class="service-block" data-aos="fade-up" style="margin-bottom: 5rem;">
         <div class="grid-2-cols-responsive align-center reverse-mobile">
           <div>
-            <img src="/assets/img/construction-manager.png" alt="Recrutement BTP" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+            <img src="/assets/img/construction-manager.png" alt="Construction Recruitment" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
           </div>
           <div>
-            <h2 style="color: #d4af37;">🚧 BTP – Travaux Publics</h2>
+            <h2 style="color: #d4af37;">🚧 Construction & Public Works</h2>
             <p class="lead">
-              Pour vos chantiers, nous sélectionnons des ouvriers et techniciens qualifiés, prêts à s'intégrer rapidement à vos équipes.
+              For your construction sites, we select qualified workers and technicians, ready to integrate quickly into your teams.
             </p>
             <div style="background: #f9f9f9; padding: 2rem; border-radius: 8px; margin-top: 1.5rem;">
-              <h3>Métiers couverts :</h3>
+              <h3>Trades Covered:</h3>
               <ul style="column-count: 2; column-gap: 2rem; list-style-position: inside; margin-top: 1rem;">
-                <li>Chefs de chantier</li>
-                <li>Conducteurs d'engins</li>
-                <li>Maçons / Coffreurs</li>
-                <li>Électriciens</li>
-                <li>Plombiers</li>
-                <li>Chauffeurs SPL</li>
+                <li>Site Managers</li>
+                <li>Machine Operators</li>
+                <li>Masons / Formworkers</li>
+                <li>Electricians</li>
+                <li>Plumbers</li>
+                <li>Truck Drivers</li>
               </ul>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- INFORMATIQUE -->
+      <!-- IT -->
       <div class="service-block" data-aos="fade-up">
         <div class="grid-2-cols-responsive align-center">
           <div>
-            <h2 style="color: #d4af37;">💻 Informatique & IT</h2>
+            <h2 style="color: #d4af37;">💻 IT & New Tech</h2>
             <p class="lead">
-              Accédez à un vivier de talents IT formés aux dernières technologies, pour renforcer vos équipes techniques.
+              Access a pool of IT talents trained in the latest technologies to strengthen your technical teams.
             </p>
             <div style="background: #f9f9f9; padding: 2rem; border-radius: 8px; margin-top: 1.5rem;">
-              <h3>Expertises techniques :</h3>
+              <h3>Technical Skills:</h3>
               <ul style="column-count: 2; column-gap: 2rem; list-style-position: inside; margin-top: 1rem;">
-                <li>Développeurs Full-Stack</li>
-                <li>Développeurs Front/Back</li>
+                <li>Full-Stack Developers</li>
+                <li>Front/Back-End Devs</li>
                 <li>DevOps & Cloud</li>
-                <li>Admin Systèmes & Réseaux</li>
-                <li>Cybersécurité</li>
-                <li>Chefs de projet IT</li>
+                <li>System Admins</li>
+                <li>Cybersecurity</li>
+                <li>IT Project Managers</li>
               </ul>
             </div>
           </div>
           <div>
-            <img src="/assets/img/it-specialist.png" alt="Recrutement IT" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+            <img src="/assets/img/it-specialist.png" alt="IT Recruitment" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
           </div>
         </div>
       </div>
@@ -114,11 +115,11 @@ const breadcrumbItems = [
   <!-- CTA -->
   <section style="padding: 4rem 0; background: #f9f9f9; text-align: center;">
     <div class="container">
-      <h2 data-aos="fade-up">Un besoin spécifique ?</h2>
+      <h2 data-aos="fade-up">A specific need?</h2>
       <p data-aos="fade-up" data-aos-delay="100" style="margin-bottom: 2rem;">
-        Contactez-nous pour une évaluation gratuite de vos besoins en recrutement.
+        Contact us for a free assessment of your recruitment needs.
       </p>
-      <a href="/contact" class="cta-button" data-aos="fade-up" data-aos-delay="200">Demander un Devis</a>
+      <a href="/en/contact" class="cta-button" data-aos="fade-up" data-aos-delay="200">Request a Quote</a>
     </div>
   </section>
 

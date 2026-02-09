@@ -1,25 +1,17 @@
 {
-  "name": "galriviera",
+  "name": "absig-consulting",
   "version": "1.0.0",
-  "description": "",
+  "description": "Site web ABSIG Consulting - Recrutement Européen",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "generate-icons": "node scripts/generate-pwa-icons.js"
+    "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^5.5.4",
     "@astrojs/sitemap": "^3.6.0",
-    "astro": "^4.16.19",
-    "dotenv": "^16.6.1",
-    "openai": "^6.9.1",
-    "replicate": "^0.25.2",
-    "sharp": "^0.34.5",
-    "svg2png": "^4.1.1"
+    "astro": "^4.16.19"
   },
   "devDependencies": {
     "terser": "^5.44.1"

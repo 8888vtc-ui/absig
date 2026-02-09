@@ -1,122 +1,96 @@
 ---
-interface Props {
-  currentLang?: string;
-}
-
-const { currentLang = "fr" } = Astro.props;
 const currentYear = new Date().getFullYear();
 
-// Translations
-const t = {
-  fr: {
-    serving: "Desservant : Nice, Cannes, Antibes, Monaco, Saint-Tropez",
-    licensed: "VTC Licencié",
-    luxury: "Flotte Premium",
-    nav: "Navigation",
-    home: "Accueil",
-    services: "Services",
-    airport: "Aéroport Nice",
-    contact: "Contact",
-    legal: "Mentions Légales",
-    premium: "Services Premium",
-    transfers: "Transferts Aéroport (Nice NCE)",
-    tours: "Circuits & Visites Privées",
-    special: "Tours Spéciaux",
-    kosher: "Conciergerie Casher",
-    vip: "Sécurité & Accueil VIP",
-    rights: "Tous droits réservés.",
-    experience: "Expérience de Voyage Premium."
-  },
-  en: {
-    serving: "Serving: Nice, Cannes, Antibes, Monaco, Saint-Tropez",
-    licensed: "Licensed VTC",
-    luxury: "Luxury Fleet",
-    nav: "Navigation",
-    home: "Home",
-    services: "Services",
-    airport: "Nice Airport",
-    contact: "Contact Us",
-    legal: "Legal & Privacy",
-    premium: "Premium Services",
-    transfers: "Airport Transfers (Nice NCE)",
-    tours: "Private Tours & Sightseeing",
-    special: "Special Tours",
-    kosher: "Kosher Dining Concierge",
-    vip: "Security & VIP Handling",
-    rights: "All rights reserved.",
-    experience: "Luxury Travel Experience."
-  },
-  he: {
-    serving: "שירות: ניס, קאן, אנטיב, מונקו, סן טרופז",
-    licensed: "נהג פרטי מורשה",
-    luxury: "צי יוקרתי",
-    nav: "ניווט",
-    home: "בית",
-    services: "שירותים",
-    airport: "שדה התעופה ניס",
-    contact: "צור קשר",
-    legal: "מידע משפטי",
-    premium: "שירותי פרימיום",
-    transfers: "הסעות משדה התעופה (ניס)",
-    tours: "סיורים פרטיים",
-    special: "סיורים מיוחדים",
-    kosher: "קונסיירז' כשר",
-    vip: "אבטחה ושירות VIP",
-    rights: "כל הזכויות שמורות.",
-    experience: "חווית נסיעות יוקרתית."
-  }
+const company = {
+  name: "SAS ABSIG CONSULTING",
+  address: "120 Route des Macarons",
+  zip: "06560",
+  city: "Valbonne",
+  phone: "06 82 26 73 42",
+  phone2: "09 88 41 83 34",
+  email: "absig2consulting@gmail.com",
+  siret: "914 022 736 00013",
+  rcs: "RCS Grasse",
+  tva: "FR 52 914 022 736",
 };
 
-const labels = t[currentLang] || t.fr;
-const isRtl = currentLang === 'he';
+const whatsappNumber = "33682267342";
 ---
 
-<footer class="site-footer" role="contentinfo" aria-label="Footer" dir={isRtl ? 'rtl' : 'ltr'}>
+<footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
+      
+      <!-- Colonne 1 : Entreprise -->
       <div>
-        <strong>GALRIVIERA</strong><br>
-        <span class="text-sm opacity-75">SASU Absig</span><br>
-        120 route de macarons<br>
-        06560 Valbonne, France<br>
-        Tel: <a href="tel:+33682267342">+33 6 82 26 73 42</a><br>
-        {labels.serving}
-        <div class="footer-badges mt-4" aria-label="Legal Info">
-          <span class="footer-badge">{labels.licensed}</span>
-          <span class="footer-badge">{labels.luxury}</span>
+        <strong style="color: #d4af37;">{company.name}</strong><br>
+        <span class="text-sm opacity-75">Cabinet de recrutement spécialisé</span><br>
+        <div style="margin-top: 15px; line-height: 1.8;">
+          {company.address}<br>
+          {company.zip} {company.city}, France<br>
+        </div>
+        <div style="margin-top: 15px; font-size: 0.85rem; opacity: 0.8;">
+          SIRET : {company.siret}<br>
+          {company.rcs}<br>
+          TVA : {company.tva}
         </div>
       </div>
-      <nav class="footer-nav" aria-label="Footer Navigation">
-        <strong>{labels.nav}</strong>
-        <a href="/">{labels.home}</a>
-        <a href="/services">{labels.services}</a>
-        <a href="/vtc-nice-aeroport-transfert">{labels.airport}</a>
-        <a href="/vtc-nice-monaco-monte-carlo">Monaco</a>
-        <a href="/vtc-nice-cannes-festival">Cannes</a>
-        <a href="/vtc-nice-saint-tropez">Saint-Tropez</a>
-        <a href="/contact">{labels.contact}</a>
-        <a href="/mentions-legales-rgpd">{labels.legal}</a>
-      </nav>
+
+      <!-- Colonne 2 : Contact -->
       <div>
-        <strong>{labels.premium}</strong><br>
-        {labels.transfers}<br>
-        {labels.tours}<br>
-        {labels.special}<br>
-        {labels.kosher}<br>
-        {labels.vip}<br>
-        <div class="footer-social">
-          <a href="https://wa.me/33682267342" target="_blank" rel="noopener noreferrer">
-            WhatsApp
-          </a>
-          <a href="https://www.facebook.com/profile.php?id=61579363291995" target="_blank" rel="noopener noreferrer">
-            Facebook
-          </a>
+        <strong>Nous contacter</strong><br>
+        <div style="margin-top: 10px; line-height: 2;">
+          📞 <a href={`tel:${company.phone.replace(/\s/g, '')}`}>{company.phone}</a><br>
+          📞 <a href={`tel:${company.phone2.replace(/\s/g, '')}`}>{company.phone2}</a><br>
+          📧 <a href={`mailto:${company.email}`}>{company.email}</a>
+        </div>
+        <div style="margin-top: 15px;">
+          <a href="/contact" class="footer-cta">Demander un devis</a>
+        </div>
+      </div>
+
+      <!-- Colonne 3 : Navigation -->
+      <nav class="footer-nav">
+        <strong>Navigation</strong>
+        <a href="/">Accueil</a>
+        <a href="/services">Nos Expertises</a>
+        <a href="/a-propos">Qui sommes-nous ?</a>
+        <a href="/contact">Contact</a>
+        <a href="/mentions-legales">Mentions Légales & CGV</a>
+      </nav>
+
+      <!-- Colonne 4 : Secteurs -->
+      <div>
+        <strong>Secteurs d'intervention</strong><br>
+        <div style="margin-top: 10px; line-height: 1.8; font-size: 0.9rem;">
+          • Hôtellerie & Restauration<br>
+          • BTP & Travaux Publics<br>
+          • Informatique & Technologies<br>
+          • Services aux entreprises
         </div>
       </div>
     </div>
+
     <div class="footer-bottom">
-      <span>GALRIVIERA. {labels.rights} © {currentYear}</span>
-      <span>{labels.experience}</span>
+      <span>© {currentYear} {company.name}. Tous droits réservés.</span>
+      <span>Recrutement personnalisé • Rapide • Sécurisé • Conforme</span>
     </div>
   </div>
 </footer>
+
+<style>
+  .footer-cta {
+    display: inline-block;
+    background: #d4af37;
+    color: #002366 !important;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+  }
+  .footer-cta:hover {
+    background: #c4a030;
+  }
+</style>

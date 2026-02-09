@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="ABSIG Consulting | European Recruitment - Hospitality, Construction, IT"
+  description="Recruitment platform based in the French Riviera specializing in integrating European talents without visa barriers."
+  currentPage="index"
+  currentLang="en"
+>
+  <!-- HERO SECTION -->
+  <section class="hero-banner">
+    <div class="hero-image-container">
+      <div class="hero-placeholder" style="background-image: url('/assets/img/hero-professional.png'); background-size: cover; background-position: center; width: 100%; height: 100%;"></div>
+      <div class="hero-overlay" style="background: rgba(0, 35, 102, 0.75);"></div>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title" data-aos="fade-up">European Recruitment – Hospitality, Construction & IT</h1>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">Integrate European talents without visa barriers. Simple, Legal, Effective.</p>
+      <div class="button-group" data-aos="fade-up" data-aos-delay="200">
+        <a href="/en/contact" class="hero-cta-button">Get a Free Quote</a>
+        <a href="#expertises" class="hero-secondary-button">Discover our sectors</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="section-presentation" style="padding: 4rem 0; background: #fff;">
+    <div class="container">
+      <div class="grid-2-cols-responsive align-center">
+        <div data-aos="fade-right">
+          <h2 style="margin-bottom: 1.5rem;">Why Trust Us?</h2>
+          <p class="lead" style="margin-bottom: 1.5rem;">
+            Our mission is simple: connecting French companies with qualified professionals from across the European Union, in full compliance with regulations.
+          </p>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: #d4af37; font-weight: bold; font-size: 1.2rem;">✓</span> Extensive European Network (Bulgaria, Romania...)</li>
+            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: #d4af37; font-weight: bold; font-size: 1.2rem;">✓</span> No Visa Issues (EU Citizens)</li>
+            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: #d4af37; font-weight: bold; font-size: 1.2rem;">✓</span> 100% Compliant with French Law</li>
+            <li style="display: flex; align-items: center; gap: 0.5rem;"><span style="color: #d4af37; font-weight: bold; font-size: 1.2rem;">✓</span> 1-Month Replacement Guarantee</li>
+          </ul>
+        </div>
+        <div data-aos="fade-left">
+          <img src="/assets/img/business-agreement.png" alt="Trust and recruitment" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR EXPERTISE -->
+  <section id="expertises" class="section-services" style="padding: 4rem 0; background: #f9f9f9;">
+    <div class="container">
+      <h2 class="text-center mb-xl" data-aos="fade-up">Our Areas of Expertise</h2>
+      <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        
+        <!-- Hospitality -->
+        <div class="category-card" data-aos="fade-up">
+            <div style="height: 200px; overflow: hidden; border-radius: 8px 8px 0 0;">
+                <img src="/assets/img/flyer-hotellerie.jpg" alt="Hospitality" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+          <div class="card-content">
+            <h3 class="card-title">🏨 Hospitality & Catering</h3>
+            <p class="card-description">
+              Profiles adapted to French and European standards: Managers, Receptionists, Chefs, Waiters...
+            </p>
+            <a href="/en/services" class="card-link">Learn more →</a>
+          </div>
+        </div>
+
+        <!-- Construction -->
+        <div class="category-card" data-aos="fade-up" data-aos-delay="100">
+            <div style="height: 200px; overflow: hidden; border-radius: 8px 8px 0 0;">
+                <img src="/assets/img/construction-manager.png" alt="Construction" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+          <div class="card-content">
+            <h3 class="card-title">🚧 Construction & Public Works</h3>
+            <p class="card-description">
+              A pool of competent candidates for your sites: Machine operators, Masons, Electricians...
+            </p>
+            <a href="/en/services" class="card-link">Learn more →</a>
+          </div>
+        </div>
+
+        <!-- IT -->
+        <div class="category-card" data-aos="fade-up" data-aos-delay="200">
+            <div style="height: 200px; overflow: hidden; border-radius: 8px 8px 0 0;">
+                <img src="/assets/img/it-specialist.png" alt="IT" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+          <div class="card-content">
+            <h3 class="card-title">💻 IT & New Tech</h3>
+            <p class="card-description">
+              Trained and certified experts: Developers, Project Managers, Systems Engineers...
+            </p>
+            <a href="/en/services" class="card-link">Learn more →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GUARANTEE -->
+  <section class="section-guarantee" style="padding: 4rem 0; background: linear-gradient(to right, #f8f9fa, #fff); border-top: 1px solid #e0e0e0;">
+    <div class="container">
+      <div style="background: white; border: 2px solid #d4af37; border-radius: 12px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05);" data-aos="zoom-in">
+        <h2 class="text-center" style="color: #002366; margin-bottom: 1.5rem;">🛡️ Candidate Guarantee – Contractual Commitment</h2>
+        <div class="text-center">
+          <p class="lead" style="font-weight: 600; margin-bottom: 2rem;">
+            Each candidate presented benefits from a one (1) month replacement guarantee.
+          </p>
+        </div>
+        <div class="guarantee-details" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+          <div>
+            <h4 style="color: #d4af37;">Clear Principle</h4>
+            <p>If the candidate leaves the company during the first month (probation period), we proceed with a replacement at no extra cost.</p>
+          </div>
+          <div>
+            <h4 style="color: #d4af37;">Employer Security</h4>
+            <p>This guarantee aims to secure recruitment and offer true peace of mind. You hire without risk.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="section-cta" style="padding: 5rem 0; background: linear-gradient(135deg, #002366, #0a4080); color: white; text-align: center;">
+    <div class="container">
+      <h2 style="color: white; margin-bottom: 1.5rem;" data-aos="fade-up">Are you hiring?</h2>
+      <p class="lead" style="color: rgba(255,255,255,0.9); margin-bottom: 2.5rem; max-width: 800px; margin: 0 auto 2.5rem auto;" data-aos="fade-up" data-aos-delay="100">
+        Fill out our online form or contact us for a free assessment of your needs.
+      </p>
+      <a href="/en/contact" class="hero-cta-button" data-aos="fade-up" data-aos-delay="200">Contact Us Now</a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .hero-secondary-button {margin-left: 1rem; border: 2px solid white; color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s; }
+  .hero-secondary-button:hover { background: white; color: #002366; }
+  .button-group { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+  .step-number { width: 50px; height: 50px; background: #d4af37; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 1.5rem; }
+  .step-item { text-align: center; }
+</style>
