@@ -1,0 +1,275 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Récupération des paramètres URL
+const { searchParams } = Astro.url;
+const dataParam = searchParams.get('data');
+
+// Décodage des données (basique pour l'instant)
+let candidateName = "Candidat";
+let scores = { P: 160, C: 75, A: 110 };
+let secondary = null;
+let profileData = {};
+
+if (dataParam) {
+  try {
+    // Decoding method
+    // Decoding method: simplified
+    const decodedString = decodeURIComponent(escape(atob(dataParam)));
+    const decoded = JSON.parse(decodedString);
+    profileData = decoded.profile || {};
+    candidateName = profileData.fullName || "Candidat";
+    
+    // Import scoring rules (inlined for simplicity in script or fetch?)
+    // Since we are in frontmatter, we can import json
+    const scoringRules = await import('../data/saat-scoring.json');
+    const rules = scoringRules.default || scoringRules;
+
+    // --- LOGIQUE DE CALCUL (DÉDUITE) ---
+    // Initialisation
+    scores.P = 0; scores.C = 0; scores.A = 0;
+    let secondary = { 
+        S: { val: 0, max: 5 }, H_S: { val: 0, max: 5 }, 
+        PN: { val: 0, max: 12 }, N: { val: 0, max: 0 }, // Max dynamic?
+        PP: { val: 0, max: 6 }, SO: { val: 0, max: 6 },
+        V: { val: 0, max: 9 }, O: { val: 0, max: 7 },
+        Co: { val: 0, max: 5 }, RA: { val: 0, max: 22 },
+        R: { val: 0, max: 12 }
+    };
+
+    // Calcul
+    const answers = decoded.answers || {};
+    
+    // Scale factor to reach -200 to +200 range roughly
+    // Assuming about 30 questions per dimension, max raw score ~30. 
+    // 200 / 30 = ~6.6 per point. Let's use 10 for stronger impact.
+    const MULTIPLIER = 10; 
+
+    rules.forEach(rule => {
+        const answer = answers[rule.id]; // "OUI", "NON", "PLUS_OU_MOINS"
+        let impact = 0;
+
+        if (answer === rule.target) {
+            impact = rule.impact;
+        } else if (answer === "PLUS_OU_MOINS") {
+            impact = rule.impact * 0.5; // Half impact
+        } else if (answer && answer !== rule.target) {
+             // Inverse impact? Or just 0? Let's say -impact if it's a strong trait question.
+             // For now, simple logic: if target is OUI and answer is NON, impact is -rule.impact
+             impact = -rule.impact;
+        }
+
+        // Main Dimensions Mapping
+        if (rule.dimension === "P" || rule.dimension === "S" || rule.dimension === "H/S" || rule.dimension === "N" || rule.dimension === "PP" || rule.dimension === "SO") {
+            scores.P += impact * MULTIPLIER;
+        }
+        if (rule.dimension === "C" || rule.dimension === "V" || rule.dimension === "RA") {
+            scores.C += impact * MULTIPLIER;
+        }
+        if (rule.dimension === "A" || rule.dimension === "O" || rule.dimension === "R" || rule.dimension === "Co") {
+            scores.A += impact * MULTIPLIER;
+        }
+
+        // Secondary Stats (Counts)
+        // If the Dimension matches a secondary key
+        let dimKey = rule.dimension === "H/S" ? "H_S" : rule.dimension;
+        if (secondary[dimKey]) {
+            // Pour les secondaires, on compte souvent "combien de fois le trait est présent"
+            // Donc si impact > 0, on incrémente.
+            if (impact > 0) secondary[dimKey].val += 1;
+        }
+    });
+
+    // Clamp scores
+    scores.P = Math.max(-200, Math.min(200, scores.P));
+    scores.C = Math.max(-200, Math.min(200, scores.C));
+    scores.A = Math.max(-200, Math.min(200, scores.A));
+    
+  } catch (e) {
+    console.error("Erreur de calcul", e);
+    // Keep defaults
+  }
+} // End if dataParam
+
+const breadcrumbItems = [
+  { name: "Accueil", url: "/" },
+  { name: "Test SAAT", url: "/test-saat" },
+  { name: "Résultats", url: "#" }
+];
+---
+
+<BaseLayout 
+  title={`Résultats SAAT™ - ${candidateName}`}
+  description="Analyse du profil SAAT™."
+  currentPage="resultats-test"
+  breadcrumbItems={breadcrumbItems}
+>
+
+  <section class="results-section" style="padding: 4rem 0; background: #f8fafc; min-height: 80vh;">
+    <div class="container">
+      
+      <div class="results-card" style="background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); overflow: hidden; max-width: 900px; margin: 0 auto;">
+        
+        <!-- HEADER RAPPORT -->
+        <div class="results-header" style="background: linear-gradient(135deg, #1e3a5f, #0d9488); padding: 2rem; color: white;">
+          <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h1 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Résultat Test Sigler's Ability Analysis</h1>
+              <div style="opacity: 0.9;">Analyse de profil professionnel</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.9rem; opacity: 0.8;">Test décrypté le :</div>
+              <div style="font-weight: bold; font-size: 1.1rem;">{new Date().toLocaleDateString('fr-FR')}</div>
+              <div style="font-size: 0.8rem; margin-top: 0.5rem; background: rgba(255,255,255,0.2); padding: 0.2rem 0.8rem; border-radius: 20px; display: inline-block;">
+                ID: #{Math.floor(Math.random() * 10000).toString().padStart(4, '0')}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INFO CANDIDAT -->
+        <div class="candidate-info" style="padding: 2rem; border-bottom: 1px solid #e2e8f0; background: #fff;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+            <div>
+              <div style="color: #64748b; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Candidat</div>
+              <div style="font-size: 1.2rem; font-weight: 700; color: #1e3a5f;">{candidateName}</div>
+            </div>
+            <div>
+              <div style="color: #64748b; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Société</div>
+              <div style="font-size: 1.1rem; color: #1e3a5f;">{profileData.companyName || "Non renseigné"}</div>
+            </div>
+            <div>
+              <div style="color: #64748b; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Poste visé</div>
+              <div style="font-size: 1.1rem; color: #1e3a5f;">{profileData.function || "Non renseigné"}</div>
+            </div>
+             <div>
+              <div style="color: #64748b; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Expertise</div>
+              <div style="font-size: 1.1rem; font-weight: 600; color: #0d9488;">
+                {scores.P > 100 ? "Manager" : scores.A > 100 ? "Technique" : "Commercial"}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="report-content" style="padding: 3rem 2rem;">
+          
+          <!-- GRAPHIQUE -->
+          <h2 style="text-align: center; color: #1e3a5f; margin-bottom: 2rem;">RÉSULTAT TEST</h2>
+          
+          <div class="chart-container" style="position: relative; height: 400px; width: 100%; max-width: 700px; margin: 0 auto;">
+            <canvas id="saatChart"></canvas>
+          </div>
+
+          <!-- TABLEAU DÉTAILS (CALCULÉ) -->
+          <div style="margin-top: 4rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            
+            <div style="text-align: right; font-weight: 700; color: #1e3a5f; font-size: 1.1rem; display: flex; flex-direction: column; gap: 1rem;">
+              <div>S : <span style="color: #475569;">{secondary ? secondary.S.val : 0}/{secondary ? secondary.S.max : 5}</span></div>
+              <div>PN : <span style="color: #475569;">{secondary ? secondary.PN.val : 0}/{secondary ? secondary.PN.max : 12}</span></div>
+              <div>PP : <span style="color: #475569;">{secondary ? secondary.PP.val : 0}/{secondary ? secondary.PP.max : 6}</span></div>
+              <div>V : <span style="color: #475569;">{secondary ? secondary.V.val : 0}/{secondary ? secondary.V.max : 9}</span></div>
+              <div>Co : <span style="color: #475569;">{secondary ? secondary.Co.val : 0}/{secondary ? secondary.Co.max : 5}</span></div>
+              <div>R : <span style="color: #475569;">{secondary ? secondary.R.val : 0}/{secondary ? secondary.R.max : 12}</span></div>
+            </div>
+
+            <div style="text-align: left; font-weight: 700; color: #1e3a5f; font-size: 1.1rem; display: flex; flex-direction: column; gap: 1rem;">
+              <div>H/S : <span style="color: #475569;">{secondary ? secondary.H_S.val : 0}/{secondary ? secondary.H_S.max : 5}</span></div>
+              <div>N : <span style="color: #475569;">{secondary ? secondary.N.val : 0}</span></div>
+              <div>SO : <span style="color: #475569;">{secondary ? secondary.SO.val : 0}/{secondary ? secondary.SO.max : 6}</span></div>
+              <div>O : <span style="color: #475569;">{secondary ? secondary.O.val : 0}/{secondary ? secondary.O.max : 7}</span></div>
+              <div>RA : <span style="color: #475569;">{secondary ? secondary.RA.val : 0}/{secondary ? secondary.RA.max : 22}</span></div>
+            </div>
+
+          </div>
+
+          <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0;">
+             <p style="color: #64748b; font-style: italic;">Ce document est une synthèse générée automatiquement.</p>
+             <a href="/contact" class="cta-button" style="display: inline-block; margin-top: 1rem; background: #1e3a5f; color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600;">Contacter un expert ABSIG</a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHARTS.JS via CDN with is:inline to ensure order -->
+  <script is:inline src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script is:inline define:vars={{ scores }}>
+    document.addEventListener('DOMContentLoaded', function() {
+      const ctx = document.getElementById('saatChart');
+      if (ctx) {
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['Personnalité (P)', 'Communication (C)', 'Action (A)'],
+            datasets: [{
+              label: 'Score',
+              data: [scores.P, scores.C, scores.A],
+              backgroundColor: [
+                'rgba(54, 162, 235, 0.8)', // Bleu pour P
+                'rgba(75, 192, 192, 0.8)', // Vert teal pour C
+                'rgba(255, 99, 132, 0.8)'  // Rouge pour A
+              ],
+              borderColor: [
+                'rgb(54, 162, 235)',
+                'rgb(75, 192, 192)',
+                'rgb(255, 99, 132)'
+              ],
+              borderWidth: 1,
+              barThickness: 60,
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.raw;
+                  }
+                }
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: false,
+                min: -200,
+                max: 200,
+                grid: {
+                  color: 'rgba(0, 0, 0, 0.1)',
+                  lineWidth: 1
+                },
+                ticks: {
+                  stepSize: 50
+                }
+              },
+              x: {
+                grid: {
+                  display: false
+                },
+                ticks: {
+                  font: {
+                    size: 14,
+                    weight: 'bold'
+                  }
+                }
+              }
+            },
+            animation: {
+              duration: 2000,
+              easing: 'easeOutQuart'
+            }
+          }
+        });
+      }
+    });
+  </script>
+
+</BaseLayout>

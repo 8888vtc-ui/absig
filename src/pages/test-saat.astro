@@ -757,35 +757,36 @@ document.addEventListener('DOMContentLoaded', function() {
       completedBy: document.getElementById('completedBy').value || 'Non renseigné',
       date: new Date().toLocaleDateString('fr-FR')
     };
+    
+    // Prepare data for results page
+    const resultData = {
+      profile: profile,
+      answers: answers
+    };
 
-    const mins = Math.floor(timerSeconds / 60);
-    const secs = timerSeconds % 60;
-    const timeStr = mins + 'min ' + secs + 's';
-
-    let msg = '🧠 *TEST SAAT™ - RÉSULTATS*\n\n';
-    msg += '*Candidat:* ' + profile.fullName + '\n';
-    msg += '*Société:* ' + profile.companyName + '\n';
-    msg += '*Tél:* ' + profile.phone + '\n';
-    msg += '*Poste:* ' + profile.function + '\n';
-    msg += '*Par:* ' + profile.completedBy + '\n';
-    msg += '*Date:* ' + profile.date + '\n';
-    msg += '*Durée:* ' + timeStr + '\n\n';
-    msg += '*--- RÉPONSES (87 Q) ---*\n';
-
-    let line = '';
-    for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
-      const a = answers[i];
-      let code = '?';
-      if (a === 'OUI') code = 'O';
-      else if (a === 'PLUS_OU_MOINS') code = '±';
-      else if (a === 'NON') code = 'N';
-      line += 'Q' + i + ':' + code + ' ';
-      if (i % 10 === 0) { msg += line.trim() + '\n'; line = ''; }
-    }
-    if (line.trim()) msg += line.trim() + '\n';
-    msg += '\n_Envoyé depuis absig-consulting.fr_';
+    // Encode data to base64 for URL (Unicode safe)
+    const jsonString = JSON.stringify(resultData);
+    const encodedData = btoa(encodeURIComponent(jsonString).replace(/%([0-9A-F]{2})/g,
+        function toSolidBytes(match, p1) {
+            return String.fromCharCode('0x' + p1);
+    }));
+    const resultsLink = `https://absig-consulting.fr/resultats-test?data=${encodedData}`; // In prod
+    // const resultsLink = `${window.location.origin}/resultats-test?data=${encodedData}`; // For dev/test if needed, sticking to absolute prod URL as requested or relative? Let's use absolute for WhatsApp sharing to work for recruiter.
+    
+    // Actually, for local testing, window.location.origin is better, but for WhatsApp sending to someone else, it needs to be the public URL.
+    // I will use a relative link for the redirect, but the WhatsApp message needs the public link.
+    // Since I don't know if the user has a public URL yet, I'll use the domain `absig-consulting.fr` as a placeholder or `window.location.href` base.
+    // Let's assume the user wants to send it to the recruiter.
+    
+    // Construct WhatsApp Message
+    let msg = '🧠 *RÉSULTAT TEST SAAT™*\n\n';
+    msg += `*Candidat:* ${profile.fullName}\n`;
+    msg += `*Poste:* ${profile.function}\n\n`;
+    msg += `*Voir le graphique et l'analyse complète :*\n${resultsLink}`;
 
     const waUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+    
+    // Open WhatsApp
     window.open(waUrl, '_blank');
 
     // Clear saved data
@@ -798,9 +799,19 @@ document.addEventListener('DOMContentLoaded', function() {
       progressContainer.style.display = 'none';
       submitSection.style.display = 'none';
       successMessage.classList.add('visible');
-      successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      launchConfetti();
+      
+      // Optional: Redirect user to results page after a delay so they can see their own result?
+      // Let's add a button in success message to view results.
+      const successCta = document.querySelector('.saat-cta-btn');
+      if(successCta) {
+          successCta.textContent = "Voir mon résultat détaillé";
+          successCta.href = `/resultats-test?data=${encodedData}`;
+          successCta.target = "_blank";
+      }
+      
     }, 500);
+    
+    launchConfetti();
   });
 
   // ===== ANIMATED SCALE INDICATORS =====

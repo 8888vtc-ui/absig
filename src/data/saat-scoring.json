@@ -1,0 +1,524 @@
+[
+    {
+        "id": 1,
+        "dimension": "C",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 2,
+        "dimension": "Co",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 3,
+        "dimension": "S",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 4,
+        "dimension": "O",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 5,
+        "dimension": "R",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 6,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 7,
+        "dimension": "N",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 8,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 9,
+        "dimension": "V",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 10,
+        "dimension": "P",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 11,
+        "dimension": "C",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 12,
+        "dimension": "A",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 13,
+        "dimension": "Co",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 14,
+        "dimension": "P",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 15,
+        "dimension": "P",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 16,
+        "dimension": "Co",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 17,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 18,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 19,
+        "dimension": "P",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 20,
+        "dimension": "N",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 21,
+        "dimension": "A",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 22,
+        "dimension": "N",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 23,
+        "dimension": "R",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 24,
+        "dimension": "A",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 25,
+        "dimension": "S",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 26,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 27,
+        "dimension": "A",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 28,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 29,
+        "dimension": "R",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 30,
+        "dimension": "O",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 31,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 32,
+        "dimension": "C",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 33,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 34,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 35,
+        "dimension": "O",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 36,
+        "dimension": "Co",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 37,
+        "dimension": "N",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 38,
+        "dimension": "C",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 39,
+        "dimension": "A",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 40,
+        "dimension": "Co",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 41,
+        "dimension": "R",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 42,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 43,
+        "dimension": "S",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 44,
+        "dimension": "C",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 45,
+        "dimension": "O",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 46,
+        "dimension": "P",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 47,
+        "dimension": "C",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 48,
+        "dimension": "P",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 49,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 50,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 51,
+        "dimension": "O",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 52,
+        "dimension": "H/S",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 53,
+        "dimension": "P",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 54,
+        "dimension": "A",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 55,
+        "dimension": "PP",
+        "impact": 1,
+        "target": "NON"
+    },
+    {
+        "id": 56,
+        "dimension": "P",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 57,
+        "dimension": "A",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 58,
+        "dimension": "P",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 59,
+        "dimension": "P",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 60,
+        "dimension": "A",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 61,
+        "dimension": "N",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 62,
+        "dimension": "C",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 63,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 64,
+        "dimension": "N",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 65,
+        "dimension": "C",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 66,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 67,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 68,
+        "dimension": "H/S",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 69,
+        "dimension": "Co",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 70,
+        "dimension": "P",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 71,
+        "dimension": "P",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 72,
+        "dimension": "R",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 73,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 74,
+        "dimension": "P",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 75,
+        "dimension": "O",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 76,
+        "dimension": "N",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 77,
+        "dimension": "C",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 78,
+        "dimension": "A",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 79,
+        "dimension": "A",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 80,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 81,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 82,
+        "dimension": "O",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 83,
+        "dimension": "C",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 84,
+        "dimension": "P",
+        "impact": -1,
+        "target": "OUI"
+    },
+    {
+        "id": 85,
+        "dimension": "P",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 86,
+        "dimension": "C",
+        "impact": 1,
+        "target": "OUI"
+    },
+    {
+        "id": 87,
+        "dimension": "A",
+        "impact": 1,
+        "target": "OUI"
+    }
+]
