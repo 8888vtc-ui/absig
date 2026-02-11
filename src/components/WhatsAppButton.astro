@@ -4,7 +4,7 @@ interface Props {
 }
 
 const { currentLang = 'fr' } = Astro.props;
-const whatsappNumber = "33682267342";
+const whatsappNumber = "33682267342"; // Format international sans '+'
 
 const t = currentLang === 'en' ? {
   message: "Hello, I'm interested in your recruitment services.",
