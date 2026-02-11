@@ -1,0 +1,350 @@
+[
+    {
+        "id": 1,
+        "text": "Vous tenez-vous systématiquement informé(e) des actualités ?"
+    },
+    {
+        "id": 2,
+        "text": "Acceptez-vous facilement l'autorité d'un supérieur ?"
+    },
+    {
+        "id": 3,
+        "text": "Vous arrive-t-il de faire des erreurs ?"
+    },
+    {
+        "id": 4,
+        "text": "Avez-vous l'impression que vous manquez toujours de temps ?"
+    },
+    {
+        "id": 5,
+        "text": "Vivez-vous au-dessus de vos moyens ?"
+    },
+    {
+        "id": 6,
+        "text": "Etes-vous irrité(e) par le bruit que peuvent faire des enfants, des voitures, des rires...?"
+    },
+    {
+        "id": 7,
+        "text": "Connaissez-vous quelqu'un qui vous déteste ?"
+    },
+    {
+        "id": 8,
+        "text": "Ressentez-vous fortement le trac ?"
+    },
+    {
+        "id": 9,
+        "text": "Etes-vous favorable à la rémunération « au résultat » uniquement ?"
+    },
+    {
+        "id": 10,
+        "text": "Avez-vous un ou des animaux ?"
+    },
+    {
+        "id": 11,
+        "text": "Ressentez-vous de la gêne quand on vous offre des cadeaux ?"
+    },
+    {
+        "id": 12,
+        "text": "Vous considérez-vous comme quelqu'un de très actif ?"
+    },
+    {
+        "id": 13,
+        "text": "Contestez-vous un ordre venant d'un supérieur, si vous pensez qu'il est illogique ou contraire à la bonne marche de l'entreprise ?"
+    },
+    {
+        "id": 14,
+        "text": "Seriez-vous intransigeant(e) plutôt qu'indulgent(e) envers des subordonnés ?"
+    },
+    {
+        "id": 15,
+        "text": "Ressentez-vous parfois le besoin de « calmer le jeu » ?"
+    },
+    {
+        "id": 16,
+        "text": "Pensez-vous que la répression soit la seule façon d'amener quelqu'un à modifier son comportement ?"
+    },
+    {
+        "id": 17,
+        "text": "Pensez-vous que l'opinion de la masse a plus de valeur que celle d'un individu ?"
+    },
+    {
+        "id": 18,
+        "text": "Avez-vous des doutes concernant votre avenir professionnel ?"
+    },
+    {
+        "id": 19,
+        "text": "Etes-vous de nature optimiste ?"
+    },
+    {
+        "id": 20,
+        "text": "Pensez-vous qu'en général les gens sont sincères avec vous ?"
+    },
+    {
+        "id": 21,
+        "text": "Aimez-vous vous lever tôt le matin ?"
+    },
+    {
+        "id": 22,
+        "text": "Pensez-vous que l'on puisse faire du mal en voulant aider quelqu'un ?"
+    },
+    {
+        "id": 23,
+        "text": "Pensez-vous que les enfants (en âge d'être scolarisés) doivent participer aux tâches ménagères ?"
+    },
+    {
+        "id": 24,
+        "text": "Avez-vous beaucoup de projets en cours de réalisation ?"
+    },
+    {
+        "id": 25,
+        "text": "Vous remettez-vous parfois en question ?"
+    },
+    {
+        "id": 26,
+        "text": "Ressentez-vous de l'impuissance face au pouvoir ?"
+    },
+    {
+        "id": 27,
+        "text": "Aimez-vous bricoler, cuisiner, coudre, jardiner etc...?"
+    },
+    {
+        "id": 28,
+        "text": "Ressentez-vous de temps en temps des moments de découragement ?"
+    },
+    {
+        "id": 29,
+        "text": "Est-ce que votre entourage vous considère comme dépensier(e) ?"
+    },
+    {
+        "id": 30,
+        "text": "Pensez-vous que la rapidité est source d'erreurs ?"
+    },
+    {
+        "id": 31,
+        "text": "Pensez-vous souvent au passé ?"
+    },
+    {
+        "id": 32,
+        "text": "Pensez-vous que les répondeurs téléphoniques dénaturent la communication ?"
+    },
+    {
+        "id": 33,
+        "text": "Convoitez-vous la sécurité de l'emploi ?"
+    },
+    {
+        "id": 34,
+        "text": "Vous arrive-t-il de vous mettre en colère ?"
+    },
+    {
+        "id": 35,
+        "text": "Etes-vous collectionneur d'objets anciens, timbres, cartes, etc...?"
+    },
+    {
+        "id": 36,
+        "text": "Pensez-vous qu'il faille calmer les enfants hyperactifs ?"
+    },
+    {
+        "id": 37,
+        "text": "Détestez-vous quelqu'un ?"
+    },
+    {
+        "id": 38,
+        "text": "Avez-vous des difficultés à parler en public ?"
+    },
+    {
+        "id": 39,
+        "text": "Vous arrive-t-il d'être submergé(e) par votre travail ?"
+    },
+    {
+        "id": 40,
+        "text": "Pensez-vous que les lois soient trop laxistes ?"
+    },
+    {
+        "id": 41,
+        "text": "Vous arrive-t-il de vous laisser aller à des « folies » dépassant votre budget ?"
+    },
+    {
+        "id": 42,
+        "text": "Pensez-vous que la chance soit un facteur déterminant de la réussite ?"
+    },
+    {
+        "id": 43,
+        "text": "Regrettez-vous parfois des choses que vous avez faites ?"
+    },
+    {
+        "id": 44,
+        "text": "Vous reproche-t-on d'être trop bavard(e) ?"
+    },
+    {
+        "id": 45,
+        "text": "Vous arrive-t-il souvent en fin de journée de n'avoir pas pu terminer ce que vous aviez à faire à cause d'événements extérieurs ?"
+    },
+    {
+        "id": 46,
+        "text": "Eprouvez-vous de grands sentiments de pitié à la vue de malheureux ?"
+    },
+    {
+        "id": 47,
+        "text": "Pouvez-vous écouter quelqu'un parler pendant longtemps sans que cela vous gêne ou vous agace ?"
+    },
+    {
+        "id": 48,
+        "text": "Pensez-vous que la France soit un pays privilégié en ce qui concerne la protection sociale ?"
+    },
+    {
+        "id": 49,
+        "text": "Vous arrive-t-il parfois de douter d'une de vos décisions ou actions ?"
+    },
+    {
+        "id": 50,
+        "text": "Avez-vous l'impression que l'on abuse de votre gentillesse ?"
+    },
+    {
+        "id": 51,
+        "text": "Répondez-vous systématiquement à tout votre courrier ?"
+    },
+    {
+        "id": 52,
+        "text": "Pensez-vous que la vérité soit toujours bonne à dire ?"
+    },
+    {
+        "id": 53,
+        "text": "Etes-vous quelqu'un que l'on apprécie ?"
+    },
+    {
+        "id": 54,
+        "text": "Si l'on aime son travail peut-on se passer de vacances ?"
+    },
+    {
+        "id": 55,
+        "text": "Pensez-vous que les gens puissent s'améliorer ?"
+    },
+    {
+        "id": 56,
+        "text": "Vivez-vous facilement les situations stressantes ?"
+    },
+    {
+        "id": 57,
+        "text": "Terminez-vous toujours ce que vous avez commencé ?"
+    },
+    {
+        "id": 58,
+        "text": "Donnez-vous libre cours à vos émotions ?"
+    },
+    {
+        "id": 59,
+        "text": "Acceptez-vous que quelqu'un vous aide ?"
+    },
+    {
+        "id": 60,
+        "text": "Dans votre travail, menez-vous habituellement plusieurs tâches de front ?"
+    },
+    {
+        "id": 61,
+        "text": "D'une manière générale, faites-vous confiance aux autres ?"
+    },
+    {
+        "id": 62,
+        "text": "Lors de réunions, de soirées, etc, entrez-vous facilement en communication avec les gens ?"
+    },
+    {
+        "id": 63,
+        "text": "Si vous en aviez l'occasion, accepteriez-vous une place dans la Fonction Publique ?"
+    },
+    {
+        "id": 64,
+        "text": "Etes-vous actuellement en relation avec une personne qui vous dénigre ?"
+    },
+    {
+        "id": 65,
+        "text": "Pensez-vous que des relations professionnelles puissent devenir des relations amicales ?"
+    },
+    {
+        "id": 66,
+        "text": "Examinez-vous toujours soigneusement une situation avant d'agir même si elle est urgente ?"
+    },
+    {
+        "id": 67,
+        "text": "Avez-vous peur d'être mal jugé(e) ?"
+    },
+    {
+        "id": 68,
+        "text": "Pensez-vous que l'on cache beaucoup de choses aux gens ?"
+    },
+    {
+        "id": 69,
+        "text": "Acceptez-vous facilement les ordres ?"
+    },
+    {
+        "id": 70,
+        "text": "Ressentez-vous très vivement la perte d'un objet important ?"
+    },
+    {
+        "id": 71,
+        "text": "Etes-vous en bons termes avec votre famille ?"
+    },
+    {
+        "id": 72,
+        "text": "Etes-vous perfectionniste ?"
+    },
+    {
+        "id": 73,
+        "text": "Vous rongez-vous les ongles ?"
+    },
+    {
+        "id": 74,
+        "text": "Pardonnez-vous facilement ?"
+    },
+    {
+        "id": 75,
+        "text": "Perdez-vous souvent vos affaires ?"
+    },
+    {
+        "id": 76,
+        "text": "Pensez-vous que les journalistes sont en général libres et objectifs dans leurs articles ?"
+    },
+    {
+        "id": 77,
+        "text": "Après une dispute ou un désaccord, faites-vous habituellement le « premier pas » ?"
+    },
+    {
+        "id": 78,
+        "text": "Vous endormez-vous fréquemment devant la télévision ?"
+    },
+    {
+        "id": 79,
+        "text": "Pensez-vous qu'une guerre ferait repartir l'économie ?"
+    },
+    {
+        "id": 80,
+        "text": "Vous considérez-vous comme susceptible concernant certains aspects de votre vie ?"
+    },
+    {
+        "id": 81,
+        "text": "Pensez-vous que le soutien du groupe soit indispensable pour agir au niveau professionnel ?"
+    },
+    {
+        "id": 82,
+        "text": "Pensez-vous que d'une manière générale les artistes ne sont pas des gens sérieux ?"
+    },
+    {
+        "id": 83,
+        "text": "Faites-vous partie d'une association, club, groupe d'intérêt etc...?"
+    },
+    {
+        "id": 84,
+        "text": "Avez-vous des difficultés pour vous endormir ?"
+    },
+    {
+        "id": 85,
+        "text": "Affirmez-vous toujours vos convictions même contre l'avis de tous ?"
+    },
+    {
+        "id": 86,
+        "text": "Parlez-vous facilement de vous à des inconnus ?"
+    },
+    {
+        "id": 87,
+        "text": "Puisez-vous vos ressources, votre motivation, dans la dynamique de votre équipe professionnelle ?"
+    }
+]

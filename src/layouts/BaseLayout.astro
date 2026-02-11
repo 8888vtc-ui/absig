@@ -11,6 +11,7 @@ import '../styles/menu.css';
 import '../styles/components.css';
 import '../styles/chatbot.css';
 import '../styles/mobile-fixed.css';
+import '../styles/saat.css';
 
 interface Props {
   title: string;
@@ -35,6 +36,35 @@ const {
 const canonicalUrl = canonical || Astro.url.pathname;
 const siteUrl = "https://www.absig-consulting.fr";
 const fullCanonical = `${siteUrl}${canonicalUrl}`;
+
+// Hreflang: compute alternate URLs
+const isEnglish = currentLang === 'en';
+const frPath = isEnglish ? canonicalUrl.replace(/^\/en/, '') || '/' : canonicalUrl;
+const enPath = isEnglish ? canonicalUrl : `/en${canonicalUrl === '/' ? '/' : canonicalUrl}`;
+const skipLinkText = isEnglish ? 'Skip to main content' : 'Aller au contenu principal';
+
+const jsonLdData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "ABSIG Consulting",
+  "alternateName": "SAS ABSIG CONSULTING",
+  "url": "https://www.absig-consulting.fr",
+  "logo": "https://www.absig-consulting.fr/assets/img/logo.png",
+  "description": isEnglish 
+    ? "European recruitment platform specializing in Hospitality, Construction and IT sectors. Based in Valbonne, French Riviera."
+    : "Plateforme de recrutement européen spécialisée dans l'Hôtellerie, le BTP et l'Informatique. Basée à Valbonne, Côte d'Azur.",
+  "telephone": "+33682267342",
+  "email": "contact@absig-consulting.fr",
+  "address": { "@type": "PostalAddress", "streetAddress": "120 Route des Macarons", "addressLocality": "Valbonne", "postalCode": "06560", "addressRegion": "Alpes-Maritimes", "addressCountry": "FR" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 43.6287565, "longitude": 7.0422558 },
+  "hasMap": "https://maps.app.goo.gl/MDUTzdvspSzJDDsp6",
+  "sameAs": ["https://maps.app.goo.gl/MDUTzdvspSzJDDsp6"],
+  "priceRange": "€€",
+  "knowsLanguage": ["fr", "en"],
+  "serviceType": ["Recruitment", "Staffing", "HR Consulting"],
+  "foundingDate": "2024"
+});
+const showJsonLd = currentPage === 'index';
 ---
 
 <!doctype html>
@@ -45,49 +75,43 @@ const fullCanonical = `${siteUrl}${canonicalUrl}`;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     
-    <!-- iOS Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="TEMPLATE" />
-    
-    <!-- Android Meta Tags -->
+    <meta name="apple-mobile-web-app-title" content="ABSIG Consulting" />
     <meta name="mobile-web-app-capable" content="yes" />
     
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={fullCanonical} />
+    <link rel="alternate" hreflang="fr" href={`${siteUrl}${frPath}`} />
+    <link rel="alternate" hreflang="en" href={`${siteUrl}${enPath}`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}${frPath}`} />
     
-    <!-- Robots & SEO -->
     <meta name="robots" content="index, follow" />
-    
-    <!-- Theme -->
     <meta name="theme-color" content="#d4af37" />
     
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={fullCanonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
     
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={fullCanonical} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    {showJsonLd && <script type="application/ld+json" set:html={jsonLdData} />}
   </head>
   <body data-page={currentPage}>
     <CookieBanner currentLang={currentLang} />
-    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <a href="#main-content" class="skip-link">{skipLinkText}</a>
     <Header currentPage={currentPage} currentLang={currentLang} />
     {breadcrumbItems && breadcrumbItems.length > 0 && (
       <Breadcrumb items={breadcrumbItems} />
@@ -96,7 +120,7 @@ const fullCanonical = `${siteUrl}${canonicalUrl}`;
       <slot />
     </main>
     <Footer currentLang={currentLang} />
-    <WhatsAppButton />
+    <WhatsAppButton currentLang={currentLang} />
     <Chatbot currentLang={currentLang} />
 
     <!-- Initialize AOS -->

@@ -1,18 +1,55 @@
 ---
 const { currentLang = 'fr' } = Astro.props;
 
-const t = {
+const t = currentLang === 'en' ? {
+  label: "Assistant",
+  welcome: "Hello! I'm the ABSIG Consulting assistant. How can I help you with your recruitment needs?",
+  placeholder: "Ask your question...",
+  error: "An error occurred.",
+  unavailable: "Service temporarily unavailable.",
+  hint: "For an immediate response:"
+} : {
   label: "Assistant",
   welcome: "Bonjour ! Je suis l'assistant ABSIG Consulting. Comment puis-je vous aider concernant vos besoins en recrutement ?",
   placeholder: "Posez votre question...",
   error: "Une erreur est survenue.",
-  unavailable: "Service temporairement indisponible."
+  unavailable: "Service temporairement indisponible.",
+  hint: "Pour une réponse immédiate :"
 };
 
 const phone = "06 82 26 73 42";
+
+// Chatbot auto-responses per language
+const responsesEn = {
+  default: "Thank you for your message. For a personalized response about your recruitment project, please fill out our contact form or call us directly at 06 82 26 73 42.",
+  price: "Our fees are calculated based on the profile sought and the level of qualification. Contact us to receive a detailed, personalized quote.",
+  cost: "Our fees are calculated based on the profile sought and the level of qualification. Contact us to receive a detailed, personalized quote.",
+  guarantee: "We offer a one-month replacement guarantee. If the candidate doesn't work out during the trial period, we replace them at no extra cost.",
+  sector: "We mainly operate in three sectors: Hospitality & Catering, Construction & Public Works, and IT & Technologies.",
+  visa: "All our candidates are European Union citizens. No visa procedures are required for their employment in France.",
+  delay: "The average recruitment timeline ranges from 2 to 4 weeks depending on the profile sought and the urgency of your need.",
+  candidate: "We have an extensive network of qualified candidates mainly from Bulgaria, Romania, and other EU countries.",
+  saat: "The SAAT™ test is our exclusive assessment tool that analyzes 13 personality dimensions through 87 questions. It helps identify the ideal profile before the interview.",
+  test: "The SAAT™ test is our exclusive assessment tool. You can take it on our website: it takes about 15 minutes."
+};
+
+const responsesFr = {
+  default: "Merci pour votre message. Pour une réponse personnalisée concernant votre projet de recrutement, nous vous invitons à remplir notre formulaire de contact ou à nous appeler directement au 06 82 26 73 42.",
+  prix: "Nos honoraires sont calculés en fonction du profil recherché et du niveau de qualification. Contactez-nous pour recevoir un devis détaillé et personnalisé.",
+  tarif: "Nos honoraires sont calculés en fonction du profil recherché et du niveau de qualification. Contactez-nous pour recevoir un devis détaillé et personnalisé.",
+  garantie: "Nous offrons une garantie de remplacement d'un mois. Si le candidat ne convient pas durant la période d'essai, nous procédons à un remplacement sans frais supplémentaires.",
+  secteur: "Nous intervenons principalement dans trois secteurs : Hôtellerie & Restauration, BTP & Travaux Publics, et Informatique & Technologies.",
+  visa: "Tous nos candidats sont citoyens de l'Union Européenne. Aucune démarche de visa n'est nécessaire pour leur embauche en France.",
+  delai: "Le délai moyen de recrutement varie de 2 à 4 semaines selon le profil recherché et l'urgence de votre besoin.",
+  candidat: "Nous disposons d'un réseau étendu de candidats qualifiés principalement issus de Bulgarie, Roumanie et d'autres pays de l'UE.",
+  saat: "Le test SAAT™ est notre outil d'évaluation exclusif qui analyse 13 dimensions de personnalité à travers 87 questions. Il permet d'identifier le profil idéal avant l'entretien.",
+  test: "Le test SAAT™ est disponible directement sur notre site. Il prend environ 15 minutes."
+};
+
+const chatResponses = currentLang === 'en' ? responsesEn : responsesFr;
 ---
 
-<div class="chatbot-container" id="chatbot-container" data-translations={JSON.stringify(t)}>
+<div class="chatbot-container" id="chatbot-container" data-translations={JSON.stringify(t)} data-responses={JSON.stringify(chatResponses)}>
   <button 
     class="chatbot-toggle" 
     id="chatbot-toggle"
@@ -45,7 +82,7 @@ const phone = "06 82 26 73 42";
         <button type="submit" class="chatbot-send">➤</button>
       </form>
       <p class="chatbot-whatsapp-hint" style="font-size: 0.75rem; opacity: 0.7; margin-top: 8px;">
-        Pour une réponse immédiate : <a href={`tel:${phone.replace(/\s/g, '')}`} style="font-weight: 600;">{phone}</a>
+        {t.hint} <a href={`tel:${phone.replace(/\s/g, '')}`} style="font-weight: 600;">{phone}</a>
       </p>
     </div>
   </div>
@@ -59,6 +96,7 @@ const phone = "06 82 26 73 42";
     const form = document.getElementById('chatbot-form');
     const input = document.getElementById('chatbot-input');
     const messages = document.getElementById('chatbot-messages');
+    const container = document.getElementById('chatbot-container');
 
     const toggleChat = () => {
       chatWindow.classList.toggle('open');
@@ -70,16 +108,11 @@ const phone = "06 82 26 73 42";
     toggle.addEventListener('click', toggleChat);
     close.addEventListener('click', toggleChat);
 
-    const responses = {
-      default: "Merci pour votre message. Pour une réponse personnalisée concernant votre projet de recrutement, nous vous invitons à remplir notre formulaire de contact ou à nous appeler directement au 06 82 26 73 42.",
-      prix: "Nos honoraires sont calculés en fonction du profil recherché et du niveau de qualification. Contactez-nous pour recevoir un devis détaillé et personnalisé.",
-      tarif: "Nos honoraires sont calculés en fonction du profil recherché et du niveau de qualification. Contactez-nous pour recevoir un devis détaillé et personnalisé.",
-      garantie: "Nous offrons une garantie de remplacement d'un mois. Si le candidat ne convient pas durant la période d'essai, nous procédons à un remplacement sans frais supplémentaires.",
-      secteur: "Nous intervenons principalement dans trois secteurs : Hôtellerie & Restauration, BTP & Travaux Publics, et Informatique & Technologies.",
-      visa: "Tous nos candidats sont citoyens de l'Union Européenne. Aucune démarche de visa n'est nécessaire pour leur embauche en France.",
-      delai: "Le délai moyen de recrutement varie de 2 à 4 semaines selon le profil recherché et l'urgence de votre besoin.",
-      candidat: "Nous disposons d'un réseau étendu de candidats qualifiés principalement issus de Bulgarie, Roumanie et d'autres pays de l'UE.",
-    };
+    // Parse responses from data attribute
+    let responses = {};
+    try {
+      responses = JSON.parse(container.dataset.responses || '{}');
+    } catch(e) {}
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -90,7 +123,7 @@ const phone = "06 82 26 73 42";
       input.value = '';
 
       setTimeout(() => {
-        let response = responses.default;
+        let response = responses.default || "Thank you for your message.";
         const msgLower = msg.toLowerCase();
         
         for (const [key, value] of Object.entries(responses)) {

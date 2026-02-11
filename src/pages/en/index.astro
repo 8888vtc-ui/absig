@@ -47,50 +47,69 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- KEY FIGURES -->
+  <section class="stats-section" style="padding: 4rem 0; background: linear-gradient(135deg, #1e3a5f, #0d9488);">
+    <div class="container">
+      <h2 class="text-center" style="color: white; margin-bottom: 3rem;" data-aos="fade-up">Our Key Figures</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center;">
+        <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+          <div class="stat-number" data-target="500">0</div>
+          <div class="stat-suffix">+</div>
+          <div class="stat-label">Successful Placements</div>
+        </div>
+        <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+          <div class="stat-number" data-target="97">0</div>
+          <div class="stat-suffix">%</div>
+          <div class="stat-label">Satisfaction Rate</div>
+        </div>
+        <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+          <div class="stat-number" data-target="12">0</div>
+          <div class="stat-suffix">days</div>
+          <div class="stat-label">Avg. Placement Time</div>
+        </div>
+        <div class="stat-item" data-aos="zoom-in" data-aos-delay="400">
+          <div class="stat-number" data-target="10">0</div>
+          <div class="stat-label">EU Partner Countries</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- OUR EXPERTISE -->
   <section id="expertises" class="section-services" style="padding: 4rem 0; background: #f9f9f9;">
     <div class="container">
       <h2 class="text-center mb-xl" data-aos="fade-up">Our Areas of Expertise</h2>
       <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
         
-        <!-- Hospitality -->
         <div class="category-card" data-aos="fade-up">
-            <div style="height: 200px; overflow: hidden; border-radius: 8px 8px 0 0;">
-                <img src="/assets/img/flyer-hotellerie.jpg" alt="Hospitality" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
+          <div style="height: 200px; overflow: hidden; border-radius: 8px 8px 0 0;">
+            <img src="/assets/img/flyer-hotellerie.jpg" alt="Hospitality" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
           <div class="card-content">
             <h3 class="card-title">🏨 Hospitality & Catering</h3>
-            <p class="card-description">
-              Profiles adapted to French and European standards: Managers, Receptionists, Chefs, Waiters...
-            </p>
+            <p class="card-description">Profiles adapted to French and European standards: Managers, Receptionists, Chefs, Waiters...</p>
             <a href="/en/services" class="card-link">Learn more →</a>
           </div>
         </div>
 
-        <!-- Construction -->
         <div class="category-card" data-aos="fade-up" data-aos-delay="100">
-            <div style="height: 200px; overflow: hidden; border-radius: 8px 8px 0 0;">
-                <img src="/assets/img/construction-manager.png" alt="Construction" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
+          <div style="height: 200px; overflow: hidden; border-radius: 8px 8px 0 0;">
+            <img src="/assets/img/construction-manager.png" alt="Construction" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
           <div class="card-content">
             <h3 class="card-title">🚧 Construction & Public Works</h3>
-            <p class="card-description">
-              A pool of competent candidates for your sites: Machine operators, Masons, Electricians...
-            </p>
+            <p class="card-description">A pool of competent candidates for your sites: Machine operators, Masons, Electricians...</p>
             <a href="/en/services" class="card-link">Learn more →</a>
           </div>
         </div>
 
-        <!-- IT -->
         <div class="category-card" data-aos="fade-up" data-aos-delay="200">
-            <div style="height: 200px; overflow: hidden; border-radius: 8px 8px 0 0;">
-                <img src="/assets/img/it-specialist.png" alt="IT" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
+          <div style="height: 200px; overflow: hidden; border-radius: 8px 8px 0 0;">
+            <img src="/assets/img/it-specialist.png" alt="IT" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
           <div class="card-content">
             <h3 class="card-title">💻 IT & New Tech</h3>
-            <p class="card-description">
-              Trained and certified experts: Developers, Project Managers, Systems Engineers...
-            </p>
+            <p class="card-description">Trained and certified experts: Developers, Project Managers, Systems Engineers...</p>
             <a href="/en/services" class="card-link">Learn more →</a>
           </div>
         </div>
@@ -99,47 +118,366 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- GUARANTEE -->
-  <section class="section-guarantee" style="padding: 4rem 0; background: linear-gradient(to right, #f8f9fa, #fff); border-top: 1px solid #e0e0e0;">
+  <!-- CANDIDATE GUARANTEE -->
+  <section class="section-guarantee" style="padding: 4rem 0; background: #fff;">
     <div class="container">
-      <div style="background: white; border: 2px solid #d4af37; border-radius: 12px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05);" data-aos="zoom-in">
-        <h2 class="text-center" style="color: #002366; margin-bottom: 1.5rem;">🛡️ Candidate Guarantee – Contractual Commitment</h2>
-        <div class="text-center">
-          <p class="lead" style="font-weight: 600; margin-bottom: 2rem;">
-            Each candidate presented benefits from a one (1) month replacement guarantee.
-          </p>
+      <div class="guarantee-card" style="background: linear-gradient(135deg, #1e3a5f, #2d4a6f); border-radius: 16px; padding: 3rem; box-shadow: 0 15px 40px rgba(30,58,95,0.2); position: relative; overflow: hidden;" data-aos="zoom-in">
+        <div class="guarantee-badge" style="position: absolute; top: -10px; right: 30px; background: #22c55e; color: white; padding: 0.75rem 1.5rem; border-radius: 0 0 12px 12px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(34,197,94,0.4);">
+          ✓ 1-MONTH GUARANTEE
         </div>
-        <div class="guarantee-details" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-          <div>
-            <h4 style="color: #d4af37;">Clear Principle</h4>
-            <p>If the candidate leaves the company during the first month (probation period), we proceed with a replacement at no extra cost.</p>
+        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center;">
+          <div style="text-align: center;">
+            <div style="font-size: 5rem; margin-bottom: 1rem;">🛡️</div>
+            <div style="color: #0d9488; font-size: 2.5rem; font-weight: 800;">100%</div>
+            <div style="color: white; font-weight: 500;">RISK-FREE</div>
           </div>
           <div>
-            <h4 style="color: #d4af37;">Employer Security</h4>
-            <p>This guarantee aims to secure recruitment and offer true peace of mind. You hire without risk.</p>
+            <h2 style="color: white; margin-bottom: 1.5rem; font-size: 1.75rem;">Candidate Guarantee – Contractual Commitment</h2>
+            <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 1.5rem;">
+              Each candidate presented benefits from a <strong style="color: #0d9488;">one (1) month replacement guarantee</strong>.
+            </p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+              <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; border-left: 3px solid #0d9488;">
+                <strong style="color: #0d9488;">Clear Principle</strong>
+                <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-top: 0.5rem;">If the candidate leaves during the 1st month, we provide a free replacement.</p>
+              </div>
+              <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; border-left: 3px solid #22c55e;">
+                <strong style="color: #22c55e;">Total Security</strong>
+                <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-top: 0.5rem;">Hire with confidence, completely risk-free.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA FINAL -->
-  <section class="section-cta" style="padding: 5rem 0; background: linear-gradient(135deg, #002366, #0a4080); color: white; text-align: center;">
+  <!-- PROCESS -->
+  <section style="padding: 4rem 0; background: #fff;">
     <div class="container">
-      <h2 style="color: white; margin-bottom: 1.5rem;" data-aos="fade-up">Are you hiring?</h2>
-      <p class="lead" style="color: rgba(255,255,255,0.9); margin-bottom: 2.5rem; max-width: 800px; margin: 0 auto 2.5rem auto;" data-aos="fade-up" data-aos-delay="100">
-        Fill out our online form or contact us for a free assessment of your needs.
+      <h2 class="text-center mb-xl" data-aos="fade-up">How Does It Work?</h2>
+      <div class="process-steps" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+        <div class="step-item" data-aos="fade-up">
+          <div class="step-number">1</div>
+          <h4>Define Your Needs</h4>
+        </div>
+        <div class="step-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="step-number">2</div>
+          <h4>Candidate Selection</h4>
+        </div>
+        <div class="step-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="step-number">3</div>
+          <h4>Formalities & Contract</h4>
+        </div>
+        <div class="step-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="step-number">4</div>
+          <h4>Placement</h4>
+        </div>
+        <div class="step-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="step-number">5</div>
+          <h4>Follow-up & Guarantee</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUSTED BY -->
+  <section class="clients-section" style="padding: 4rem 0; background: #f8f9fa;">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: 1rem;" data-aos="fade-up">They Trust Us</h2>
+      <p class="text-center" style="color: #666; margin-bottom: 3rem;" data-aos="fade-up" data-aos-delay="50">Renowned companies entrust us with their recruitment</p>
+      <div class="clients-grid" data-aos="fade-up" data-aos-delay="100">
+        <div class="client-item"><div class="client-logo-styled bouygues"><span class="logo-icon">▣</span><span class="logo-text">BOUYGUES</span></div></div>
+        <div class="client-item"><div class="client-logo-styled vinci"><span class="logo-text">VINCI</span></div></div>
+        <div class="client-item"><div class="client-logo-styled sony"><span class="logo-text">SONY</span></div></div>
+        <div class="client-item"><div class="client-logo-styled xerox"><span class="logo-text">XEROX</span></div></div>
+        <div class="client-item"><div class="client-logo-styled canon"><span class="logo-text">Canon</span></div></div>
+        <div class="client-item"><div class="client-logo-styled maestria"><span class="logo-text">MAESTRIA</span></div></div>
+        <div class="client-item"><div class="client-logo-styled somefor"><span class="logo-text">SOMEFOR</span></div></div>
+        <div class="client-item"><div class="client-logo-styled exavision"><span class="logo-text">EXAVISION</span></div></div>
+        <div class="client-item"><div class="client-logo-styled alpapaint"><span class="logo-text">ALPAPAINT</span></div></div>
+        <div class="client-item"><div class="client-logo-styled canal"><span class="logo-icon">💧</span><span class="logo-text-small">CANAL DE PROVENCE</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="padding: 4rem 0; background: #fff;">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: 0.75rem;" data-aos="fade-up">What Our Clients Say</h2>
+      <p class="text-center" style="color: #64748b; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;" data-aos="fade-up" data-aos-delay="100">
+        Companies across France trust us for their recruitment needs.
       </p>
-      <a href="/en/contact" class="hero-cta-button" data-aos="fade-up" data-aos-delay="200">Contact Us Now</a>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        
+        <div data-aos="fade-up" data-aos-delay="100" style="background: #f8fafc; padding: 2rem; border-radius: 16px; border-left: 4px solid #d4af37;">
+          <div style="color: #d4af37; font-size: 1.2rem; margin-bottom: 1rem; letter-spacing: 2px;">★★★★★</div>
+          <p style="color: #475569; font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 1.5rem;">
+            "We urgently needed 3 receptionists for the season. ABSIG presented qualified profiles in <strong>less than 2 weeks</strong>. The quality of candidates was remarkable."
+          </p>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #1e3a5f, #0d9488); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">M.D</div>
+            <div>
+              <div style="font-weight: 600; color: #1e3a5f; font-size: 0.9rem;">Marie D.</div>
+              <div style="color: #94a3b8; font-size: 0.8rem;">HR Director — Hotel Group, Nice</div>
+            </div>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="200" style="background: #f8fafc; padding: 2rem; border-radius: 16px; border-left: 4px solid #0d9488;">
+          <div style="color: #d4af37; font-size: 1.2rem; margin-bottom: 1rem; letter-spacing: 2px;">★★★★★</div>
+          <p style="color: #475569; font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 1.5rem;">
+            "We had been looking for a Full-Stack developer for months. The SAAT™ test allowed us to <strong>truly understand the candidate's profile</strong> before the interview. Result: a successful hire."
+          </p>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #0d9488, #22c55e); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">P.L</div>
+            <div>
+              <div style="font-weight: 600; color: #1e3a5f; font-size: 0.9rem;">Pierre L.</div>
+              <div style="color: #94a3b8; font-size: 0.8rem;">CTO — Tech Startup, Sophia-Antipolis</div>
+            </div>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="300" style="background: #f8fafc; padding: 2rem; border-radius: 16px; border-left: 4px solid #6366f1;">
+          <div style="color: #d4af37; font-size: 1.2rem; margin-bottom: 1rem; letter-spacing: 2px;">★★★★★</div>
+          <p style="color: #475569; font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 1.5rem;">
+            "ABSIG recruited 5 qualified masons for our sites on the French Riviera. The workers were <strong>operational from day one</strong>. Impeccable and responsive service."
+          </p>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #d4af37, #f59e0b); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">S.B</div>
+            <div>
+              <div style="font-weight: 600; color: #1e3a5f; font-size: 0.9rem;">Stéphane B.</div>
+              <div style="color: #94a3b8; font-size: 0.8rem;">Manager — Construction Company, Antibes</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="padding: 4rem 0; background: #f8fafc;">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: 3rem;" data-aos="fade-up">Frequently Asked Questions</h2>
+      <div class="faq-grid" style="max-width: 900px; margin: 0 auto;">
+        
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="100" style="background: white; border-radius: 12px; margin-bottom: 1rem; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')" style="width: 100%; padding: 1.25rem 1.5rem; background: white; border: none; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1rem; font-weight: 600; color: #1e3a5f;">
+            What are your recruitment timelines?
+            <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+          </button>
+          <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.5rem;">
+            <p style="padding-bottom: 1.25rem; color: #555;">On average, we present qualified candidates within <strong>10 to 15 days</strong>. For urgent profiles, we offer an accelerated service.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="150" style="background: white; border-radius: 12px; margin-bottom: 1rem; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')" style="width: 100%; padding: 1.25rem 1.5rem; background: white; border: none; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1rem; font-weight: 600; color: #1e3a5f;">
+            Do the candidates speak French?
+            <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+          </button>
+          <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.5rem;">
+            <p style="padding-bottom: 1.25rem; color: #555;">All our candidates have a <strong>minimum B1/B2 French level</strong>. We systematically assess their level during interviews.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="200" style="background: white; border-radius: 12px; margin-bottom: 1rem; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')" style="width: 100%; padding: 1.25rem 1.5rem; background: white; border: none; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1rem; font-weight: 600; color: #1e3a5f;">
+            How does the guarantee work?
+            <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+          </button>
+          <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.5rem;">
+            <p style="padding-bottom: 1.25rem; color: #555;">If the candidate leaves during the <strong>first month</strong> (probation period), we offer a replacement <strong>at no extra cost</strong>.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="250" style="background: white; border-radius: 12px; margin-bottom: 1rem; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')" style="width: 100%; padding: 1.25rem 1.5rem; background: white; border: none; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1rem; font-weight: 600; color: #1e3a5f;">
+            What are your rates?
+            <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+          </button>
+          <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.5rem;">
+            <p style="padding-bottom: 1.25rem; color: #555;">Our rates vary depending on the profile and sector. <strong>Contact us for a free personalized quote</strong>. Payment only upon success.</p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- TEST SAAT™ – PROMOTION SECTION -->
+  <section style="padding: 5rem 0; background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 50%, #0f2942 100%); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(212,175,55,0.15), transparent); border-radius: 50%;"></div>
+    <div style="position: absolute; bottom: -30px; left: -30px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(13,148,136,0.15), transparent); border-radius: 50%;"></div>
+    
+    <div class="container" style="position: relative; z-index: 2;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+        
+        <div data-aos="fade-right">
+          <div style="display: inline-block; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.4); color: #d4af37; padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.5rem;">
+            🧠 EXCLUSIVE TO ABSIG
+          </div>
+          <h2 style="color: white; font-size: 2rem; margin-bottom: 1rem; line-height: 1.3;">
+            <span style="background: linear-gradient(135deg, #d4af37, #f5d76e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">SAAT™</span> Test
+            <br>Evaluate Your Candidates In-Depth
+          </h2>
+          <p style="color: rgba(255,255,255,0.8); font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem;">
+            The <strong style="color: #d4af37;">Sigler's Ability Analysis</strong> evaluates <strong style="color: white;">13 personality dimensions</strong> in just 15 minutes. 
+            A scientific tool for error-free recruitment.
+          </p>
+          
+          <div style="display: flex; gap: 2rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: #22c55e; font-weight: bold;">✓</span>
+              <span style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">87 questions</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: #22c55e; font-weight: bold;">✓</span>
+              <span style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">Non-eliminatory</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: #22c55e; font-weight: bold;">✓</span>
+              <span style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">100% confidential</span>
+            </div>
+          </div>
+
+          <a href="/en/test-saat" style="display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #d4af37, #c9a030); color: #0a1628; padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(212,175,55,0.3);" 
+             onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 30px rgba(212,175,55,0.5)'"
+             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(212,175,55,0.3)'">
+            Discover the SAAT™ test →
+          </a>
+        </div>
+
+        <div data-aos="fade-left">
+          <div style="background: rgba(255,255,255,0.06); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 2.5rem; position: relative;">
+            <div style="margin-bottom: 2rem;">
+              <div style="margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <span style="color: white; font-weight: 600; font-size: 0.9rem;">🟣 Personality</span>
+                  <span style="color: #8b5cf6; font-weight: 700;">75%</span>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 8px; overflow: hidden;">
+                  <div style="width: 75%; height: 100%; background: linear-gradient(90deg, #6366f1, #8b5cf6); border-radius: 10px; animation: barGrow 1.5s ease-out;"></div>
+                </div>
+              </div>
+              <div style="margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <span style="color: white; font-weight: 600; font-size: 0.9rem;">🟢 Communication</span>
+                  <span style="color: #14b8a6; font-weight: 700;">82%</span>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 8px; overflow: hidden;">
+                  <div style="width: 82%; height: 100%; background: linear-gradient(90deg, #0d9488, #14b8a6); border-radius: 10px; animation: barGrow 1.8s ease-out;"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <span style="color: white; font-weight: 600; font-size: 0.9rem;">🟠 Action</span>
+                  <span style="color: #f59e0b; font-weight: 700;">68%</span>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 8px; overflow: hidden;">
+                  <div style="width: 68%; height: 100%; background: linear-gradient(90deg, #f59e0b, #ef4444); border-radius: 10px; animation: barGrow 2s ease-out;"></div>
+                </div>
+              </div>
+            </div>
+            <div style="background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.3); border-radius: 12px; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem;">
+              <div style="font-size: 2rem;">👔</div>
+              <div>
+                <div style="color: #d4af37; font-weight: 700; font-size: 0.9rem;">Detected Profile</div>
+                <div style="color: white; font-weight: 600;">Manager / Senior Executive</div>
+              </div>
+            </div>
+            <div style="position: absolute; top: -12px; right: 20px; background: #22c55e; color: white; padding: 0.4rem 1rem; border-radius: 0 0 10px 10px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;">
+              SAMPLE RESULT
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section-cta" style="padding: 5rem 0; background: linear-gradient(135deg, #1e3a5f, #0d9488); color: white; text-align: center;">
+    <div class="container">
+      <h2 style="color: white; margin-bottom: 1.5rem;" data-aos="fade-up">Ready to Hire?</h2>
+      <p class="lead" style="color: rgba(255,255,255,0.9); margin-bottom: 2.5rem; max-width: 800px; margin: 0 auto 2.5rem auto;" data-aos="fade-up" data-aos-delay="100">
+        Join the companies that trust us. Get a free quote within 24 hours.
+      </p>
+      <div class="button-group" data-aos="fade-up" data-aos-delay="200">
+        <a href="/en/contact" class="hero-cta-button" style="background: white; color: #1e3a5f;">Request a Free Quote</a>
+        <a href="tel:0682267342" class="hero-secondary-button">📞 Call Now</a>
+      </div>
     </div>
   </section>
 
 </BaseLayout>
 
 <style>
-  .hero-secondary-button {margin-left: 1rem; border: 2px solid white; color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s; }
-  .hero-secondary-button:hover { background: white; color: #002366; }
+  .hero-secondary-button { margin-left: 1rem; border: 2px solid white; color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s; }
+  .hero-secondary-button:hover { background: white; color: #1e3a5f; }
   .button-group { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
-  .step-number { width: 50px; height: 50px; background: #d4af37; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 1.5rem; }
+  .step-number { width: 50px; height: 50px; background: #0d9488; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 1.5rem; }
   .step-item { text-align: center; }
+  .clients-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; align-items: center; justify-items: center; }
+  .client-item { padding: 1.5rem; background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; transition: all 0.3s ease; width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; }
+  .client-item:hover { border-color: #d4af37; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,35,102,0.1); }
+  .client-logo-styled { display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; }
+  .client-logo-styled .logo-text { font-weight: 800; letter-spacing: 0.1em; font-size: 1rem; }
+  .client-logo-styled .logo-text-small { font-weight: 700; letter-spacing: 0.05em; font-size: 0.7rem; }
+  .client-logo-styled .logo-icon { font-size: 1.2rem; }
+  .bouygues .logo-text { color: #004A99; font-family: 'Arial Black', sans-serif; }
+  .bouygues .logo-icon { color: #004A99; }
+  .vinci .logo-text { color: #1E3A8A; font-family: 'Arial', sans-serif; font-weight: 900; letter-spacing: 0.2em; }
+  .sony .logo-text { color: #000; font-family: 'Helvetica Neue', sans-serif; font-weight: 300; letter-spacing: 0.3em; font-size: 1.2rem; }
+  .xerox .logo-text { color: #D0011B; font-family: 'Arial', sans-serif; font-weight: 900; letter-spacing: 0.15em; }
+  .canon .logo-text { color: #BC002D; font-family: 'Times New Roman', serif; font-weight: 400; font-style: italic; font-size: 1.3rem; letter-spacing: 0.05em; }
+  .maestria .logo-text { color: #8B6914; font-family: 'Georgia', serif; font-weight: 600; letter-spacing: 0.2em; }
+  .somefor .logo-text { color: #2563EB; font-family: 'Arial', sans-serif; font-weight: 700; }
+  .exavision .logo-text { color: #0891B2; font-family: 'Arial', sans-serif; font-weight: 800; letter-spacing: 0.1em; }
+  .alpapaint .logo-text { color: #059669; font-family: 'Arial', sans-serif; font-weight: 800; }
+  .canal .logo-text-small { color: #0369A1; font-family: 'Arial', sans-serif; font-weight: 600; }
+  .canal .logo-icon { color: #0EA5E9; }
+  .stat-item { padding: 2rem; }
+  .stat-number { font-size: 3.5rem; font-weight: 800; color: white; line-height: 1; display: inline; }
+  .stat-suffix { font-size: 1.5rem; color: rgba(255,255,255,0.8); font-weight: 500; margin-left: 0.25rem; }
+  .stat-label { color: rgba(255,255,255,0.9); font-size: 1rem; margin-top: 0.5rem; }
+  .faq-item.open .faq-answer { max-height: 200px !important; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); color: #0d9488; }
+  .faq-question:hover { background: #f8f9fa !important; }
+  @keyframes barGrow { from { width: 0; } }
+  @media (max-width: 1024px) { .clients-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 768px) {
+    .clients-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .client-item { padding: 1rem; height: 60px; }
+    .client-logo-styled .logo-text { font-size: 0.75rem; }
+    .stat-number { font-size: 2.5rem; }
+    .guarantee-card > div { grid-template-columns: 1fr !important; text-align: center; }
+    .guarantee-badge { position: relative !important; top: 0 !important; right: 0 !important; display: inline-block; margin-bottom: 1rem; }
+    section > .container > div[style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  }
 </style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const counters = document.querySelectorAll('.stat-number');
+    const animateCounter = (counter) => {
+      const target = parseInt(counter.dataset.target);
+      const duration = 2000;
+      const step = target / (duration / 16);
+      let current = 0;
+      const updateCounter = () => {
+        current += step;
+        if (current < target) { counter.textContent = Math.floor(current); requestAnimationFrame(updateCounter); }
+        else { counter.textContent = target; }
+      };
+      updateCounter();
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { animateCounter(entry.target); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(counter => observer.observe(counter));
+  });
+</script>

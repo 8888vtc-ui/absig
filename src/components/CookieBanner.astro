@@ -12,12 +12,15 @@ const t = currentLang === 'en' ? {
   accept: "Accepter",
   refuse: "Refuser"
 };
+
+const cookiePolicyUrl = currentLang === 'en' ? '/en/legal#cookies' : '/mentions-legales#cookies';
+const ariaLabel = currentLang === 'en' ? 'Cookie consent' : 'Consentement cookies';
 ---
 
-<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Consentement cookies">
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label={ariaLabel}>
   <div class="cookie-content">
     <p>
-      🍪 {t.message} <a href="/mentions-legales#cookies">{t.link}</a>.
+      🍪 {t.message} <a href={cookiePolicyUrl}>{t.link}</a>.
     </p>
     <div class="cookie-buttons">
       <button id="cookie-refuse" class="cookie-btn cookie-btn-refuse">{t.refuse}</button>

@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.example.com/sitemap-index.xml
+# Sitemap
+Sitemap: https://www.absig-consulting.fr/sitemap-index.xml

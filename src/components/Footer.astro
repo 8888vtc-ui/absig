@@ -1,4 +1,9 @@
 ---
+interface Props {
+  currentLang?: string;
+}
+
+const { currentLang = "fr" } = Astro.props;
 const currentYear = new Date().getFullYear();
 
 const company = {
@@ -15,16 +20,63 @@ const company = {
 };
 
 const whatsappNumber = "33682267342";
+
+// Bilingual content
+const t = currentLang === 'en' ? {
+  tagline: "Specialized recruitment agency",
+  contact: "Contact Us",
+  cta: "Request a quote",
+  nav: "Navigation",
+  home: "Home",
+  services: "Our Expertise",
+  about: "About Us",
+  contactPage: "Contact",
+  legal: "Legal Notice & Terms",
+  sectors: "Areas of Expertise",
+  sector1: "Hospitality & Catering",
+  sector2: "Construction & Public Works",
+  sector3: "IT & Technologies",
+  sector4: "Business Services",
+  copyright: `© ${currentYear} ${company.name}. All rights reserved.`,
+  bottom: "Personalized Recruitment • Fast • Secure • Compliant",
+  homeUrl: "/en/",
+  servicesUrl: "/en/services",
+  aboutUrl: "/en/about",
+  contactUrl: "/en/contact",
+  legalUrl: "/en/legal",
+} : {
+  tagline: "Cabinet de recrutement spécialisé",
+  contact: "Nous contacter",
+  cta: "Demander un devis",
+  nav: "Navigation",
+  home: "Accueil",
+  services: "Nos Expertises",
+  about: "Qui sommes-nous ?",
+  contactPage: "Contact",
+  legal: "Mentions Légales & CGV",
+  sectors: "Secteurs d'intervention",
+  sector1: "Hôtellerie & Restauration",
+  sector2: "BTP & Travaux Publics",
+  sector3: "Informatique & Technologies",
+  sector4: "Services aux entreprises",
+  copyright: `© ${currentYear} ${company.name}. Tous droits réservés.`,
+  bottom: "Recrutement personnalisé • Rapide • Sécurisé • Conforme",
+  homeUrl: "/",
+  servicesUrl: "/services",
+  aboutUrl: "/a-propos",
+  contactUrl: "/contact",
+  legalUrl: "/mentions-legales",
+};
 ---
 
 <footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
       
-      <!-- Colonne 1 : Entreprise -->
+      <!-- Column 1: Company -->
       <div>
         <strong style="color: #d4af37;">{company.name}</strong><br>
-        <span class="text-sm opacity-75">Cabinet de recrutement spécialisé</span><br>
+        <span class="text-sm opacity-75">{t.tagline}</span><br>
         <div style="margin-top: 15px; line-height: 1.8;">
           {company.address}<br>
           {company.zip} {company.city}, France<br>
@@ -36,44 +88,44 @@ const whatsappNumber = "33682267342";
         </div>
       </div>
 
-      <!-- Colonne 2 : Contact -->
+      <!-- Column 2: Contact -->
       <div>
-        <strong>Nous contacter</strong><br>
+        <strong>{t.contact}</strong><br>
         <div style="margin-top: 10px; line-height: 2;">
           📞 <a href={`tel:${company.phone.replace(/\s/g, '')}`}>{company.phone}</a><br>
           📞 <a href={`tel:${company.phone2.replace(/\s/g, '')}`}>{company.phone2}</a><br>
           📧 <a href={`mailto:${company.email}`}>{company.email}</a>
         </div>
         <div style="margin-top: 15px;">
-          <a href="/contact" class="footer-cta">Demander un devis</a>
+          <a href={t.contactUrl} class="footer-cta">{t.cta}</a>
         </div>
       </div>
 
-      <!-- Colonne 3 : Navigation -->
+      <!-- Column 3: Navigation -->
       <nav class="footer-nav">
-        <strong>Navigation</strong>
-        <a href="/">Accueil</a>
-        <a href="/services">Nos Expertises</a>
-        <a href="/a-propos">Qui sommes-nous ?</a>
-        <a href="/contact">Contact</a>
-        <a href="/mentions-legales">Mentions Légales & CGV</a>
+        <strong>{t.nav}</strong>
+        <a href={t.homeUrl}>{t.home}</a>
+        <a href={t.servicesUrl}>{t.services}</a>
+        <a href={t.aboutUrl}>{t.about}</a>
+        <a href={t.contactUrl}>{t.contactPage}</a>
+        <a href={t.legalUrl}>{t.legal}</a>
       </nav>
 
-      <!-- Colonne 4 : Secteurs -->
+      <!-- Column 4: Sectors -->
       <div>
-        <strong>Secteurs d'intervention</strong><br>
+        <strong>{t.sectors}</strong><br>
         <div style="margin-top: 10px; line-height: 1.8; font-size: 0.9rem;">
-          • Hôtellerie & Restauration<br>
-          • BTP & Travaux Publics<br>
-          • Informatique & Technologies<br>
-          • Services aux entreprises
+          • {t.sector1}<br>
+          • {t.sector2}<br>
+          • {t.sector3}<br>
+          • {t.sector4}
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <span>© {currentYear} {company.name}. Tous droits réservés.</span>
-      <span>Recrutement personnalisé • Rapide • Sécurisé • Conforme</span>
+      <span>{t.copyright}</span>
+      <span>{t.bottom}</span>
     </div>
   </div>
 </footer>

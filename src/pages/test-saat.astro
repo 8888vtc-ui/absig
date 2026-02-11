@@ -1,0 +1,828 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import questions from '../data/saat-questions.json';
+
+const breadcrumbItems = [
+  { name: "Accueil", url: "/" },
+  { name: "Test SAAT™", url: "/test-saat" }
+];
+
+const QUESTIONS_PER_PAGE = 10;
+const totalPages = Math.ceil(questions.length / QUESTIONS_PER_PAGE);
+---
+
+<BaseLayout 
+  title="Test SAAT™ – Évaluation des Compétences | ABSIG Consulting"
+  description="Découvrez le test SAAT™ (Sigler's Ability Analysis), notre outil d'évaluation professionnelle pour identifier les talents et optimiser vos recrutements."
+  currentPage="test-saat"
+  breadcrumbItems={breadcrumbItems}
+>
+
+  <!-- ===== HERO SECTION – PREMIUM ===== -->
+  <section class="saat-hero">
+    <!-- Animated particles -->
+    <div class="hero-particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+    <div class="saat-hero-content">
+      <div class="saat-hero-badge" data-aos="fade-down">🧠 OUTIL D'ÉVALUATION EXCLUSIF</div>
+      <h1 data-aos="fade-up">Test <span class="gold-text">SAAT™</span></h1>
+      <h2 class="saat-hero-fullname" data-aos="fade-up" data-aos-delay="50">Sigler's Ability Analysis</h2>
+      <p data-aos="fade-up" data-aos-delay="100">
+        Un test d'orientation professionnelle en <strong>87 questions</strong> qui analyse 
+        la personnalité, la communication et la capacité d'action de chaque candidat. 
+        Un outil puissant pour des <strong>recrutements éclairés</strong>.
+      </p>
+      <!-- Mini stats in hero -->
+      <div class="hero-mini-stats" data-aos="fade-up" data-aos-delay="200">
+        <div class="mini-stat">
+          <span class="mini-stat-number">87</span>
+          <span class="mini-stat-label">Questions</span>
+        </div>
+        <div class="mini-stat-divider"></div>
+        <div class="mini-stat">
+          <span class="mini-stat-number">13</span>
+          <span class="mini-stat-label">Dimensions</span>
+        </div>
+        <div class="mini-stat-divider"></div>
+        <div class="mini-stat">
+          <span class="mini-stat-number">15</span>
+          <span class="mini-stat-label">Minutes</span>
+        </div>
+      </div>
+      <div class="hero-actions" data-aos="fade-up" data-aos-delay="300">
+        <a href="#questionnaire" class="hero-cta-gold">Passer le test →</a>
+        <a href="#how-it-works" class="hero-cta-ghost">Comment ça marche ?</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INFO CARDS ===== -->
+  <section class="saat-info-section">
+    <div class="container">
+      <h2 class="text-center" data-aos="fade-up">Pourquoi utiliser le <span style="color: #0d9488;">SAAT™</span> ?</h2>
+      <p class="text-center" style="color: #64748b; max-width: 650px; margin: 1rem auto 0;" data-aos="fade-up" data-aos-delay="50">
+        Utilisé par des centaines d'entreprises, le test SAAT™ est la référence pour évaluer le potentiel réel de vos candidats.
+      </p>
+      <div class="saat-info-grid">
+        
+        <div class="saat-info-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="saat-info-icon">🎯</div>
+          <h3>Recrutement Précis</h3>
+          <p>Identifiez les forces et faiblesses grâce à une analyse multicritères couvrant <strong>13 dimensions</strong> de la personnalité.</p>
+        </div>
+
+        <div class="saat-info-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="saat-info-icon">⚡</div>
+          <h3>Rapide & Simple</h3>
+          <p>87 questions à choix ternaire (Oui / ± / Non). Le test se complète en <strong>15-20 minutes</strong> sans pression.</p>
+        </div>
+
+        <div class="saat-info-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="saat-info-icon">🛡️</div>
+          <h3>Non Éliminatoire</h3>
+          <p>Un outil d'orientation, pas un examen. Il <strong>révèle le potentiel</strong> et guide les décisions sans jugement.</p>
+        </div>
+
+        <div class="saat-info-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="saat-info-icon">🔒</div>
+          <h3>100% Confidentiel</h3>
+          <p>Conforme à la loi Informatique et Libertés (<strong>78-17 / RGPD</strong>). Données traitées en stricte confidentialité.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMMENT ÇA MARCHE ===== -->
+  <section class="saat-how-it-works" id="how-it-works">
+    <div class="container">
+      <h2 class="text-center" data-aos="fade-up">Comment fonctionne le SAAT™ ?</h2>
+      <p class="text-center" style="color: #64748b; max-width: 600px; margin: 1rem auto 0;" data-aos="fade-up" data-aos-delay="50">
+        Un processus simple en 4 étapes pour une évaluation complète
+      </p>
+      <div class="how-steps">
+        
+        <div class="how-step" data-aos="fade-up" data-aos-delay="100">
+          <div class="how-step-number">1</div>
+          <div class="how-step-icon">📋</div>
+          <h3>Remplir le profil</h3>
+          <p>Le candidat renseigne ses coordonnées et le poste visé</p>
+        </div>
+
+        <div class="how-step-connector" data-aos="fade-up" data-aos-delay="150">
+          <div class="connector-line"></div>
+          <div class="connector-arrow">→</div>
+        </div>
+
+        <div class="how-step" data-aos="fade-up" data-aos-delay="200">
+          <div class="how-step-number">2</div>
+          <div class="how-step-icon">✍️</div>
+          <h3>Répondre aux 87 questions</h3>
+          <p>Choix simples : Oui, Plus ou moins, ou Non. Aucune mauvaise réponse.</p>
+        </div>
+
+        <div class="how-step-connector" data-aos="fade-up" data-aos-delay="250">
+          <div class="connector-line"></div>
+          <div class="connector-arrow">→</div>
+        </div>
+
+        <div class="how-step" data-aos="fade-up" data-aos-delay="300">
+          <div class="how-step-number">3</div>
+          <div class="how-step-icon">📊</div>
+          <h3>Analyse experte</h3>
+          <p>Nos analystes traitent les résultats sur les 13 dimensions du test</p>
+        </div>
+
+        <div class="how-step-connector" data-aos="fade-up" data-aos-delay="350">
+          <div class="connector-line"></div>
+          <div class="connector-arrow">→</div>
+        </div>
+
+        <div class="how-step" data-aos="fade-up" data-aos-delay="400">
+          <div class="how-step-number">4</div>
+          <div class="how-step-icon">✅</div>
+          <h3>Rapport détaillé</h3>
+          <p>Vous recevez un profil complet avec recommandations pour votre recrutement</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3 DIMENSIONS CLÉS ===== -->
+  <section class="saat-dimensions">
+    <div class="container">
+      <h2 class="text-center" data-aos="fade-up">Les 3 Dimensions Clés</h2>
+      <p class="text-center" style="color: #64748b; max-width: 600px; margin: 1rem auto 0;" data-aos="fade-up" data-aos-delay="50">
+        Le SAAT™ évalue chaque candidat sur trois axes fondamentaux, complétés par 10 paramètres secondaires.
+      </p>
+      <div class="dimensions-grid">
+        
+        <div class="dimension-card personality" data-aos="fade-up" data-aos-delay="100">
+          <div class="dimension-letter">P</div>
+          <h3>Personnalité</h3>
+          <div class="dimension-range">Échelle -200 à +200</div>
+          <p>Degré d'extraversion, assurance et état d'être. Révèle le tempérament naturel du candidat.</p>
+          <div class="dimension-scale">
+            <span class="scale-label left">Introverti</span>
+            <div class="scale-bar">
+              <div class="scale-indicator" style="left: 65%;"></div>
+              <div class="scale-center"></div>
+            </div>
+            <span class="scale-label right">Extraverti</span>
+          </div>
+        </div>
+
+        <div class="dimension-card communication" data-aos="fade-up" data-aos-delay="200">
+          <div class="dimension-letter">C</div>
+          <h3>Communication</h3>
+          <div class="dimension-range">Échelle -200 à +200</div>
+          <p>Capacité à émettre, recevoir et échanger des communications. Essentiel pour le travail d'équipe.</p>
+          <div class="dimension-scale">
+            <span class="scale-label left">Inhibé</span>
+            <div class="scale-bar">
+              <div class="scale-indicator" style="left: 72%;"></div>
+              <div class="scale-center"></div>
+            </div>
+            <span class="scale-label right">Expressif</span>
+          </div>
+        </div>
+
+        <div class="dimension-card action" data-aos="fade-up" data-aos-delay="300">
+          <div class="dimension-letter">A</div>
+          <h3>Action</h3>
+          <div class="dimension-range">Échelle -200 à +200</div>
+          <p>Efficacité dans la réalisation des tâches. Transformer les intentions en résultats concrets.</p>
+          <div class="dimension-scale">
+            <span class="scale-label left">Submergé</span>
+            <div class="scale-bar">
+              <div class="scale-indicator" style="left: 58%;"></div>
+              <div class="scale-center"></div>
+            </div>
+            <span class="scale-label right">Efficace</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Secondary Parameters Preview -->
+      <div class="secondary-params" data-aos="fade-up" data-aos-delay="400">
+        <h3>+ 10 Paramètres Secondaires analysés</h3>
+        <div class="params-tags">
+          <span class="param-tag">Sincérité</span>
+          <span class="param-tag">Personnalité Négative</span>
+          <span class="param-tag">Vente</span>
+          <span class="param-tag">Contrôle</span>
+          <span class="param-tag">Responsabilité</span>
+          <span class="param-tag">Honnêteté</span>
+          <span class="param-tag">Organisation</span>
+          <span class="param-tag">Relations</span>
+          <span class="param-tag">Négativité</span>
+          <span class="param-tag">Décision</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROFILS TYPES ===== -->
+  <section class="saat-profiles">
+    <div class="container">
+      <h2 class="text-center" data-aos="fade-up">Profils Détectés par le SAAT™</h2>
+      <p class="text-center" style="color: rgba(255,255,255,0.8); max-width: 600px; margin: 1rem auto 0;" data-aos="fade-up" data-aos-delay="50">
+        Le test identifie automatiquement le profil professionnel dominant de chaque candidat
+      </p>
+      <div class="profiles-grid">
+        
+        <div class="profile-type-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="profile-type-icon">👔</div>
+          <h3>Manager / Cadre</h3>
+          <p>Personnalité forte, communication élevée, sens des responsabilités et du contrôle</p>
+          <div class="profile-traits">
+            <span class="trait high">P ↑</span>
+            <span class="trait high">C ↑</span>
+            <span class="trait high">Co ↑</span>
+            <span class="trait high">R ↑</span>
+          </div>
+        </div>
+
+        <div class="profile-type-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="profile-type-icon">💼</div>
+          <h3>Commercial / Vente</h3>
+          <p>Force de persuasion naturelle, aisance relationnelle, dynamisme</p>
+          <div class="profile-traits">
+            <span class="trait high">V ↑</span>
+            <span class="trait high">C ↑</span>
+            <span class="trait high">RA ↑</span>
+          </div>
+        </div>
+
+        <div class="profile-type-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="profile-type-icon">🔧</div>
+          <h3>Technique / Exécutant</h3>
+          <p>Rigueur, organisation, capacité d'action et autonomie dans le travail</p>
+          <div class="profile-traits">
+            <span class="trait high">A ↑</span>
+            <span class="trait high">O ↑</span>
+            <span class="trait high">R ↑</span>
+          </div>
+        </div>
+
+        <div class="profile-type-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="profile-type-icon">🏢</div>
+          <h3>Dirigeant</h3>
+          <p>Leadership, vision, contrôle élevé et responsabilité maximale</p>
+          <div class="profile-traits">
+            <span class="trait high">P ↑</span>
+            <span class="trait high">Co ↑↑</span>
+            <span class="trait high">R ↑↑</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUESTIONNAIRE ===== -->
+  <section class="saat-questionnaire-section" id="questionnaire">
+    <div class="container">
+      <div class="questionnaire-container">
+        
+        <h2 class="text-center" style="margin-bottom: 0.5rem;" data-aos="fade-up">
+          Passer le test <span style="color: #0d9488;">SAAT™</span>
+        </h2>
+        <p class="text-center" style="color: #64748b; margin-bottom: 2.5rem;" data-aos="fade-up" data-aos-delay="50">
+          Répondez sincèrement aux 87 questions. Il n'y a pas de bonne ou mauvaise réponse.
+        </p>
+
+        <!-- PROFILE FORM -->
+        <div class="profile-form" id="profileForm" data-aos="fade-up">
+          <h3>👤 Informations du Candidat</h3>
+          <div class="profile-fields">
+            <div class="field-group">
+              <label for="companyName">Nom de la société</label>
+              <input type="text" id="companyName" name="companyName" placeholder="Ex: ABSIG Consulting" required>
+            </div>
+            <div class="field-group">
+              <label for="fullName">Nom & Prénom</label>
+              <input type="text" id="fullName" name="fullName" placeholder="Ex: Jean Dupont" required>
+            </div>
+            <div class="field-group">
+              <label for="phone">Téléphone</label>
+              <input type="tel" id="phone" name="phone" placeholder="Ex: 06 12 34 56 78">
+            </div>
+            <div class="field-group">
+              <label for="function">Fonction / Poste</label>
+              <input type="text" id="function" name="function" placeholder="Ex: Chef de cuisine">
+            </div>
+            <div class="field-group full-width">
+              <label for="completedBy">Test rempli par</label>
+              <input type="text" id="completedBy" name="completedBy" placeholder="Nom de la personne qui remplit le test">
+            </div>
+          </div>
+          <div class="profile-start-hint">
+            <span>💡</span> Remplissez au moins le nom pour démarrer le questionnaire
+          </div>
+        </div>
+
+        <!-- PROGRESS BAR -->
+        <div class="progress-container" id="progressContainer" style="display: none;">
+          <div class="progress-header">
+            <span class="progress-text">📊 Progression</span>
+            <span class="progress-count" id="progressCount">0 / 87 (0%)</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+          </div>
+          <div class="progress-meta">
+            <span class="progress-timer" id="progressTimer">⏱️ 0:00</span>
+            <span class="progress-estimate" id="progressEstimate">~15 min restantes</span>
+          </div>
+        </div>
+
+        <!-- QUESTIONS PAGES -->
+        <div id="questionsWrapper" style="display: none;">
+          {Array.from({ length: totalPages }, (_, pageIndex) => {
+            const startIdx = pageIndex * QUESTIONS_PER_PAGE;
+            const pageQuestions = questions.slice(startIdx, startIdx + QUESTIONS_PER_PAGE);
+            
+            return (
+              <div class={`questions-page ${pageIndex === 0 ? 'active' : ''}`} data-page={pageIndex}>
+                {pageQuestions.map((q) => (
+                  <div class="question-card" data-question-id={q.id}>
+                    <div class="question-header">
+                      <div class="question-number">{q.id}</div>
+                      <div class="question-text">{q.text}</div>
+                    </div>
+                    <div class="answer-options">
+                      <div class="answer-option">
+                        <input type="radio" name={`q${q.id}`} id={`q${q.id}_oui`} value="OUI">
+                        <label for={`q${q.id}_oui`}>✓ Oui</label>
+                      </div>
+                      <div class="answer-option">
+                        <input type="radio" name={`q${q.id}`} id={`q${q.id}_pm`} value="PLUS_OU_MOINS">
+                        <label for={`q${q.id}_pm`}>± Plus ou moins</label>
+                      </div>
+                      <div class="answer-option">
+                        <input type="radio" name={`q${q.id}`} id={`q${q.id}_non`} value="NON">
+                        <label for={`q${q.id}_non`}>✗ Non</label>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            );
+          })}
+
+          <!-- PAGE NAVIGATION -->
+          <div class="page-navigation">
+            <button class="nav-btn" id="prevBtn" disabled>
+              ← Précédent
+            </button>
+            <span class="page-indicator" id="pageIndicator">Page 1 / {totalPages}</span>
+            <button class="nav-btn primary" id="nextBtn">
+              Suivant →
+            </button>
+          </div>
+
+          <!-- PAGE DOTS -->
+          <div class="page-dots" id="pageDots">
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button class={`page-dot ${i === 0 ? 'active' : ''}`} data-dot={i} aria-label={`Page ${i + 1}`}></button>
+            ))}
+          </div>
+        </div>
+
+        <!-- SUBMIT SECTION -->
+        <div class="submit-section" id="submitSection">
+          <h3>🎉 Presque terminé !</h3>
+          <p>Vérifiez vos réponses puis envoyez le test pour analyse.</p>
+          <button class="submit-btn" id="submitBtn" disabled>
+            <span class="btn-icon">📲</span>
+            Envoyer via WhatsApp
+          </button>
+          <div class="validation-warning" id="validationWarning">
+            ⚠️ <span id="warningText">Veuillez répondre à toutes les questions avant de soumettre.</span>
+          </div>
+        </div>
+
+        <!-- SUCCESS MESSAGE -->
+        <div class="success-message" id="successMessage">
+          <div class="success-icon">✅</div>
+          <h3>Test envoyé avec succès !</h3>
+          <p>Merci pour votre participation. Notre équipe analysera les résultats et vous recontactera dans les plus brefs délais.</p>
+          <a href="/" class="saat-cta-btn" style="margin-top: 2rem; display: inline-flex;">Retour à l'accueil</a>
+        </div>
+
+        <!-- CONFETTI CONTAINER -->
+        <div class="confetti-container" id="confettiContainer"></div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="saat-cta">
+    <div class="container">
+      <h2 data-aos="fade-up">Besoin d'aide pour vos évaluations ?</h2>
+      <p data-aos="fade-up" data-aos-delay="100">
+        Notre équipe est disponible pour vous accompagner dans l'interprétation des résultats et le processus de recrutement.
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;" data-aos="fade-up" data-aos-delay="200">
+        <a href="/contact" class="saat-cta-btn">📞 Nous contacter</a>
+        <a href="tel:0682267342" class="saat-cta-btn" style="background: rgba(255,255,255,0.15); color: white; border: 2px solid rgba(255,255,255,0.3);">Appeler maintenant</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOATING CTA BUTTON -->
+  <a href="#questionnaire" class="floating-test-btn" id="floatingTestBtn" aria-label="Passer le test SAAT">
+    <span class="floating-btn-icon">🧠</span>
+    <span class="floating-btn-text">Passer le test</span>
+  </a>
+
+</BaseLayout>
+
+<style>
+  @import '../styles/saat.css';
+</style>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', function() {
+  // ===== CONFIG =====
+  const TOTAL_QUESTIONS = 87;
+  const QUESTIONS_PER_PAGE = 10;
+  const TOTAL_PAGES = Math.ceil(TOTAL_QUESTIONS / QUESTIONS_PER_PAGE);
+  const WHATSAPP_NUMBER = '33682267342';
+  const STORAGE_KEY = 'saat_test_data';
+  
+  let currentPage = 0;
+  let answers = {};
+  let profileStarted = false;
+  let testSubmitted = false;
+  let timerSeconds = 0;
+  let timerInterval = null;
+
+  // ===== DOM ELEMENTS =====
+  const profileForm = document.getElementById('profileForm');
+  const progressContainer = document.getElementById('progressContainer');
+  const questionsWrapper = document.getElementById('questionsWrapper');
+  const progressFill = document.getElementById('progressFill');
+  const progressCount = document.getElementById('progressCount');
+  const progressTimer = document.getElementById('progressTimer');
+  const progressEstimate = document.getElementById('progressEstimate');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const pageIndicator = document.getElementById('pageIndicator');
+  const submitSection = document.getElementById('submitSection');
+  const submitBtn = document.getElementById('submitBtn');
+  const validationWarning = document.getElementById('validationWarning');
+  const warningText = document.getElementById('warningText');
+  const successMessage = document.getElementById('successMessage');
+  const pages = document.querySelectorAll('.questions-page');
+  const dots = document.querySelectorAll('.page-dot');
+  const floatingBtn = document.getElementById('floatingTestBtn');
+  const confettiContainer = document.getElementById('confettiContainer');
+
+  // ===== LOCALSTORAGE: RESTORE SAVED DATA =====
+  function saveToStorage() {
+    const data = {
+      answers: answers,
+      currentPage: currentPage,
+      timerSeconds: timerSeconds,
+      profileStarted: profileStarted,
+      profile: {
+        companyName: document.getElementById('companyName').value,
+        fullName: document.getElementById('fullName').value,
+        phone: document.getElementById('phone').value,
+        function: document.getElementById('function').value,
+        completedBy: document.getElementById('completedBy').value
+      }
+    };
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+  }
+
+  function restoreFromStorage() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return false;
+      const data = JSON.parse(raw);
+      if (!data || !data.answers || Object.keys(data.answers).length === 0) return false;
+      
+      // Restore answers
+      answers = data.answers;
+      Object.keys(answers).forEach(qId => {
+        const radio = document.querySelector('input[name="q' + qId + '"][value="' + answers[qId] + '"]');
+        if (radio) {
+          radio.checked = true;
+          const card = radio.closest('.question-card');
+          if (card) card.classList.add('answered');
+        }
+      });
+
+      // Restore profile
+      if (data.profile) {
+        if (data.profile.companyName) document.getElementById('companyName').value = data.profile.companyName;
+        if (data.profile.fullName) document.getElementById('fullName').value = data.profile.fullName;
+        if (data.profile.phone) document.getElementById('phone').value = data.profile.phone;
+        if (data.profile.function) document.getElementById('function').value = data.profile.function;
+        if (data.profile.completedBy) document.getElementById('completedBy').value = data.profile.completedBy;
+      }
+
+      // Restore timer
+      timerSeconds = data.timerSeconds || 0;
+
+      // Show questionnaire
+      profileStarted = true;
+      progressContainer.style.display = 'block';
+      questionsWrapper.style.display = 'block';
+      
+      // Go to saved page
+      if (data.currentPage) goToPage(data.currentPage);
+      updateProgress();
+      startTimer();
+      
+      return true;
+    } catch(e) { return false; }
+  }
+
+  // ===== TIMER =====
+  function startTimer() {
+    if (timerInterval) return;
+    timerInterval = setInterval(() => {
+      timerSeconds++;
+      const mins = Math.floor(timerSeconds / 60);
+      const secs = timerSeconds % 60;
+      progressTimer.textContent = '⏱️ ' + mins + ':' + (secs < 10 ? '0' : '') + secs;
+      
+      // Update time estimate
+      const answeredCount = Object.keys(answers).length;
+      if (answeredCount > 5) {
+        const avgTimePerQ = timerSeconds / answeredCount;
+        const remaining = Math.max(0, TOTAL_QUESTIONS - answeredCount);
+        const estMinutes = Math.ceil((remaining * avgTimePerQ) / 60);
+        progressEstimate.textContent = estMinutes > 0 ? '~' + estMinutes + ' min restante' + (estMinutes > 1 ? 's' : '') : '✅ Presque fini !';
+      }
+    }, 1000);
+  }
+
+  // ===== BEFOREUNLOAD WARNING =====
+  window.addEventListener('beforeunload', function(e) {
+    if (profileStarted && !testSubmitted && Object.keys(answers).length > 0) {
+      saveToStorage();
+      e.preventDefault();
+      e.returnValue = 'Attention : vos réponses seront sauvegardées, mais êtes-vous sûr de vouloir quitter ?';
+    }
+  });
+
+  // ===== CONFETTI =====
+  function launchConfetti() {
+    const colors = ['#d4af37', '#0d9488', '#6366f1', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6'];
+    for (let i = 0; i < 80; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti-piece';
+      confetti.style.setProperty('--x', (Math.random() * 100) + 'vw');
+      confetti.style.setProperty('--rot', (Math.random() * 360) + 'deg');
+      confetti.style.setProperty('--delay', (Math.random() * 0.5) + 's');
+      confetti.style.setProperty('--duration', (2 + Math.random() * 2) + 's');
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.width = (6 + Math.random() * 8) + 'px';
+      confetti.style.height = (6 + Math.random() * 8) + 'px';
+      confettiContainer.appendChild(confetti);
+    }
+    confettiContainer.classList.add('active');
+    setTimeout(() => {
+      confettiContainer.classList.remove('active');
+      confettiContainer.innerHTML = '';
+    }, 4000);
+  }
+
+  // ===== FIND FIRST UNANSWERED =====
+  function scrollToFirstUnanswered() {
+    for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+      if (!answers[i]) {
+        const targetPage = Math.floor((i - 1) / QUESTIONS_PER_PAGE);
+        goToPage(targetPage);
+        setTimeout(() => {
+          const card = document.querySelector('.question-card[data-question-id="' + i + '"]');
+          if (card) {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            card.classList.add('highlight-unanswered');
+            setTimeout(() => card.classList.remove('highlight-unanswered'), 3000);
+          }
+        }, 400);
+        return;
+      }
+    }
+  }
+
+  // ===== FLOATING BUTTON =====
+  let floatingVisible = false;
+  window.addEventListener('scroll', function() {
+    const scrollY = window.scrollY;
+    if (scrollY > 500 && !floatingVisible) {
+      floatingBtn.classList.add('visible');
+      floatingVisible = true;
+    } else if (scrollY <= 500 && floatingVisible) {
+      floatingBtn.classList.remove('visible');
+      floatingVisible = false;
+    }
+  });
+
+  // ===== PROFILE CHECK =====
+  const profileInputs = profileForm.querySelectorAll('input');
+  profileInputs.forEach(input => {
+    input.addEventListener('input', function() {
+      if (!profileStarted) {
+        profileStarted = true;
+        progressContainer.style.display = 'block';
+        questionsWrapper.style.display = 'block';
+        startTimer();
+        setTimeout(() => {
+          questionsWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+      }
+      saveToStorage();
+    });
+  });
+
+  // ===== RADIO CHANGE =====
+  document.querySelectorAll('.answer-options input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      const qId = this.name.replace('q', '');
+      answers[qId] = this.value;
+      const card = this.closest('.question-card');
+      card.classList.add('answered');
+      updateProgress();
+      saveToStorage();
+    });
+  });
+
+  function updateProgress() {
+    const answeredCount = Object.keys(answers).length;
+    const percent = Math.round((answeredCount / TOTAL_QUESTIONS) * 100);
+    
+    progressFill.style.width = percent + '%';
+    progressCount.textContent = answeredCount + ' / ' + TOTAL_QUESTIONS + ' (' + percent + '%)';
+
+    if (answeredCount === TOTAL_QUESTIONS) {
+      submitBtn.disabled = false;
+      validationWarning.style.display = 'none';
+      progressEstimate.textContent = '✅ Terminé !';
+    } else {
+      submitBtn.disabled = true;
+      warningText.textContent = 'Il reste ' + (TOTAL_QUESTIONS - answeredCount) + ' question(s) sans réponse.';
+      validationWarning.style.display = 'inline-flex';
+    }
+  }
+
+  // ===== PAGE NAVIGATION =====
+  function goToPage(pageIndex) {
+    if (pageIndex < 0 || pageIndex >= TOTAL_PAGES) return;
+
+    // Slide direction
+    const direction = pageIndex > currentPage ? 'slide-left' : 'slide-right';
+    
+    pages.forEach(p => {
+      p.classList.remove('active', 'slide-left', 'slide-right');
+    });
+    dots.forEach(d => d.classList.remove('active'));
+
+    currentPage = pageIndex;
+    pages[currentPage].classList.add('active', direction);
+    dots[currentPage].classList.add('active');
+
+    dots.forEach((d, i) => {
+      const pageStart = i * QUESTIONS_PER_PAGE + 1;
+      const pageEnd = Math.min((i + 1) * QUESTIONS_PER_PAGE, TOTAL_QUESTIONS);
+      let allAnswered = true;
+      for (let q = pageStart; q <= pageEnd; q++) {
+        if (!answers[q]) { allAnswered = false; break; }
+      }
+      if (allAnswered) d.classList.add('completed');
+    });
+
+    prevBtn.disabled = currentPage === 0;
+    nextBtn.textContent = currentPage === TOTAL_PAGES - 1 ? 'Terminer →' : 'Suivant →';
+    pageIndicator.textContent = 'Page ' + (currentPage + 1) + ' / ' + TOTAL_PAGES;
+
+    if (currentPage === TOTAL_PAGES - 1) submitSection.classList.add('visible');
+
+    progressContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    saveToStorage();
+  }
+
+  prevBtn.addEventListener('click', () => goToPage(currentPage - 1));
+  
+  nextBtn.addEventListener('click', () => {
+    if (currentPage < TOTAL_PAGES - 1) goToPage(currentPage + 1);
+    else submitSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => goToPage(parseInt(dot.dataset.dot)));
+  });
+
+  // ===== KEYBOARD NAVIGATION =====
+  document.addEventListener('keydown', function(e) {
+    if (!questionsWrapper.style.display || questionsWrapper.style.display === 'none') return;
+    if (e.key === 'ArrowRight' && currentPage < TOTAL_PAGES - 1) goToPage(currentPage + 1);
+    else if (e.key === 'ArrowLeft' && currentPage > 0) goToPage(currentPage - 1);
+  });
+
+  // ===== SUBMIT =====
+  submitBtn.addEventListener('click', function() {
+    const answeredCount = Object.keys(answers).length;
+    
+    if (answeredCount < TOTAL_QUESTIONS) {
+      warningText.textContent = 'Il reste ' + (TOTAL_QUESTIONS - answeredCount) + ' question(s) sans réponse.';
+      validationWarning.style.display = 'inline-flex';
+      // Smart scroll to first unanswered question
+      scrollToFirstUnanswered();
+      return;
+    }
+
+    testSubmitted = true;
+    if (timerInterval) clearInterval(timerInterval);
+
+    const profile = {
+      companyName: document.getElementById('companyName').value || 'Non renseigné',
+      fullName: document.getElementById('fullName').value || 'Non renseigné',
+      phone: document.getElementById('phone').value || 'Non renseigné',
+      function: document.getElementById('function').value || 'Non renseigné',
+      completedBy: document.getElementById('completedBy').value || 'Non renseigné',
+      date: new Date().toLocaleDateString('fr-FR')
+    };
+
+    const mins = Math.floor(timerSeconds / 60);
+    const secs = timerSeconds % 60;
+    const timeStr = mins + 'min ' + secs + 's';
+
+    let msg = '🧠 *TEST SAAT™ - RÉSULTATS*\n\n';
+    msg += '*Candidat:* ' + profile.fullName + '\n';
+    msg += '*Société:* ' + profile.companyName + '\n';
+    msg += '*Tél:* ' + profile.phone + '\n';
+    msg += '*Poste:* ' + profile.function + '\n';
+    msg += '*Par:* ' + profile.completedBy + '\n';
+    msg += '*Date:* ' + profile.date + '\n';
+    msg += '*Durée:* ' + timeStr + '\n\n';
+    msg += '*--- RÉPONSES (87 Q) ---*\n';
+
+    let line = '';
+    for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+      const a = answers[i];
+      let code = '?';
+      if (a === 'OUI') code = 'O';
+      else if (a === 'PLUS_OU_MOINS') code = '±';
+      else if (a === 'NON') code = 'N';
+      line += 'Q' + i + ':' + code + ' ';
+      if (i % 10 === 0) { msg += line.trim() + '\n'; line = ''; }
+    }
+    if (line.trim()) msg += line.trim() + '\n';
+    msg += '\n_Envoyé depuis absig-consulting.fr_';
+
+    const waUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+    window.open(waUrl, '_blank');
+
+    // Clear saved data
+    try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+
+    // Show success + confetti
+    setTimeout(() => {
+      questionsWrapper.style.display = 'none';
+      profileForm.style.display = 'none';
+      progressContainer.style.display = 'none';
+      submitSection.style.display = 'none';
+      successMessage.classList.add('visible');
+      successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      launchConfetti();
+    }, 500);
+  });
+
+  // ===== ANIMATED SCALE INDICATORS =====
+  const scaleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.scale-indicator').forEach(ind => ind.classList.add('animate'));
+        scaleObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.dimension-card').forEach(card => scaleObserver.observe(card));
+
+  // ===== RESTORE SAVED SESSION =====
+  const restored = restoreFromStorage();
+  if (restored) {
+    // Show a discreet notification
+    const notice = document.createElement('div');
+    notice.className = 'restore-notice';
+    notice.innerHTML = '💾 Session précédente restaurée ! <button onclick="this.parentElement.remove(); localStorage.removeItem(\'' + STORAGE_KEY + '\'); location.reload();">Recommencer</button>';
+    document.querySelector('.questionnaire-container').prepend(notice);
+  }
+
+});
+</script>

@@ -1,0 +1,50 @@
+03:55:47 [types] Generated 223ms
+03:55:47 [build] output: "static"
+03:55:47 [build] directory: D:\absig\dist\
+03:55:47 [build] Collecting build info...
+03:55:47 [build] ??? Completed in 274ms.
+03:55:47 [build] Building static entrypoints...
+03:55:50 [vite] ??? built in 3.14s
+03:55:50 [build] ??? Completed in 3.23s.
+
+ building client (vite) 
+03:55:50 [vite] transforming...
+03:55:50 [vite] ??? 4 modules transformed.
+03:55:50 [vite] rendering chunks...
+03:55:50 [vite] ??? built in 36ms
+
+ generating static routes 
+03:55:50 ??? src/pages/a-propos.astro
+03:55:50   ?????? /a-propos/index.html (+23ms)
+03:55:50 ??? src/pages/contact.astro
+03:55:50   ?????? /contact/index.html (+8ms)
+03:55:50 ??? src/pages/en/about.astro
+03:55:50   ?????? /en/about/index.html (+7ms)
+03:55:50 ??? src/pages/en/contact.astro
+03:55:50   ?????? /en/contact/index.html (+9ms)
+03:55:50 ??? src/pages/en/legal.astro
+03:55:50   ?????? /en/legal/index.html (+12ms)
+03:55:50 ??? src/pages/en/services.astro
+03:55:50   ?????? /en/services/index.html (+7ms)
+03:55:50 ??? src/pages/en/test-saat.astro
+03:55:50   ?????? /en/test-saat/index.html (+21ms)
+03:55:50 ??? src/pages/en/index.astro
+03:55:50   ?????? /en/index.html (+8ms)
+03:55:50 ??? src/pages/mentions-legales.astro
+03:55:50   ?????? /mentions-legales/index.html (+12ms)
+03:55:50 ??? src/pages/services.astro
+03:55:50   ?????? /services/index.html (+8ms)
+03:55:50 ??? src/pages/test-saat.astro
+03:55:50   ?????? /test-saat/index.html (+29ms)
+03:55:50 ??? src/pages/index.astro
+03:55:50   ?????? /index.html (+9ms)
+03:55:50 ??? Completed in 239ms.
+
+Cannot read properties of undefined (reading 'reduce')
+  Location:
+    D:\absig\node_modules\@astrojs\sitemap\dist\index.js:69:37
+  Stack trace:
+    at astro:build:done (file:///D:/absig/node_modules/@astrojs/sitemap/dist/index.js:69:37)
+    at async AstroBuilder.build (file:///D:/absig/node_modules/astro/dist/core/build/index.js:159:5)
+    at async build (file:///D:/absig/node_modules/astro/dist/core/build/index.js:51:3)
+    at async runCommand (file:///D:/absig/node_modules/astro/dist/cli/index.js:147:7)

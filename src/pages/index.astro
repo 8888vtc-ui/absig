@@ -284,8 +284,74 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- FAQ - QUESTIONS FRÉQUENTES -->
-  <section class="faq-section" style="padding: 4rem 0; background: #f8f9fa;">
+
+  <!-- TÉMOIGNAGES CLIENTS -->
+
+  <section style="padding: 4rem 0; background: #fff;">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: 0.75rem;" data-aos="fade-up">Ce que disent nos clients</h2>
+      <p class="text-center" style="color: #64748b; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;" data-aos="fade-up" data-aos-delay="100">
+        Des entreprises partout en France nous font confiance pour leurs recrutements.
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        
+        <!-- Témoignage 1 -->
+        <div data-aos="fade-up" data-aos-delay="100" style="background: #f8fafc; padding: 2rem; border-radius: 16px; border-left: 4px solid #d4af37; position: relative;">
+          <div style="color: #d4af37; font-size: 1.2rem; margin-bottom: 1rem; letter-spacing: 2px;">★★★★★</div>
+          <p style="color: #475569; font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 1.5rem;">
+            « Nous avions besoin de 3 réceptionnistes en urgence pour la saison. ABSIG nous a présenté des profils qualifiés en <strong>moins de 2 semaines</strong>. La qualité des candidats était remarquable. »
+          </p>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #1e3a5f, #0d9488); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">
+              M.D
+            </div>
+            <div>
+              <div style="font-weight: 600; color: #1e3a5f; font-size: 0.9rem;">Marie D.</div>
+              <div style="color: #94a3b8; font-size: 0.8rem;">Directrice RH — Groupe Hôtelier, Nice</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Témoignage 2 -->
+        <div data-aos="fade-up" data-aos-delay="200" style="background: #f8fafc; padding: 2rem; border-radius: 16px; border-left: 4px solid #0d9488; position: relative;">
+          <div style="color: #d4af37; font-size: 1.2rem; margin-bottom: 1rem; letter-spacing: 2px;">★★★★★</div>
+          <p style="color: #475569; font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 1.5rem;">
+            « On cherchait un développeur Full-Stack depuis des mois. Le test SAAT™ nous a permis de <strong>vraiment comprendre le profil</strong> du candidat avant l'entretien. Résultat : un recrutement réussi. »
+          </p>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #0d9488, #22c55e); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">
+              P.L
+            </div>
+            <div>
+              <div style="font-weight: 600; color: #1e3a5f; font-size: 0.9rem;">Pierre L.</div>
+              <div style="color: #94a3b8; font-size: 0.8rem;">CTO — Startup Tech, Sophia-Antipolis</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Témoignage 3 -->
+        <div data-aos="fade-up" data-aos-delay="300" style="background: #f8fafc; padding: 2rem; border-radius: 16px; border-left: 4px solid #6366f1; position: relative;">
+          <div style="color: #d4af37; font-size: 1.2rem; margin-bottom: 1rem; letter-spacing: 2px;">★★★★★</div>
+          <p style="color: #475569; font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 1.5rem;">
+            « ABSIG a recruté 5 maçons qualifiés pour nos chantiers sur la Côte d'Azur. Les ouvriers étaient <strong>opérationnels dès le premier jour</strong>. Service impeccable et réactif. »
+          </p>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #d4af37, #f59e0b); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">
+              S.B
+            </div>
+            <div>
+              <div style="font-weight: 600; color: #1e3a5f; font-size: 0.9rem;">Stéphane B.</div>
+              <div style="color: #94a3b8; font-size: 0.8rem;">Gérant — Entreprise BTP, Antibes</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="padding: 4rem 0; background: #f8fafc;">
     <div class="container">
       <h2 class="text-center" style="margin-bottom: 3rem;" data-aos="fade-up">Questions Fréquentes</h2>
       
@@ -335,7 +401,109 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- CTA FINAL -->
+  <!-- TEST SAAT™ – PROMOTION SECTION -->
+  <section style="padding: 5rem 0; background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 50%, #0f2942 100%); position: relative; overflow: hidden;">
+    <!-- Decorative elements -->
+    <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(212,175,55,0.15), transparent); border-radius: 50%;"></div>
+    <div style="position: absolute; bottom: -30px; left: -30px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(13,148,136,0.15), transparent); border-radius: 50%;"></div>
+    
+    <div class="container" style="position: relative; z-index: 2;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+        
+        <!-- LEFT: Text Content -->
+        <div data-aos="fade-right">
+          <div style="display: inline-block; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.4); color: #d4af37; padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.5rem;">
+            🧠 EXCLUSIF ABSIG
+          </div>
+          <h2 style="color: white; font-size: 2rem; margin-bottom: 1rem; line-height: 1.3;">
+            Test <span style="background: linear-gradient(135deg, #d4af37, #f5d76e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">SAAT™</span>
+            <br>Évaluez vos candidats en profondeur
+          </h2>
+          <p style="color: rgba(255,255,255,0.8); font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem;">
+            Le <strong style="color: #d4af37;">Sigler's Ability Analysis</strong> analyse <strong style="color: white;">13 dimensions</strong> de la personnalité en seulement 15 minutes. 
+            Un outil scientifique pour des recrutements sans erreur.
+          </p>
+          
+          <!-- Mini features -->
+          <div style="display: flex; gap: 2rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: #22c55e; font-weight: bold;">✓</span>
+              <span style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">87 questions</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: #22c55e; font-weight: bold;">✓</span>
+              <span style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">Non éliminatoire</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: #22c55e; font-weight: bold;">✓</span>
+              <span style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">100% confidentiel</span>
+            </div>
+          </div>
+
+          <a href="/test-saat" style="display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #d4af37, #c9a030); color: #0a1628; padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(212,175,55,0.3);" 
+             onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 30px rgba(212,175,55,0.5)'"
+             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(212,175,55,0.3)'">
+            Découvrir le test SAAT™ →
+          </a>
+        </div>
+
+        <!-- RIGHT: Visual Card -->
+        <div data-aos="fade-left">
+          <div style="background: rgba(255,255,255,0.06); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 2.5rem; position: relative;">
+            
+            <!-- 3 Dimensions visual -->
+            <div style="margin-bottom: 2rem;">
+              <div style="margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <span style="color: white; font-weight: 600; font-size: 0.9rem;">🟣 Personnalité</span>
+                  <span style="color: #8b5cf6; font-weight: 700;">75%</span>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 8px; overflow: hidden;">
+                  <div style="width: 75%; height: 100%; background: linear-gradient(90deg, #6366f1, #8b5cf6); border-radius: 10px; animation: barGrow 1.5s ease-out;"></div>
+                </div>
+              </div>
+              
+              <div style="margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <span style="color: white; font-weight: 600; font-size: 0.9rem;">🟢 Communication</span>
+                  <span style="color: #14b8a6; font-weight: 700;">82%</span>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 8px; overflow: hidden;">
+                  <div style="width: 82%; height: 100%; background: linear-gradient(90deg, #0d9488, #14b8a6); border-radius: 10px; animation: barGrow 1.8s ease-out;"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <span style="color: white; font-weight: 600; font-size: 0.9rem;">🟠 Action</span>
+                  <span style="color: #f59e0b; font-weight: 700;">68%</span>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 8px; overflow: hidden;">
+                  <div style="width: 68%; height: 100%; background: linear-gradient(90deg, #f59e0b, #ef4444); border-radius: 10px; animation: barGrow 2s ease-out;"></div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Profile result badge -->
+            <div style="background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.3); border-radius: 12px; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem;">
+              <div style="font-size: 2rem;">👔</div>
+              <div>
+                <div style="color: #d4af37; font-weight: 700; font-size: 0.9rem;">Profil détecté</div>
+                <div style="color: white; font-weight: 600;">Manager / Cadre Dirigeant</div>
+              </div>
+            </div>
+            
+            <!-- Floating badge -->
+            <div style="position: absolute; top: -12px; right: 20px; background: #22c55e; color: white; padding: 0.4rem 1rem; border-radius: 0 0 10px 10px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;">
+              EXEMPLE DE RÉSULTAT
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <section class="section-cta" style="padding: 5rem 0; background: linear-gradient(135deg, #1e3a5f, #0d9488); color: white; text-align: center;">
     <div class="container">
       <h2 style="color: white; margin-bottom: 1.5rem;" data-aos="fade-up">Prêt à recruter ?</h2>
@@ -532,6 +700,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       right: 0 !important;
       display: inline-block;
       margin-bottom: 1rem;
+    }
+  }
+  
+  /* SAAT promo section animation */
+  @keyframes barGrow {
+    from { width: 0; }
+  }
+  
+  @media (max-width: 768px) {
+    section > .container > div[style*="grid-template-columns: 1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+      gap: 2rem !important;
     }
   }
 </style>
