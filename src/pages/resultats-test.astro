@@ -124,7 +124,7 @@ const breadcrumbItems = [
   <script is:inline src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- CLIENT-SIDE: Decode URL data, compute scores, render chart -->
-  <script is:inline define:vars={{ scoringRulesJSON }}>
+  <script is:inline define:vars={{ rules: scoringRulesRaw }}>
     document.addEventListener('DOMContentLoaded', function() {
 
       // --- 1. Read URL parameter ---
@@ -144,17 +144,18 @@ const breadcrumbItems = [
       // --- 2. Decode base64 → JSON ---
       let decoded;
       try {
-        // Reverse the encoding: btoa(encodeURIComponent(...).replace(...))
+        console.log('Paramètre data trouvé:', dataParam.substring(0, 20) + '...');
+        
+        // Use a more robust decoding (MDN recommended for unicode)
         const binaryString = atob(dataParam);
-        // Convert binary string back to UTF-8
         const bytes = new Uint8Array(binaryString.length);
         for (let i = 0; i < binaryString.length; i++) {
           bytes[i] = binaryString.charCodeAt(i);
         }
         const decodedString = new TextDecoder('utf-8').decode(bytes);
-        // The string is already the JSON string (TextDecoder handled the UTF-8 bytes)
-        const jsonString = decodedString;
-        decoded = JSON.parse(jsonString);
+        decoded = JSON.parse(decodedString);
+        
+        console.log('Données décodées avec succès:', decoded.profile?.fullName);
       } catch (e) {
         console.error('Erreur de décodage des données:', e);
         loadingEl.style.display = 'none';
@@ -168,12 +169,9 @@ const breadcrumbItems = [
       const companyName = profileData.companyName || "Non renseigné";
       const positionName = profileData.function || "Non renseigné";
 
-      // --- 4. Parse scoring rules ---
-      let rules;
-      try {
-        rules = JSON.parse(scoringRulesJSON);
-      } catch(e) {
-        console.error('Erreur parsing scoring rules:', e);
+      // --- 4. Rules are passed directly via define:vars ---
+      if (!rules || !Array.isArray(rules)) {
+        console.error('Scoring rules manquantes ou invalides');
         loadingEl.style.display = 'none';
         errorEl.style.display = 'block';
         return;
