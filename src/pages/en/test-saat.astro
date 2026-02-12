@@ -757,14 +757,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const secs = timerSeconds % 60;
     const timeStr = mins + 'min ' + secs + 's';
 
-    let msg = '🧠 *SAAT™ TEST - RESULTS (EN)*\n\n';
-    msg += '*Candidate:* ' + profile.fullName + '\n';
-    msg += '*Company:* ' + profile.companyName + '\n';
-    msg += '*Phone:* ' + profile.phone + '\n';
-    msg += '*Position:* ' + profile.function + '\n';
-    msg += '*By:* ' + profile.completedBy + '\n';
-    msg += '*Date:* ' + profile.date + '\n';
-    msg += '*Duration:* ' + timeStr + '\n\n';
+    const pInfo = [profile.fullName || '', profile.companyName || '', profile.function || ''].join('|');
+    let aCode = '';
+    for(let i=1; i<=87; i++) {
+        const val = answers[i];
+        aCode += (val === 'OUI' ? '2' : (val === 'PLUS_OU_MOINS' ? '1' : '0'));
+    }
+    const compactData = btoa(encodeURIComponent(pInfo)).replace(/=/g, '') + '.' + aCode;
+    const resultsLink = `https://absigg.netlify.app/resultats-test?v=2&d=${compactData}`;
+
+    let msg = '🧠 *RÉSULTAT TEST SAAT™*\n\n';
+    msg += `*Candidat:* ${profile.fullName}\n`;
+    msg += `*Poste:* ${profile.function}\n\n`;
+    msg += `*Voir l'analyse complète :*\n${resultsLink}\n\n`;
+    msg += '*--- DÉTAILS ---*\n';
+    msg += `*Société:* ${profile.companyName}\n`;
+    msg += `*Par:* ${profile.completedBy}\n`;
+    msg += `*Durée:* ${timeStr}\n\n`;
     msg += '*--- ANSWERS (87 Q) ---*\n';
 
     let line = '';

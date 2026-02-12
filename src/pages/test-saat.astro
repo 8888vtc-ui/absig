@@ -758,19 +758,17 @@ document.addEventListener('DOMContentLoaded', function() {
       date: new Date().toLocaleDateString('fr-FR')
     };
     
-    // Prepare data for results page
-    const resultData = {
-      profile: profile,
-      answers: answers
-    };
-
-    // Encode data to base64 for URL (Unicode safe)
-    const jsonString = JSON.stringify(resultData);
-    const encodedData = btoa(encodeURIComponent(jsonString).replace(/%([0-9A-F]{2})/g,
-        function toSolidBytes(match, p1) {
-            return String.fromCharCode('0x' + p1);
-    }));
-    const resultsLink = `https://absigg.netlify.app/resultats-test?data=${encodedData}`; // In prod
+    // COMPACT ENCODING (v2)
+    // p: Name | Company | Function
+    // a: 87 digits (0=NON, 1=PM, 2=OUI)
+    const pInfo = [profile.fullName || '', profile.companyName || '', profile.function || ''].join('|');
+    let aCode = '';
+    for(let i=1; i<=87; i++) {
+        const val = answers[i];
+        aCode += (val === 'OUI' ? '2' : (val === 'PLUS_OU_MOINS' ? '1' : '0'));
+    }
+    const compactData = btoa(encodeURIComponent(pInfo)).replace(/=/g, '') + '.' + aCode;
+    const resultsLink = `https://absigg.netlify.app/resultats-test?v=2&d=${compactData}`;
     // const resultsLink = `${window.location.origin}/resultats-test?data=${encodedData}`; // For dev/test if needed, sticking to absolute prod URL as requested or relative? Let's use absolute for WhatsApp sharing to work for recruiter.
     
     // Actually, for local testing, window.location.origin is better, but for WhatsApp sending to someone else, it needs to be the public URL.

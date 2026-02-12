@@ -144,21 +144,45 @@ const breadcrumbItems = [
         return;
       }
 
-      // --- 2. Decode base64 → JSON ---
-      let decoded;
+      // --- 2. Decode Data (v1 or v2) ---
+      let decoded = { profile: {}, answers: {} };
+      const version = urlParams.get('v');
+
       try {
-        console.log('Paramètre data trouvé:', dataParam.substring(0, 20) + '...');
-        
-        // Use a more robust decoding (MDN recommended for unicode)
-        const binaryString = atob(dataParam);
-        const bytes = new Uint8Array(binaryString.length);
-        for (let i = 0; i < binaryString.length; i++) {
-          bytes[i] = binaryString.charCodeAt(i);
+        if (version === '2') {
+          // V2: Compact format (d=Base64PInfo.AnswersBitstring)
+          const compactData = urlParams.get('d');
+          if (!compactData) throw new Error("No V2 data");
+          const [pEncoded, aCode] = compactData.split('.');
+          
+          // Decode Profile
+          const pInfo = decodeURIComponent(atob(pEncoded)).split('|');
+          decoded.profile = {
+            fullName: pInfo[0] || 'Candidat',
+            companyName: pInfo[1] || 'Non renseigné',
+            function: pInfo[2] || 'Non renseigné'
+          };
+          
+          // Decode Answers
+          if (aCode) {
+            for (let i = 0; i < aCode.length; i++) {
+              const val = aCode[i];
+              decoded.answers[i + 1] = (val === '2' ? 'OUI' : (val === '1' ? 'PLUS_OU_MOINS' : 'NON'));
+            }
+          }
+          console.log('Données V2 décodées avec succès');
+        } else {
+          // V1: Legacy JSON Base64 format
+          console.log('Tentative de décodage format V1...');
+          const binaryString = atob(dataParam);
+          const bytes = new Uint8Array(binaryString.length);
+          for (let i = 0; i < binaryString.length; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+          }
+          const decodedString = new TextDecoder('utf-8').decode(bytes);
+          decoded = JSON.parse(decodedString);
+          console.log('Données V1 décodées avec succès');
         }
-        const decodedString = new TextDecoder('utf-8').decode(bytes);
-        decoded = JSON.parse(decodedString);
-        
-        console.log('Données décodées avec succès:', decoded.profile?.fullName);
       } catch (e) {
         console.error('Erreur de décodage des données:', e);
         loadingEl.style.display = 'none';
