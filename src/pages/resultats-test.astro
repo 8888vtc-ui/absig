@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import scoringRulesRaw from '../data/saat-scoring.json';
+import mappingRaw from '../data/saat-mapping.json';
 
 // Pass scoring rules to client-side as JSON string
 const scoringRulesJSON = JSON.stringify(scoringRulesRaw);
@@ -124,7 +125,7 @@ const breadcrumbItems = [
   <script is:inline src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- CLIENT-SIDE: Decode URL data, compute scores, render chart -->
-  <script is:inline define:vars={{ rules: scoringRulesRaw }}>
+  <script is:inline define:vars={{ rules: scoringRulesRaw, mapping: mappingRaw }}>
     document.addEventListener('DOMContentLoaded', function() {
 
       // --- 1. Read URL parameter ---
@@ -196,10 +197,16 @@ const breadcrumbItems = [
       const MULTIPLIER = 10;
       const answers = decoded.answers || {};
 
-      rules.forEach(function(rule) {
-        const answer = answers[rule.id];
-        let impact = 0;
+      // We iterate over the mapping to apply rules for each form answer
+      Object.keys(mapping).forEach(function(formIdx) {
+        const baseId = mapping[formIdx];
+        const answer = answers[formIdx];
+        
+        // Find rule by baseId
+        const rule = rules.find(r => r.id == baseId);
+        if (!rule || !answer) return;
 
+        let impact = 0;
         if (answer === rule.target) {
           impact = rule.impact;
         } else if (answer === "PLUS_OU_MOINS") {
