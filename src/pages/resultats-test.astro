@@ -1,95 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import scoringRulesRaw from '../data/saat-scoring.json';
 
-// Récupération des paramètres URL
-const { searchParams } = Astro.url;
-const dataParam = searchParams.get('data');
-
-// Décodage des données (basique pour l'instant)
-let candidateName = "Candidat";
-let scores = { P: 160, C: 75, A: 110 };
-let secondary = null;
-let profileData = {};
-
-if (dataParam) {
-  try {
-    // Decoding method
-    // Decoding method: simplified
-    const decodedString = decodeURIComponent(escape(atob(dataParam)));
-    const decoded = JSON.parse(decodedString);
-    profileData = decoded.profile || {};
-    candidateName = profileData.fullName || "Candidat";
-    
-    // Import scoring rules (inlined for simplicity in script or fetch?)
-    // Since we are in frontmatter, we can import json
-    const scoringRules = await import('../data/saat-scoring.json');
-    const rules = scoringRules.default || scoringRules;
-
-    // --- LOGIQUE DE CALCUL (DÉDUITE) ---
-    // Initialisation
-    scores.P = 0; scores.C = 0; scores.A = 0;
-    let secondary = { 
-        S: { val: 0, max: 5 }, H_S: { val: 0, max: 5 }, 
-        PN: { val: 0, max: 12 }, N: { val: 0, max: 0 }, // Max dynamic?
-        PP: { val: 0, max: 6 }, SO: { val: 0, max: 6 },
-        V: { val: 0, max: 9 }, O: { val: 0, max: 7 },
-        Co: { val: 0, max: 5 }, RA: { val: 0, max: 22 },
-        R: { val: 0, max: 12 }
-    };
-
-    // Calcul
-    const answers = decoded.answers || {};
-    
-    // Scale factor to reach -200 to +200 range roughly
-    // Assuming about 30 questions per dimension, max raw score ~30. 
-    // 200 / 30 = ~6.6 per point. Let's use 10 for stronger impact.
-    const MULTIPLIER = 10; 
-
-    rules.forEach(rule => {
-        const answer = answers[rule.id]; // "OUI", "NON", "PLUS_OU_MOINS"
-        let impact = 0;
-
-        if (answer === rule.target) {
-            impact = rule.impact;
-        } else if (answer === "PLUS_OU_MOINS") {
-            impact = rule.impact * 0.5; // Half impact
-        } else if (answer && answer !== rule.target) {
-             // Inverse impact? Or just 0? Let's say -impact if it's a strong trait question.
-             // For now, simple logic: if target is OUI and answer is NON, impact is -rule.impact
-             impact = -rule.impact;
-        }
-
-        // Main Dimensions Mapping
-        if (rule.dimension === "P" || rule.dimension === "S" || rule.dimension === "H/S" || rule.dimension === "N" || rule.dimension === "PP" || rule.dimension === "SO") {
-            scores.P += impact * MULTIPLIER;
-        }
-        if (rule.dimension === "C" || rule.dimension === "V" || rule.dimension === "RA") {
-            scores.C += impact * MULTIPLIER;
-        }
-        if (rule.dimension === "A" || rule.dimension === "O" || rule.dimension === "R" || rule.dimension === "Co") {
-            scores.A += impact * MULTIPLIER;
-        }
-
-        // Secondary Stats (Counts)
-        // If the Dimension matches a secondary key
-        let dimKey = rule.dimension === "H/S" ? "H_S" : rule.dimension;
-        if (secondary[dimKey]) {
-            // Pour les secondaires, on compte souvent "combien de fois le trait est présent"
-            // Donc si impact > 0, on incrémente.
-            if (impact > 0) secondary[dimKey].val += 1;
-        }
-    });
-
-    // Clamp scores
-    scores.P = Math.max(-200, Math.min(200, scores.P));
-    scores.C = Math.max(-200, Math.min(200, scores.C));
-    scores.A = Math.max(-200, Math.min(200, scores.A));
-    
-  } catch (e) {
-    console.error("Erreur de calcul", e);
-    // Keep defaults
-  }
-} // End if dataParam
+// Pass scoring rules to client-side as JSON string
+const scoringRulesJSON = JSON.stringify(scoringRulesRaw);
 
 const breadcrumbItems = [
   { name: "Accueil", url: "/" },
@@ -99,7 +13,7 @@ const breadcrumbItems = [
 ---
 
 <BaseLayout 
-  title={`Résultats SAAT™ - ${candidateName}`}
+  title="Résultats SAAT™"
   description="Analyse du profil SAAT™."
   currentPage="resultats-test"
   breadcrumbItems={breadcrumbItems}
@@ -108,7 +22,23 @@ const breadcrumbItems = [
   <section class="results-section" style="padding: 4rem 0; background: #f8fafc; min-height: 80vh;">
     <div class="container">
       
-      <div class="results-card" style="background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); overflow: hidden; max-width: 900px; margin: 0 auto;">
+      <!-- Loading state -->
+      <div id="loadingState" style="text-align: center; padding: 6rem 2rem;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">⏳</div>
+        <h2 style="color: #1e3a5f;">Chargement des résultats...</h2>
+        <p style="color: #64748b;">Analyse en cours, veuillez patienter.</p>
+      </div>
+
+      <!-- Error state (hidden by default) -->
+      <div id="errorState" style="display: none; text-align: center; padding: 6rem 2rem;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
+        <h2 style="color: #dc2626;">Données introuvables</h2>
+        <p style="color: #64748b;">Aucune donnée de test n'a été trouvée dans le lien. Le lien est peut-être invalide ou expiré.</p>
+        <a href="/test-saat" style="display: inline-block; margin-top: 1.5rem; background: #1e3a5f; color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600;">Passer le test SAAT™</a>
+      </div>
+
+      <!-- Results card (hidden by default, shown after JS processes data) -->
+      <div id="resultsCard" style="display: none; background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); overflow: hidden; max-width: 900px; margin: 0 auto;">
         
         <!-- HEADER RAPPORT -->
         <div class="results-header" style="background: linear-gradient(135deg, #1e3a5f, #0d9488); padding: 2rem; color: white;">
@@ -119,10 +49,8 @@ const breadcrumbItems = [
             </div>
             <div style="text-align: right;">
               <div style="font-size: 0.9rem; opacity: 0.8;">Test décrypté le :</div>
-              <div style="font-weight: bold; font-size: 1.1rem;">{new Date().toLocaleDateString('fr-FR')}</div>
-              <div style="font-size: 0.8rem; margin-top: 0.5rem; background: rgba(255,255,255,0.2); padding: 0.2rem 0.8rem; border-radius: 20px; display: inline-block;">
-                ID: #{Math.floor(Math.random() * 10000).toString().padStart(4, '0')}
-              </div>
+              <div id="reportDate" style="font-weight: bold; font-size: 1.1rem;"></div>
+              <div id="reportId" style="font-size: 0.8rem; margin-top: 0.5rem; background: rgba(255,255,255,0.2); padding: 0.2rem 0.8rem; border-radius: 20px; display: inline-block;"></div>
             </div>
           </div>
         </div>
@@ -132,21 +60,19 @@ const breadcrumbItems = [
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
             <div>
               <div style="color: #64748b; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Candidat</div>
-              <div style="font-size: 1.2rem; font-weight: 700; color: #1e3a5f;">{candidateName}</div>
+              <div id="candidateName" style="font-size: 1.2rem; font-weight: 700; color: #1e3a5f;">—</div>
             </div>
             <div>
               <div style="color: #64748b; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Société</div>
-              <div style="font-size: 1.1rem; color: #1e3a5f;">{profileData.companyName || "Non renseigné"}</div>
+              <div id="companyName" style="font-size: 1.1rem; color: #1e3a5f;">—</div>
             </div>
             <div>
               <div style="color: #64748b; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Poste visé</div>
-              <div style="font-size: 1.1rem; color: #1e3a5f;">{profileData.function || "Non renseigné"}</div>
+              <div id="positionName" style="font-size: 1.1rem; color: #1e3a5f;">—</div>
             </div>
-             <div>
+            <div>
               <div style="color: #64748b; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Expertise</div>
-              <div style="font-size: 1.1rem; font-weight: 600; color: #0d9488;">
-                {scores.P > 100 ? "Manager" : scores.A > 100 ? "Technique" : "Commercial"}
-              </div>
+              <div id="expertiseType" style="font-size: 1.1rem; font-weight: 600; color: #0d9488;">—</div>
             </div>
           </div>
         </div>
@@ -164,20 +90,20 @@ const breadcrumbItems = [
           <div style="margin-top: 4rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
             
             <div style="text-align: right; font-weight: 700; color: #1e3a5f; font-size: 1.1rem; display: flex; flex-direction: column; gap: 1rem;">
-              <div>S : <span style="color: #475569;">{secondary ? secondary.S.val : 0}/{secondary ? secondary.S.max : 5}</span></div>
-              <div>PN : <span style="color: #475569;">{secondary ? secondary.PN.val : 0}/{secondary ? secondary.PN.max : 12}</span></div>
-              <div>PP : <span style="color: #475569;">{secondary ? secondary.PP.val : 0}/{secondary ? secondary.PP.max : 6}</span></div>
-              <div>V : <span style="color: #475569;">{secondary ? secondary.V.val : 0}/{secondary ? secondary.V.max : 9}</span></div>
-              <div>Co : <span style="color: #475569;">{secondary ? secondary.Co.val : 0}/{secondary ? secondary.Co.max : 5}</span></div>
-              <div>R : <span style="color: #475569;">{secondary ? secondary.R.val : 0}/{secondary ? secondary.R.max : 12}</span></div>
+              <div>S : <span id="sec_S" style="color: #475569;">0/5</span></div>
+              <div>PN : <span id="sec_PN" style="color: #475569;">0/12</span></div>
+              <div>PP : <span id="sec_PP" style="color: #475569;">0/6</span></div>
+              <div>V : <span id="sec_V" style="color: #475569;">0/9</span></div>
+              <div>Co : <span id="sec_Co" style="color: #475569;">0/5</span></div>
+              <div>R : <span id="sec_R" style="color: #475569;">0/12</span></div>
             </div>
 
             <div style="text-align: left; font-weight: 700; color: #1e3a5f; font-size: 1.1rem; display: flex; flex-direction: column; gap: 1rem;">
-              <div>H/S : <span style="color: #475569;">{secondary ? secondary.H_S.val : 0}/{secondary ? secondary.H_S.max : 5}</span></div>
-              <div>N : <span style="color: #475569;">{secondary ? secondary.N.val : 0}</span></div>
-              <div>SO : <span style="color: #475569;">{secondary ? secondary.SO.val : 0}/{secondary ? secondary.SO.max : 6}</span></div>
-              <div>O : <span style="color: #475569;">{secondary ? secondary.O.val : 0}/{secondary ? secondary.O.max : 7}</span></div>
-              <div>RA : <span style="color: #475569;">{secondary ? secondary.RA.val : 0}/{secondary ? secondary.RA.max : 22}</span></div>
+              <div>H/S : <span id="sec_H_S" style="color: #475569;">0/5</span></div>
+              <div>N : <span id="sec_N" style="color: #475569;">0</span></div>
+              <div>SO : <span id="sec_SO" style="color: #475569;">0/6</span></div>
+              <div>O : <span id="sec_O" style="color: #475569;">0/7</span></div>
+              <div>RA : <span id="sec_RA" style="color: #475569;">0/22</span></div>
             </div>
 
           </div>
@@ -194,11 +120,150 @@ const breadcrumbItems = [
     </div>
   </section>
 
-  <!-- CHARTS.JS via CDN with is:inline to ensure order -->
+  <!-- CHARTS.JS via CDN -->
   <script is:inline src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <script is:inline define:vars={{ scores }}>
+  <!-- CLIENT-SIDE: Decode URL data, compute scores, render chart -->
+  <script is:inline define:vars={{ scoringRulesJSON }}>
     document.addEventListener('DOMContentLoaded', function() {
+
+      // --- 1. Read URL parameter ---
+      const urlParams = new URLSearchParams(window.location.search);
+      const dataParam = urlParams.get('data');
+
+      const loadingEl = document.getElementById('loadingState');
+      const errorEl = document.getElementById('errorState');
+      const resultsEl = document.getElementById('resultsCard');
+
+      if (!dataParam) {
+        loadingEl.style.display = 'none';
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      // --- 2. Decode base64 → JSON ---
+      let decoded;
+      try {
+        // Reverse the encoding: btoa(encodeURIComponent(...).replace(...))
+        const binaryString = atob(dataParam);
+        // Convert binary string back to UTF-8
+        const bytes = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+          bytes[i] = binaryString.charCodeAt(i);
+        }
+        const decodedString = new TextDecoder('utf-8').decode(bytes);
+        // The string was encodeURIComponent'd, so we need to decode that
+        const jsonString = decodeURIComponent(decodedString);
+        decoded = JSON.parse(jsonString);
+      } catch (e) {
+        console.error('Erreur de décodage des données:', e);
+        loadingEl.style.display = 'none';
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      // --- 3. Extract profile info ---
+      const profileData = decoded.profile || {};
+      const candidateName = profileData.fullName || "Candidat";
+      const companyName = profileData.companyName || "Non renseigné";
+      const positionName = profileData.function || "Non renseigné";
+
+      // --- 4. Parse scoring rules ---
+      let rules;
+      try {
+        rules = JSON.parse(scoringRulesJSON);
+      } catch(e) {
+        console.error('Erreur parsing scoring rules:', e);
+        loadingEl.style.display = 'none';
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      // --- 5. Calculate scores ---
+      const scores = { P: 0, C: 0, A: 0 };
+      const secondary = { 
+        S: { val: 0, max: 5 }, 
+        H_S: { val: 0, max: 5 }, 
+        PN: { val: 0, max: 12 }, 
+        N: { val: 0, max: 0 },
+        PP: { val: 0, max: 6 }, 
+        SO: { val: 0, max: 6 },
+        V: { val: 0, max: 9 }, 
+        O: { val: 0, max: 7 },
+        Co: { val: 0, max: 5 }, 
+        RA: { val: 0, max: 22 },
+        R: { val: 0, max: 12 }
+      };
+
+      const MULTIPLIER = 10;
+      const answers = decoded.answers || {};
+
+      rules.forEach(function(rule) {
+        const answer = answers[rule.id];
+        let impact = 0;
+
+        if (answer === rule.target) {
+          impact = rule.impact;
+        } else if (answer === "PLUS_OU_MOINS") {
+          impact = rule.impact * 0.5;
+        } else if (answer && answer !== rule.target) {
+          impact = -rule.impact;
+        }
+
+        // Main Dimensions Mapping
+        if (rule.dimension === "P" || rule.dimension === "S" || rule.dimension === "H/S" || rule.dimension === "N" || rule.dimension === "PP" || rule.dimension === "SO") {
+          scores.P += impact * MULTIPLIER;
+        }
+        if (rule.dimension === "C" || rule.dimension === "V" || rule.dimension === "RA") {
+          scores.C += impact * MULTIPLIER;
+        }
+        if (rule.dimension === "A" || rule.dimension === "O" || rule.dimension === "R" || rule.dimension === "Co") {
+          scores.A += impact * MULTIPLIER;
+        }
+
+        // Secondary Stats
+        var dimKey = rule.dimension === "H/S" ? "H_S" : rule.dimension;
+        if (secondary[dimKey]) {
+          if (impact > 0) secondary[dimKey].val += 1;
+        }
+      });
+
+      // Clamp scores
+      scores.P = Math.max(-200, Math.min(200, scores.P));
+      scores.C = Math.max(-200, Math.min(200, scores.C));
+      scores.A = Math.max(-200, Math.min(200, scores.A));
+
+      // --- 6. Determine expertise ---
+      let expertise = "Commercial";
+      if (scores.P > 100) expertise = "Manager";
+      else if (scores.A > 100) expertise = "Technique";
+
+      // --- 7. Populate DOM ---
+      document.getElementById('candidateName').textContent = candidateName;
+      document.getElementById('companyName').textContent = companyName;
+      document.getElementById('positionName').textContent = positionName;
+      document.getElementById('expertiseType').textContent = expertise;
+      document.getElementById('reportDate').textContent = new Date().toLocaleDateString('fr-FR');
+      document.getElementById('reportId').textContent = 'ID: #' + Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+
+      // Secondary stats
+      document.getElementById('sec_S').textContent = secondary.S.val + '/' + secondary.S.max;
+      document.getElementById('sec_PN').textContent = secondary.PN.val + '/' + secondary.PN.max;
+      document.getElementById('sec_PP').textContent = secondary.PP.val + '/' + secondary.PP.max;
+      document.getElementById('sec_V').textContent = secondary.V.val + '/' + secondary.V.max;
+      document.getElementById('sec_Co').textContent = secondary.Co.val + '/' + secondary.Co.max;
+      document.getElementById('sec_R').textContent = secondary.R.val + '/' + secondary.R.max;
+      document.getElementById('sec_H_S').textContent = secondary.H_S.val + '/' + secondary.H_S.max;
+      document.getElementById('sec_N').textContent = secondary.N.val.toString();
+      document.getElementById('sec_SO').textContent = secondary.SO.val + '/' + secondary.SO.max;
+      document.getElementById('sec_O').textContent = secondary.O.val + '/' + secondary.O.max;
+      document.getElementById('sec_RA').textContent = secondary.RA.val + '/' + secondary.RA.max;
+
+      // --- 8. Show results, hide loading ---
+      loadingEl.style.display = 'none';
+      resultsEl.style.display = 'block';
+
+      // --- 9. Render Chart ---
       const ctx = document.getElementById('saatChart');
       if (ctx) {
         new Chart(ctx, {
@@ -209,9 +274,9 @@ const breadcrumbItems = [
               label: 'Score',
               data: [scores.P, scores.C, scores.A],
               backgroundColor: [
-                'rgba(54, 162, 235, 0.8)', // Bleu pour P
-                'rgba(75, 192, 192, 0.8)', // Vert teal pour C
-                'rgba(255, 99, 132, 0.8)'  // Rouge pour A
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(75, 192, 192, 0.8)',
+                'rgba(255, 99, 132, 0.8)'
               ],
               borderColor: [
                 'rgb(54, 162, 235)',
@@ -226,14 +291,10 @@ const breadcrumbItems = [
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-              legend: {
-                display: false
-              },
+              legend: { display: false },
               tooltip: {
                 callbacks: {
-                  label: function(context) {
-                    return context.raw;
-                  }
+                  label: function(context) { return context.raw; }
                 }
               }
             },
@@ -242,24 +303,12 @@ const breadcrumbItems = [
                 beginAtZero: false,
                 min: -200,
                 max: 200,
-                grid: {
-                  color: 'rgba(0, 0, 0, 0.1)',
-                  lineWidth: 1
-                },
-                ticks: {
-                  stepSize: 50
-                }
+                grid: { color: 'rgba(0, 0, 0, 0.1)', lineWidth: 1 },
+                ticks: { stepSize: 50 }
               },
               x: {
-                grid: {
-                  display: false
-                },
-                ticks: {
-                  font: {
-                    size: 14,
-                    weight: 'bold'
-                  }
-                }
+                grid: { display: false },
+                ticks: { font: { size: 14, weight: 'bold' } }
               }
             },
             animation: {
@@ -269,6 +318,7 @@ const breadcrumbItems = [
           }
         });
       }
+
     });
   </script>
 
