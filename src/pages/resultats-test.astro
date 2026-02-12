@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import scoringRulesRaw from '../data/saat-scoring.json';
 import mappingRaw from '../data/saat-mapping.json';
+import pcaRulesRaw from '../data/saat-rules-pca.json';
 
 // Pass scoring rules to client-side as JSON string
 const scoringRulesJSON = JSON.stringify(scoringRulesRaw);
@@ -105,6 +106,7 @@ const breadcrumbItems = [
               <div>SO : <span id="sec_SO" style="color: #475569;">0/6</span></div>
               <div>O : <span id="sec_O" style="color: #475569;">0/7</span></div>
               <div>RA : <span id="sec_RA" style="color: #475569;">0/22</span></div>
+              <div style="background: #f1f5f9; padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid #cbd5e1;">Honnêteté : <span id="honestyIndex" style="color: #0d9488;">—</span></div>
             </div>
 
           </div>
@@ -125,7 +127,7 @@ const breadcrumbItems = [
   <script is:inline src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- CLIENT-SIDE: Decode URL data, compute scores, render chart -->
-  <script is:inline define:vars={{ rules: scoringRulesRaw, mapping: mappingRaw }}>
+  <script is:inline define:vars={{ rules: scoringRulesRaw, mapping: mappingRaw, pcaRules: pcaRulesRaw }}>
     document.addEventListener('DOMContentLoaded', function() {
 
       // --- 1. Read URL parameter ---
@@ -194,7 +196,7 @@ const breadcrumbItems = [
         R: { val: 0, max: 12 }
       };
 
-      const MULTIPLIER = 10;
+      const MULTIPLIER = 1; // Direct values from PCA rules
       const answers = decoded.answers || {};
 
       // We iterate over the mapping to apply rules for each form answer
@@ -202,36 +204,42 @@ const breadcrumbItems = [
         const baseId = mapping[formIdx];
         const answer = answers[formIdx];
         
-        // Find rule by baseId
+        // 1. Calculate Secondary Stats using old scoringRules
         const rule = rules.find(r => r.id == baseId);
-        if (!rule || !answer) return;
+        if (rule && answer) {
+          let impactSecondary = 0;
+          if (answer === rule.target) impactSecondary = rule.impact;
+          else if (answer === "PLUS_OU_MOINS") impactSecondary = rule.impact * 0.5;
+          else if (answer && answer !== rule.target) impactSecondary = -rule.impact;
 
-        let impact = 0;
-        if (answer === rule.target) {
-          impact = rule.impact;
-        } else if (answer === "PLUS_OU_MOINS") {
-          impact = rule.impact * 0.5;
-        } else if (answer && answer !== rule.target) {
-          impact = -rule.impact;
-        }
-
-        // Main Dimensions Mapping
-        if (rule.dimension === "P" || rule.dimension === "S" || rule.dimension === "H/S" || rule.dimension === "N" || rule.dimension === "PP" || rule.dimension === "SO") {
-          scores.P += impact * MULTIPLIER;
-        }
-        if (rule.dimension === "C" || rule.dimension === "V" || rule.dimension === "RA") {
-          scores.C += impact * MULTIPLIER;
-        }
-        if (rule.dimension === "A" || rule.dimension === "O" || rule.dimension === "R" || rule.dimension === "Co") {
-          scores.A += impact * MULTIPLIER;
+          var dimKey = rule.dimension === "H/S" ? "H_S" : rule.dimension;
+          if (secondary[dimKey]) {
+            if (impactSecondary > 0) secondary[dimKey].val += 1;
+          }
         }
 
-        // Secondary Stats
-        var dimKey = rule.dimension === "H/S" ? "H_S" : rule.dimension;
-        if (secondary[dimKey]) {
-          if (impact > 0) secondary[dimKey].val += 1;
+        // 2. Calculate P, C, A using PCA rules
+        const pcaRule = pcaRules.find(r => r.id == formIdx); // PCA rules were built using formIdx in my extraction
+        if (pcaRule && answer) {
+          const valIdx = answer === "OUI" ? 0 : (answer === "PLUS_OU_MOINS" ? 1 : 2);
+          if (pcaRule.p) scores.P += pcaRule.p[valIdx];
+          if (pcaRule.c) scores.C += pcaRule.c[valIdx];
+          if (pcaRule.a) scores.A += pcaRule.a[valIdx];
         }
       });
+
+      // --- 5.1 Honesty Check ---
+      let matchCount = 0;
+      const checkPairs = [[2, 69], [7, 30], [8, 38, 62], [17, 56], [18, 24, 45]];
+      checkPairs.forEach(group => {
+        const vals = group.map(id => answers[id]);
+        if (vals.every(v => v && v === vals[0])) matchCount++;
+      });
+
+      const honestyLevels = ["Instable", "Honnête", "Digne de confiance"];
+      let honestyText = honestyLevels[Math.min(2, Math.floor(matchCount / 2))];
+      if (matchCount === 0) honestyText = "Peu fiable";
+      if (answers[3] === "OUI" || answers[34] === "OUI" || answers[49] === "OUI") honestyText += " (+Alerte)";
 
       // Clamp scores
       scores.P = Math.max(-200, Math.min(200, scores.P));
@@ -263,6 +271,7 @@ const breadcrumbItems = [
       document.getElementById('sec_SO').textContent = secondary.SO.val + '/' + secondary.SO.max;
       document.getElementById('sec_O').textContent = secondary.O.val + '/' + secondary.O.max;
       document.getElementById('sec_RA').textContent = secondary.RA.val + '/' + secondary.RA.max;
+      document.getElementById('honestyIndex').textContent = honestyText;
 
       // --- 8. Show results, hide loading ---
       loadingEl.style.display = 'none';
