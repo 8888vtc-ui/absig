@@ -152,8 +152,8 @@ const breadcrumbItems = [
           bytes[i] = binaryString.charCodeAt(i);
         }
         const decodedString = new TextDecoder('utf-8').decode(bytes);
-        // The string was encodeURIComponent'd, so we need to decode that
-        const jsonString = decodeURIComponent(decodedString);
+        // The string is already the JSON string (TextDecoder handled the UTF-8 bytes)
+        const jsonString = decodedString;
         decoded = JSON.parse(jsonString);
       } catch (e) {
         console.error('Erreur de décodage des données:', e);
