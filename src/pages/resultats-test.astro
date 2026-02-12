@@ -132,13 +132,14 @@ const breadcrumbItems = [
 
       // --- 1. Read URL parameter ---
       const urlParams = new URLSearchParams(window.location.search);
-      const dataParam = urlParams.get('data');
+      const dataParamV1 = urlParams.get('data');
+      const dataParamV2 = urlParams.get('d');
 
       const loadingEl = document.getElementById('loadingState');
       const errorEl = document.getElementById('errorState');
       const resultsEl = document.getElementById('resultsCard');
 
-      if (!dataParam) {
+      if (!dataParamV1 && !dataParamV2) {
         loadingEl.style.display = 'none';
         errorEl.style.display = 'block';
         return;
@@ -174,7 +175,7 @@ const breadcrumbItems = [
         } else {
           // V1: Legacy JSON Base64 format
           console.log('Tentative de décodage format V1...');
-          const binaryString = atob(dataParam);
+          const binaryString = atob(dataParamV1);
           const bytes = new Uint8Array(binaryString.length);
           for (let i = 0; i < binaryString.length; i++) {
             bytes[i] = binaryString.charCodeAt(i);
