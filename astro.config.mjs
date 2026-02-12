@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.absig-consulting.fr',
+  site: 'https://absigg.netlify.app',
   integrations: [],
   build: {
     inlineStylesheets: 'auto'

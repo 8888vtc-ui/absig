@@ -34,7 +34,7 @@ const {
 } = Astro.props;
 
 const canonicalUrl = canonical || Astro.url.pathname;
-const siteUrl = "https://www.absig-consulting.fr";
+const siteUrl = "https://absigg.netlify.app";
 const fullCanonical = `${siteUrl}${canonicalUrl}`;
 
 // Hreflang: compute alternate URLs
@@ -48,8 +48,8 @@ const jsonLdData = JSON.stringify({
   "@type": "LocalBusiness",
   "name": "ABSIG Consulting",
   "alternateName": "SAS ABSIG CONSULTING",
-  "url": "https://www.absig-consulting.fr",
-  "logo": "https://www.absig-consulting.fr/assets/img/logo.png",
+  "url": "https://absigg.netlify.app",
+  "logo": "https://absigg.netlify.app/assets/img/logo.png",
   "description": isEnglish 
     ? "European recruitment platform specializing in Hospitality, Construction and IT sectors. Based in Valbonne, French Riviera."
     : "Plateforme de recrutement européen spécialisée dans l'Hôtellerie, le BTP et l'Informatique. Basée à Valbonne, Côte d'Azur.",
