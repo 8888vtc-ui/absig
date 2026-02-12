@@ -260,6 +260,11 @@ const breadcrumbItems = [
       // --- 8. Show results, hide loading ---
       loadingEl.style.display = 'none';
       resultsEl.style.display = 'block';
+      
+      // Refresh AOS to handle newly visible elements
+      if (window.AOS) {
+        window.AOS.refresh();
+      }
 
       // --- 9. Render Chart ---
       const ctx = document.getElementById('saatChart');
