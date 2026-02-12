@@ -339,18 +339,15 @@
 /* --- WHATSAPP BUTTON --- */
 .whatsapp-button {
   position: fixed;
-  bottom: 20px;
-  left: 20px;
-  right: auto;
-  z-index: 99999;
+  bottom: 100px;
+  right: 20px;
+  left: auto;
+  z-index: 9998;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Ensure content is centered if it stretches */
   width: fit-content;
-  /* Fix for "Huge" button */
   max-width: 200px;
-  /* Safety constraint */
   gap: 8px;
   padding: 12px 20px;
   background-color: #25D366;
@@ -362,7 +359,6 @@
   font-size: 0.95rem;
   transition: all 0.3s;
   pointer-events: auto;
-  /* Ensure clickable */
 }
 
 .whatsapp-button:hover {
@@ -382,15 +378,6 @@
 }
 
 @media (max-width: 768px) {
-  .whatsapp-button {
-    /* Global is now left, so just adjust padding/size if needed */
-    bottom: 15px;
-    left: 15px;
-    padding: 10px 16px;
-    font-size: 0.85rem;
-    z-index: 9998;
-  }
-
   .whatsapp-button svg {
     width: 20px;
     height: 20px;

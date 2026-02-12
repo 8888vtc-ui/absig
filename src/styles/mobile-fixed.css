@@ -44,7 +44,7 @@
 /* === CHATBOT === */
 .chatbot-container {
     position: fixed;
-    bottom: 100px;
+    bottom: 160px;
     right: 20px;
     z-index: 9999;
 }
