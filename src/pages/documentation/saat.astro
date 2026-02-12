@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import fs from 'fs';
+import path from 'path';
+
+// Read OCR files
+const ocrPath = path.resolve('./');
+const ocrCorrespondance = fs.readFileSync(path.join(ocrPath, 'ocr_correspondance.txt'), 'utf-8');
+const ocrManuel = fs.readFileSync(path.join(ocrPath, 'ocr_manuel.txt'), 'utf-8');
+const ocrTest = fs.readFileSync(path.join(ocrPath, 'ocr_test.txt'), 'utf-8');
+
+const breadcrumbItems = [
+  { name: "Accueil", url: "/" },
+  { name: "Documentation", url: "#" },
+  { name: "SAAT™", url: "/documentation/saat" }
+];
+
+function cleanText(text) {
+  return text
+    .replace(/Ã©/g, 'é')
+    .replace(/Ã/g, 'à')
+    .replace(/Ã¨/g, 'è')
+    .replace(/Ã¹/g, 'ù')
+    .replace(/Ã»/g, 'û')
+    .replace(/Ã¢/g, 'â')
+    .replace(/Ã®/g, 'î')
+    .replace(/Ã´/g, 'ô')
+    .replace(/Â/g, '')
+    .trim();
+}
+
+const docs = [
+  {
+    id: 'correspondance',
+    title: 'Correspondance des Réponses (SAA32)',
+    pdf: '/docs/correspondance-saat.pdf',
+    content: cleanText(ocrCorrespondance)
+  },
+  {
+    id: 'manuel',
+    title: 'Manuel & Chapeaux SAA',
+    pdf: '/docs/manuel-saat.pdf',
+    content: cleanText(ocrManuel)
+  },
+  {
+    id: 'questionnaire',
+    title: 'Questionnaire (FR)',
+    pdf: '/docs/questionnaire-saat.pdf',
+    content: cleanText(ocrTest)
+  }
+];
+---
+
+<BaseLayout 
+  title="Documentation Technique SAAT™"
+  description="Documentation officielle et correspondances des bases pour le test Sigler's Ability Analysis."
+>
+
+  <section class="doc-section" style="padding: 4rem 0; background: #f8fafc;">
+    <div class="container">
+      
+      <div class="doc-header" style="margin-bottom: 3rem; text-align: center;">
+        <h1 style="color: #1e3a5f; margin-bottom: 1rem;">Documentation SAAT™</h1>
+        <p style="color: #64748b; max-width: 800px; margin: 0 auto;">
+          Retrouvez ici l'intégralité des documents officiels, les tables de correspondance et les manuels d'interprétation du test Sigler's Ability Analysis.
+        </p>
+      </div>
+
+      <div class="doc-tabs-container" style="background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); overflow: hidden;">
+        
+        <!-- Tab Buttons -->
+        <div class="doc-tabs-nav" style="display: flex; border-bottom: 1px solid #e2e8f0; background: #f1f5f9;">
+          {docs.map((doc, index) => (
+            <button 
+              class={`tab-btn ${index === 0 ? 'active' : ''}`} 
+              data-target={doc.id}
+              style="padding: 1.25rem 2rem; border: none; background: transparent; cursor: pointer; font-weight: 600; color: #64748b; transition: all 0.3s; border-bottom: 3px solid transparent;"
+            >
+              {doc.title}
+            </button>
+          ))}
+        </div>
+
+        <!-- Tab Content -->
+        <div class="doc-tabs-content" style="padding: 2rem;">
+          {docs.map((doc, index) => (
+            <div 
+              class={`tab-pane ${index === 0 ? 'active' : ''}`} 
+              id={doc.id}
+              style={index === 0 ? "display: block;" : "display: none;"}
+            >
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid #f1f5f9;">
+                <h2 style="color: #1e3a5f; margin: 0;">{doc.title}</h2>
+                <a href={doc.pdf} target="_blank" class="download-btn" style="background: #0d9488; color: white; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">
+                  📥 Télécharger le PDF original
+                </a>
+              </div>
+
+              <div class="ocr-content" style="background: #fafafa; padding: 1.5rem; border-radius: 8px; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; line-height: 1.6; color: #334155; max-height: 600px; overflow-y: auto; white-space: pre-wrap; border: 1px solid #e2e8f0;">
+                {doc.content}
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .tab-btn.active {
+    color: #0d9488 !important;
+    background: white !important;
+    border-bottom-color: #0d9488 !important;
+  }
+  
+  .tab-btn:hover:not(.active) {
+    background: rgba(13, 148, 136, 0.05);
+    color: #1e3a5f;
+  }
+
+  .download-btn:hover {
+    background: #0f766e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+  }
+
+  .ocr-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  .ocr-content::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+  .ocr-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+  .ocr-content::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panes = document.querySelectorAll('.tab-pane');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-target');
+
+        tabs.forEach(t => t.classList.remove('active'));
+        panes.forEach(p => p.style.display = 'none');
+
+        tab.classList.add('active');
+        document.getElementById(target).style.display = 'block';
+      });
+    });
+  });
+</script>
